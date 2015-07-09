@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Lato-Regular.otf">
+            <string>Lato-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AddItemView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_plus" translatesAutoresizingMaskIntoConstraints="NO" id="ucf-pl-GSc">
+                    <rect key="frame" x="40" y="0.0" width="56" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="7n7-f2-TMy"/>
+                        <constraint firstAttribute="width" constant="56" id="lYM-ML-OEc"/>
+                    </constraints>
+                </imageView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BK8-pA-qEp">
+                    <rect key="frame" x="268" y="13" width="232" height="30"/>
+                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbm-D6-fon">
+                    <rect key="frame" x="20" y="55" width="580" height="1"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="4Yq-UB-Gf6"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LeA-mX-zjO">
+                    <rect key="frame" x="534" y="13" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="33N-RG-0Gk"/>
+                        <constraint firstAttribute="height" constant="30" id="Qkr-eb-A5C"/>
+                    </constraints>
+                    <state key="normal" image="detail_arrow_right">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="oActionArrow:" destination="iN0-l3-epB" eventType="touchUpInside" id="Pnt-wX-K9G"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="BK8-pA-qEp" secondAttribute="bottom" constant="13" id="F9r-Qn-iSF"/>
+                <constraint firstAttribute="trailing" secondItem="vbm-D6-fon" secondAttribute="trailing" id="QJG-7D-qKl"/>
+                <constraint firstItem="vbm-D6-fon" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Qrl-80-VaK"/>
+                <constraint firstItem="ucf-pl-GSc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XWd-Jk-2r9"/>
+                <constraint firstAttribute="bottom" secondItem="vbm-D6-fon" secondAttribute="bottom" id="ZOU-5g-1Dw"/>
+                <constraint firstItem="LeA-mX-zjO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="Zmu-A9-VPW"/>
+                <constraint firstAttribute="trailing" secondItem="LeA-mX-zjO" secondAttribute="trailing" constant="20" id="hFt-Qt-G5n"/>
+                <constraint firstItem="BK8-pA-qEp" firstAttribute="width" secondItem="vbm-D6-fon" secondAttribute="width" multiplier="0.4" id="kQe-Dx-K5F"/>
+                <constraint firstItem="BK8-pA-qEp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="ngM-8D-avH"/>
+                <constraint firstAttribute="trailing" secondItem="BK8-pA-qEp" secondAttribute="trailing" constant="100" id="pnt-0h-cDe"/>
+                <constraint firstItem="ucf-pl-GSc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="wpt-95-9DG"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="oArrowButton" destination="LeA-mX-zjO" id="Cmy-Wb-WPL"/>
+                <outlet property="oTextField" destination="BK8-pA-qEp" id="qzO-Sj-AtA"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="add_plus" width="36" height="36"/>
+        <image name="detail_arrow_right" width="16" height="26"/>
+    </resources>
+</document>

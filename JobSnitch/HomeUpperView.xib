@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Lato-Black.otf">
+            <string>Lato-Black</string>
+            <string>Lato-Black</string>
+        </mutableArray>
+        <mutableArray key="Lato-Regular.otf">
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HomeUpperView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upper_scroll" translatesAutoresizingMaskIntoConstraints="NO" id="ykB-o7-XJL">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7AY-LN-O9y">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hire me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Esd-MX-DKe">
+                            <rect key="frame" x="200" y="542" width="200" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="UIr-8p-LHd"/>
+                                <constraint firstAttribute="height" constant="22" id="Zar-Yb-c55"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdl-dp-6wo">
+                            <rect key="frame" x="50" y="56" width="500" height="89"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="cdl-dp-6wo" secondAttribute="height" multiplier="315:56" id="8is-bQ-E6q"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="youremail@mail.com" backgroundImage="white_dot_button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWD-aN-ciT">
+                            <rect key="frame" x="50" y="150" width="500" height="89"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="GWD-aN-ciT" secondAttribute="height" multiplier="315:56" id="UXG-gB-Ngo"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="password" backgroundImage="white_dot_button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GxU-Vx-HuP">
+                            <rect key="frame" x="50" y="244" width="500" height="89"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="GxU-Vx-HuP" secondAttribute="height" multiplier="315:56" id="YGX-Kc-aAH"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                            <state key="normal" title="Forgot Password?">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="actionForgot:" destination="iN0-l3-epB" eventType="touchUpInside" id="xaF-k4-Czp"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="on6-Kl-7JN">
+                            <rect key="frame" x="70" y="338" width="460" height="95"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="on6-Kl-7JN" secondAttribute="height" multiplier="261:54" id="4ww-ta-rGb"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Login With Facebook" image="facebook" backgroundImage="login_fb_button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="actionLoginFacebook:" destination="iN0-l3-epB" eventType="touchUpInside" id="pIf-l0-Pkm"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ubk-8U-MYl">
+                            <rect key="frame" x="71" y="469" width="458" height="92"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Ubk-8U-MYl" secondAttribute="height" multiplier="259:52" id="5uc-gA-eBF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="CREATE ACCOUNT" backgroundImage="white_button">
+                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="actionCreateAccount:" destination="iN0-l3-epB" eventType="touchUpInside" id="i1o-fg-EMq"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="cdl-dp-6wo" firstAttribute="top" secondItem="7AY-LN-O9y" secondAttribute="top" constant="56" id="1db-sE-ZlQ"/>
+                        <constraint firstItem="on6-Kl-7JN" firstAttribute="top" secondItem="GxU-Vx-HuP" secondAttribute="bottom" constant="5" id="5XT-6D-VPy"/>
+                        <constraint firstItem="GxU-Vx-HuP" firstAttribute="leading" secondItem="7AY-LN-O9y" secondAttribute="leading" constant="50" id="6fa-iQ-YMy"/>
+                        <constraint firstItem="GWD-aN-ciT" firstAttribute="leading" secondItem="7AY-LN-O9y" secondAttribute="leading" constant="50" id="8tV-mY-3Oh"/>
+                        <constraint firstAttribute="trailing" secondItem="on6-Kl-7JN" secondAttribute="trailing" constant="70" id="BIO-Rn-clU"/>
+                        <constraint firstItem="Ubk-8U-MYl" firstAttribute="top" secondItem="on6-Kl-7JN" secondAttribute="bottom" constant="36" id="Dmh-IW-DG5"/>
+                        <constraint firstAttribute="bottom" secondItem="Esd-MX-DKe" secondAttribute="bottom" constant="36" id="EFO-At-mHu"/>
+                        <constraint firstAttribute="trailing" secondItem="GWD-aN-ciT" secondAttribute="trailing" constant="50" id="F4h-3b-24U"/>
+                        <constraint firstItem="cdl-dp-6wo" firstAttribute="leading" secondItem="7AY-LN-O9y" secondAttribute="leading" constant="50" id="GdA-Wc-ot4"/>
+                        <constraint firstItem="GxU-Vx-HuP" firstAttribute="top" secondItem="GWD-aN-ciT" secondAttribute="bottom" constant="5" id="K2M-Pb-wv3"/>
+                        <constraint firstItem="Ubk-8U-MYl" firstAttribute="leading" secondItem="7AY-LN-O9y" secondAttribute="leading" constant="71" id="PtL-D9-s6N"/>
+                        <constraint firstItem="GWD-aN-ciT" firstAttribute="top" secondItem="cdl-dp-6wo" secondAttribute="bottom" constant="5" id="RJN-Kz-CjV"/>
+                        <constraint firstAttribute="trailing" secondItem="GxU-Vx-HuP" secondAttribute="trailing" constant="50" id="azD-8h-1Qx"/>
+                        <constraint firstItem="GxU-Vx-HuP" firstAttribute="top" secondItem="GWD-aN-ciT" secondAttribute="bottom" constant="5" id="bk4-fn-K0L"/>
+                        <constraint firstItem="on6-Kl-7JN" firstAttribute="leading" secondItem="7AY-LN-O9y" secondAttribute="leading" constant="70" id="nRd-gX-NfV"/>
+                        <constraint firstAttribute="trailing" secondItem="cdl-dp-6wo" secondAttribute="trailing" constant="50" id="pml-w4-reJ"/>
+                        <constraint firstAttribute="trailing" secondItem="Ubk-8U-MYl" secondAttribute="trailing" constant="71" id="tsf-CK-q7X"/>
+                        <constraint firstAttribute="centerX" secondItem="Esd-MX-DKe" secondAttribute="centerX" id="vAR-PB-ZP1"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ykB-o7-XJL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IMt-Up-4OS"/>
+                <constraint firstAttribute="bottom" secondItem="7AY-LN-O9y" secondAttribute="bottom" id="RN8-S4-Olo"/>
+                <constraint firstAttribute="trailing" secondItem="ykB-o7-XJL" secondAttribute="trailing" id="Sp3-CN-Mys"/>
+                <constraint firstAttribute="bottom" secondItem="ykB-o7-XJL" secondAttribute="bottom" id="Vpm-ep-Hdz"/>
+                <constraint firstItem="7AY-LN-O9y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="a5Y-nK-Iv0"/>
+                <constraint firstItem="ykB-o7-XJL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fE1-cr-sZj"/>
+                <constraint firstAttribute="trailing" secondItem="7AY-LN-O9y" secondAttribute="trailing" id="hNT-Rz-30Q"/>
+                <constraint firstItem="7AY-LN-O9y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nX7-4K-LgF"/>
+            </constraints>
+            <connections>
+                <outlet property="oAccountTopConstraint" destination="Dmh-IW-DG5" id="ehq-tY-lEG"/>
+                <outlet property="oTopConstraint" destination="1db-sE-ZlQ" id="xeA-vF-Zzw"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="facebook" width="33" height="33"/>
+        <image name="login_fb_button" width="261" height="54"/>
+        <image name="upper_scroll" width="320" height="425"/>
+        <image name="white_button" width="259" height="52"/>
+        <image name="white_dot_button" width="315" height="56"/>
+    </resources>
+</document>

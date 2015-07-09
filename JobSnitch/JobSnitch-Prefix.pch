@@ -1,0 +1,17 @@
+//
+//  JobSnitch-Prefix.pch
+//  JobSnitch
+//
+//  Created by Andrei Sava on 07/07/15.
+//  Copyright (c) 2015 Andrei Sava. All rights reserved.
+//
+
+#ifndef JobSnitch_JobSnitch_Prefix_pch
+#define JobSnitch_JobSnitch_Prefix_pch
+
+#ifdef __OBJC__
+#import "AppDelegate.h"
+#import "AppSettings.h"
+#endif
+
+#endif
