@@ -7,7 +7,8 @@
 //
 
 #import "BaseJSViewController.h"
+@import CoreLocation;
 
-@interface CreateJobseekerController : BaseJSViewController <UITextFieldDelegate>
+@interface CreateJobseekerController : BaseJSViewController <UITextFieldDelegate, CLLocationManagerDelegate>
 
 @end

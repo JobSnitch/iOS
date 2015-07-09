@@ -21,6 +21,9 @@
 @property (nonatomic, strong) UILabel * sliderLabel;
 @property (nonatomic)   int noOfJobTypes;
 @property (nonatomic)   int noOfIndustries;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation * myLocation;
+
 @end
 
 const float kMagicHeight1 = 1268.0;
@@ -141,7 +144,7 @@ const float kMagicHeight1 = 1268.0;
 }
 
 - (IBAction)actionFindme:(id)sender {
-    NSLog(@"What?");
+    [self initLocation];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -166,6 +169,36 @@ const float kMagicHeight1 = 1268.0;
         }
     }
     return NO; // We do not want UITextField to insert line-breaks.
+}
+
+#pragma mark - CLLocationManagerDelegate
+- (void) initLocation {
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+}
+
+// Failed to get current location
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"Failed to Get Your Location");
+}
+
+// Got location and now update
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    self.myLocation = nil;
+    self.myLocation = [newLocation copy];
+    NSLog(@"%f, %f, %f, %@", self.myLocation.coordinate.longitude,
+          self.myLocation.coordinate.latitude,
+          self.myLocation.altitude,
+          self.myLocation.description);
+    [self.locationManager stopUpdatingLocation];
+    
 }
 
 
