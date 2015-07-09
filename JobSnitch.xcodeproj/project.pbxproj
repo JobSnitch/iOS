@@ -26,6 +26,9 @@
 		C8A08BFB1B4BDEA600B2C703 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A08BFA1B4BDEA600B2C703 /* HomeViewController.m */; };
 		C8A08BFF1B4BECD400B2C703 /* HomeCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A08BFE1B4BECD400B2C703 /* HomeCenterView.m */; };
 		C8A08C011B4BED5F00B2C703 /* HomeCenterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A08C001B4BED5F00B2C703 /* HomeCenterView.xib */; };
+		C8D12ACA1B4E55A400DCFC83 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12AC91B4E55A400DCFC83 /* AboutViewController.m */; };
+		C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12ACC1B4E55C100DCFC83 /* ContactViewController.m */; };
+		C8D12AD01B4E561300DCFC83 /* BugReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12ACF1B4E561300DCFC83 /* BugReportViewController.m */; };
 		C8DA45D91B4D02380041EB23 /* JSCustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45D81B4D02380041EB23 /* JSCustomSegue.m */; };
 		C8DA45DC1B4D02890041EB23 /* JSCustomUnwindSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45DB1B4D02890041EB23 /* JSCustomUnwindSegue.m */; };
 		C8DA45E11B4D03110041EB23 /* HomeLowerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45DE1B4D03110041EB23 /* HomeLowerView.m */; };
@@ -76,6 +79,12 @@
 		C8A08BFD1B4BECD400B2C703 /* HomeCenterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCenterView.h; path = Views/HomeCenterView.h; sourceTree = "<group>"; };
 		C8A08BFE1B4BECD400B2C703 /* HomeCenterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCenterView.m; path = Views/HomeCenterView.m; sourceTree = "<group>"; };
 		C8A08C001B4BED5F00B2C703 /* HomeCenterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCenterView.xib; sourceTree = "<group>"; };
+		C8D12AC81B4E55A400DCFC83 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = ViewControllers/AboutViewController.h; sourceTree = "<group>"; };
+		C8D12AC91B4E55A400DCFC83 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = ViewControllers/AboutViewController.m; sourceTree = "<group>"; };
+		C8D12ACB1B4E55C100DCFC83 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactViewController.h; path = ViewControllers/ContactViewController.h; sourceTree = "<group>"; };
+		C8D12ACC1B4E55C100DCFC83 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactViewController.m; path = ViewControllers/ContactViewController.m; sourceTree = "<group>"; };
+		C8D12ACE1B4E561300DCFC83 /* BugReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugReportViewController.h; path = ViewControllers/BugReportViewController.h; sourceTree = "<group>"; };
+		C8D12ACF1B4E561300DCFC83 /* BugReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BugReportViewController.m; path = ViewControllers/BugReportViewController.m; sourceTree = "<group>"; };
 		C8DA45D71B4D02380041EB23 /* JSCustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSCustomSegue.h; path = ViewControllers/JSCustomSegue.h; sourceTree = "<group>"; };
 		C8DA45D81B4D02380041EB23 /* JSCustomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSCustomSegue.m; path = ViewControllers/JSCustomSegue.m; sourceTree = "<group>"; };
 		C8DA45DA1B4D02890041EB23 /* JSCustomUnwindSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSCustomUnwindSegue.h; path = ViewControllers/JSCustomUnwindSegue.h; sourceTree = "<group>"; };
@@ -199,6 +208,12 @@
 				C8DA45E41B4D03910041EB23 /* CreateJobseekerController.m */,
 				C8DA45E61B4D03CA0041EB23 /* CreateEmployerController.h */,
 				C8DA45E71B4D03CA0041EB23 /* CreateEmployerController.m */,
+				C8D12AC81B4E55A400DCFC83 /* AboutViewController.h */,
+				C8D12AC91B4E55A400DCFC83 /* AboutViewController.m */,
+				C8D12ACB1B4E55C100DCFC83 /* ContactViewController.h */,
+				C8D12ACC1B4E55C100DCFC83 /* ContactViewController.m */,
+				C8D12ACE1B4E561300DCFC83 /* BugReportViewController.h */,
+				C8D12ACF1B4E561300DCFC83 /* BugReportViewController.m */,
 			);
 			name = "02 ViewControllers";
 			sourceTree = "<group>";
@@ -397,7 +412,10 @@
 				C8A08BFB1B4BDEA600B2C703 /* HomeViewController.m in Sources */,
 				C8DA45DC1B4D02890041EB23 /* JSCustomUnwindSegue.m in Sources */,
 				C89F1EBA1B4D620800692DAD /* AddItemView.m in Sources */,
+				C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */,
+				C8D12ACA1B4E55A400DCFC83 /* AboutViewController.m in Sources */,
 				C8DA45E81B4D03CA0041EB23 /* CreateEmployerController.m in Sources */,
+				C8D12AD01B4E561300DCFC83 /* BugReportViewController.m in Sources */,
 				C8A08BFF1B4BECD400B2C703 /* HomeCenterView.m in Sources */,
 				C8A08BCC1B4BD5DC00B2C703 /* main.m in Sources */,
 			);

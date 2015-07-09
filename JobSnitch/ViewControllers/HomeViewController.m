@@ -3,7 +3,7 @@
 //  JobSnitch
 //
 //  Created by Andrei Sava on 07/07/15.
-//  Copyright (c) 2015 Andrei Sava. All rights reserved.
+//  Copyright (c) 2015 JobSnitch. All rights reserved.
 //
 
 #import "HomeViewController.h"
@@ -24,6 +24,7 @@ const float kArrowHeight = 61.0;
 @property (nonatomic, strong)   UITapGestureRecognizer *lowerTapRecognizer;
 @property (nonatomic)   BOOL    restrictedUpper;
 @property (nonatomic)   BOOL    restrictedLower;
+@property (nonatomic)           CGAffineTransform lowerTransform;
 
 @end
 
@@ -77,7 +78,8 @@ const float kArrowHeight = 61.0;
     self.upperView = nil;
     self.upperView = [[[NSBundle mainBundle] loadNibNamed:@"HomeUpperView" owner:self options:nil] objectAtIndex:0];
     [self restrictedPositionUpperView];
-    self.upperView.delegate = self;
+    self.upperView.parent = self;
+    [self.upperView setupFields:self];
     [self.view addSubview:self.upperView];
     _restrictedUpper = TRUE;
 }
@@ -86,7 +88,8 @@ const float kArrowHeight = 61.0;
     self.lowerView = nil;
     self.lowerView = [[[NSBundle mainBundle] loadNibNamed:@"HomeLowerView" owner:self options:nil] objectAtIndex:0];
     [self restrictedPositionLowerView];
-    self.lowerView.delegate = self;
+    self.lowerView.parent = self;
+    [self.lowerView setupFields:self];
     [self.view addSubview:self.lowerView];
     _restrictedLower = TRUE;
 }
@@ -183,6 +186,7 @@ const float kArrowHeight = 61.0;
     };
     CompletionBlock removeImage = ^(BOOL finished) {
         _restrictedUpper = TRUE;
+        self.lowerTransform = climb;
     };
     
     [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveLinear|UIViewAnimationOptionBeginFromCurrentState
@@ -246,6 +250,7 @@ const float kArrowHeight = 61.0;
 -(void) showCenterView {
     self.centerView = nil;
     self.centerView = [[[NSBundle mainBundle] loadNibNamed:@"HomeCenterView" owner:self options:nil] objectAtIndex:0];
+    self.centerView.delegate = self;
     [self finalPositionCenterView];
     [self.view insertSubview:self.centerView belowSubview:self.oLogoImageView];
     [self initialPositionCenterView];
@@ -293,6 +298,46 @@ const float kArrowHeight = 61.0;
 
 }
 
+#pragma mark - UITextFieldDelegate
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    NSInteger thisTag = textField.tag;
+    if (thisTag < 900) {        // lower
+        [self raiseLowerHigher:50.0];
+    }
+    return YES;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField;
+{
+    NSInteger thisTag = textField.tag;
+    NSInteger nextTag = textField.tag + 1;
+    UIResponder* nextResponder = nil;
+    if (thisTag < 900) {        // lower
+        nextResponder = [self.lowerView viewWithTag:nextTag];
+        if (nextResponder) {
+            [nextResponder becomeFirstResponder];
+            [self raiseLowerHigher:100.0];
+        } else {
+            [textField resignFirstResponder];
+            [self.lowerView setTransform:self.lowerTransform];
+        }
+    } else {                    // upper
+        nextResponder = [self.upperView viewWithTag:nextTag];
+        if (nextResponder) {
+            [nextResponder becomeFirstResponder];
+        } else {
+            [textField resignFirstResponder];
+        }
+    }
+    return NO;
+}
+
+-(void) raiseLowerHigher: (CGFloat) ty {
+    CGAffineTransform higherLowerTransform = self.lowerTransform;
+    higherLowerTransform.ty -= ty;
+    [self.lowerView setTransform:higherLowerTransform];
+}
+
 #pragma mark - HomeDelegate
 -(void) delegateForgotPassword {
     
@@ -309,6 +354,19 @@ const float kArrowHeight = 61.0;
 -(void) delegateCreateEmployer {
     [self performSegueWithIdentifier:@"HomeToCreateEmployer" sender:self];
 }
+
+-(void) delegateShowAbout {
+    [self performSegueWithIdentifier:@"HomeToAbout" sender:self];
+}
+
+-(void) delegateShowContact {
+    [self performSegueWithIdentifier:@"HomeToContact" sender:self];
+}
+
+-(void) delegateShowBugRep {
+    [self performSegueWithIdentifier:@"HomeToBugReport" sender:self];
+}
+
 
 #pragma mark - other
 - (void)didReceiveMemoryWarning {

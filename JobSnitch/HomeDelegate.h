@@ -13,5 +13,8 @@
 -(void) delegateLoginFacebook;
 -(void) delegateCreateJSeeker;
 -(void) delegateCreateEmployer;
+-(void) delegateShowAbout;
+-(void) delegateShowContact;
+-(void) delegateShowBugRep;
 
 @end
