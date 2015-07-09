@@ -21,6 +21,7 @@
 }
 
 - (IBAction)actionForgot:(id)sender {
+    [self.parent delegateForgotPassword];
 }
 
 - (IBAction)actionLoginFacebook:(id)sender {

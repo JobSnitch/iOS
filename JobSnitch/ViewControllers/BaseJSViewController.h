@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseJSViewController : UIViewController
+@property (nonatomic, strong) UIImageView *backgroundGradient;
 
+-(void) initBackground;
 @end

@@ -340,7 +340,7 @@ const float kArrowHeight = 61.0;
 
 #pragma mark - HomeDelegate
 -(void) delegateForgotPassword {
-    
+    [self performSegueWithIdentifier:@"HomeToForgotPassword" sender:self];
 }
 
 -(void) delegateLoginFacebook {

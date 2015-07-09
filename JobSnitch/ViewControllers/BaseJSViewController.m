@@ -20,6 +20,13 @@
     // Do any additional setup after loading the view.
 }
 
+-(void) initBackground {
+    self.backgroundGradient = [[UIImageView alloc] initWithFrame:self.view.frame];
+    [self.backgroundGradient setImage:[UIImage imageNamed:@"gradient_red_back_sq.png"]];
+    [self.view addSubview:self.backgroundGradient];
+    [self.view sendSubviewToBack:self.backgroundGradient];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -39,14 +46,5 @@
     return segue;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

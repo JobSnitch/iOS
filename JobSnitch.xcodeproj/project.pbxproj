@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C800D3741B4E901700E81F69 /* ForgotPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = C800D3731B4E901700E81F69 /* ForgotPasswordController.m */; };
 		C82049C61B4C1E29005B3F3F /* HomeUpperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82049C51B4C1E29005B3F3F /* HomeUpperView.xib */; };
 		C82049C81B4C1F2C005B3F3F /* HomeLowerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82049C71B4C1F2C005B3F3F /* HomeLowerView.xib */; };
 		C8400A961B4D1ABE00EBDE88 /* CreateTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8400A951B4D1ABE00EBDE88 /* CreateTopView.m */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C800D3721B4E901700E81F69 /* ForgotPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgotPasswordController.h; path = ViewControllers/ForgotPasswordController.h; sourceTree = "<group>"; };
+		C800D3731B4E901700E81F69 /* ForgotPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgotPasswordController.m; path = ViewControllers/ForgotPasswordController.m; sourceTree = "<group>"; };
 		C82049C51B4C1E29005B3F3F /* HomeUpperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeUpperView.xib; sourceTree = "<group>"; };
 		C82049C71B4C1F2C005B3F3F /* HomeLowerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeLowerView.xib; sourceTree = "<group>"; };
 		C8400A941B4D1ABE00EBDE88 /* CreateTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateTopView.h; path = Views/CreateTopView.h; sourceTree = "<group>"; };
@@ -214,6 +217,8 @@
 				C8D12ACC1B4E55C100DCFC83 /* ContactViewController.m */,
 				C8D12ACE1B4E561300DCFC83 /* BugReportViewController.h */,
 				C8D12ACF1B4E561300DCFC83 /* BugReportViewController.m */,
+				C800D3721B4E901700E81F69 /* ForgotPasswordController.h */,
+				C800D3731B4E901700E81F69 /* ForgotPasswordController.m */,
 			);
 			name = "02 ViewControllers";
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 				C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */,
 				C8D12ACA1B4E55A400DCFC83 /* AboutViewController.m in Sources */,
 				C8DA45E81B4D03CA0041EB23 /* CreateEmployerController.m in Sources */,
+				C800D3741B4E901700E81F69 /* ForgotPasswordController.m in Sources */,
 				C8D12AD01B4E561300DCFC83 /* BugReportViewController.m in Sources */,
 				C8A08BFF1B4BECD400B2C703 /* HomeCenterView.m in Sources */,
 				C8A08BCC1B4BD5DC00B2C703 /* main.m in Sources */,
