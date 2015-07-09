@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Lato-Regular.otf">
@@ -17,15 +16,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_plus" translatesAutoresizingMaskIntoConstraints="NO" id="ucf-pl-GSc">
-                    <rect key="frame" x="40" y="0.0" width="56" height="56"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="56" id="7n7-f2-TMy"/>
-                        <constraint firstAttribute="width" constant="56" id="lYM-ML-OEc"/>
-                    </constraints>
-                </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BK8-pA-qEp">
-                    <rect key="frame" x="268" y="13" width="232" height="30"/>
+                    <rect key="frame" x="60" y="13" width="440" height="30"/>
                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
@@ -37,12 +29,12 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LeA-mX-zjO">
-                    <rect key="frame" x="534" y="13" width="46" height="30"/>
+                    <rect key="frame" x="534" y="10" width="46" height="36"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="46" id="33N-RG-0Gk"/>
-                        <constraint firstAttribute="height" constant="30" id="Qkr-eb-A5C"/>
+                        <constraint firstAttribute="height" constant="36" id="Qkr-eb-A5C"/>
                     </constraints>
-                    <state key="normal" image="detail_arrow_right">
+                    <state key="normal" image="add_plus">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -55,14 +47,12 @@
                 <constraint firstAttribute="bottom" secondItem="BK8-pA-qEp" secondAttribute="bottom" constant="13" id="F9r-Qn-iSF"/>
                 <constraint firstAttribute="trailing" secondItem="vbm-D6-fon" secondAttribute="trailing" id="QJG-7D-qKl"/>
                 <constraint firstItem="vbm-D6-fon" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Qrl-80-VaK"/>
-                <constraint firstItem="ucf-pl-GSc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XWd-Jk-2r9"/>
                 <constraint firstAttribute="bottom" secondItem="vbm-D6-fon" secondAttribute="bottom" id="ZOU-5g-1Dw"/>
-                <constraint firstItem="LeA-mX-zjO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="Zmu-A9-VPW"/>
+                <constraint firstItem="LeA-mX-zjO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Zmu-A9-VPW"/>
                 <constraint firstAttribute="trailing" secondItem="LeA-mX-zjO" secondAttribute="trailing" constant="20" id="hFt-Qt-G5n"/>
-                <constraint firstItem="BK8-pA-qEp" firstAttribute="width" secondItem="vbm-D6-fon" secondAttribute="width" multiplier="0.4" id="kQe-Dx-K5F"/>
                 <constraint firstItem="BK8-pA-qEp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="ngM-8D-avH"/>
+                <constraint firstItem="BK8-pA-qEp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="p7Z-O0-X5o"/>
                 <constraint firstAttribute="trailing" secondItem="BK8-pA-qEp" secondAttribute="trailing" constant="100" id="pnt-0h-cDe"/>
-                <constraint firstItem="ucf-pl-GSc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="wpt-95-9DG"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -74,6 +64,5 @@
     </objects>
     <resources>
         <image name="add_plus" width="36" height="36"/>
-        <image name="detail_arrow_right" width="16" height="26"/>
     </resources>
 </document>

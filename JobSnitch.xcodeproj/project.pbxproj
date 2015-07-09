@@ -36,6 +36,9 @@
 		C8DA45E21B4D03110041EB23 /* HomeUpperView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45E01B4D03110041EB23 /* HomeUpperView.m */; };
 		C8DA45E51B4D03910041EB23 /* CreateJobseekerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45E41B4D03910041EB23 /* CreateJobseekerController.m */; };
 		C8DA45E81B4D03CA0041EB23 /* CreateEmployerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45E71B4D03CA0041EB23 /* CreateEmployerController.m */; };
+		C8EC3C611B4EB79A0003F618 /* JSPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8EC3C601B4EB79A0003F618 /* JSPickerView.m */; };
+		C8EC3C641B4EE6390003F618 /* NewInfoPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8EC3C631B4EE6390003F618 /* NewInfoPopupView.m */; };
+		C8EC3C661B4EE6BD0003F618 /* NewInfoPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8EC3C651B4EE6BD0003F618 /* NewInfoPopupView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +104,12 @@
 		C8DA45E61B4D03CA0041EB23 /* CreateEmployerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateEmployerController.h; path = ViewControllers/CreateEmployerController.h; sourceTree = "<group>"; };
 		C8DA45E71B4D03CA0041EB23 /* CreateEmployerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateEmployerController.m; path = ViewControllers/CreateEmployerController.m; sourceTree = "<group>"; };
 		C8DA45EA1B4D07570041EB23 /* HomeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeDelegate.h; sourceTree = "<group>"; };
+		C8EC3C5F1B4EB79A0003F618 /* JSPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSPickerView.h; path = Views/JSPickerView.h; sourceTree = "<group>"; };
+		C8EC3C601B4EB79A0003F618 /* JSPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSPickerView.m; path = Views/JSPickerView.m; sourceTree = "<group>"; };
+		C8EC3C621B4EE6390003F618 /* NewInfoPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewInfoPopupView.h; path = Views/NewInfoPopupView.h; sourceTree = "<group>"; };
+		C8EC3C631B4EE6390003F618 /* NewInfoPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewInfoPopupView.m; path = Views/NewInfoPopupView.m; sourceTree = "<group>"; };
+		C8EC3C651B4EE6BD0003F618 /* NewInfoPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewInfoPopupView.xib; sourceTree = "<group>"; };
+		C8EC3C671B4EEABF0003F618 /* NewInfoPopupParent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewInfoPopupParent.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +250,7 @@
 				C82049C71B4C1F2C005B3F3F /* HomeLowerView.xib */,
 				C8400A991B4D1D5000EBDE88 /* CreateTopView.xib */,
 				C89F1EBB1B4D624600692DAD /* AddItemView.xib */,
+				C8EC3C651B4EE6BD0003F618 /* NewInfoPopupView.xib */,
 			);
 			name = "05 Storyboards";
 			sourceTree = "<group>";
@@ -276,6 +286,10 @@
 				C8400A951B4D1ABE00EBDE88 /* CreateTopView.m */,
 				C89F1EB81B4D620800692DAD /* AddItemView.h */,
 				C89F1EB91B4D620800692DAD /* AddItemView.m */,
+				C8EC3C5F1B4EB79A0003F618 /* JSPickerView.h */,
+				C8EC3C601B4EB79A0003F618 /* JSPickerView.m */,
+				C8EC3C621B4EE6390003F618 /* NewInfoPopupView.h */,
+				C8EC3C631B4EE6390003F618 /* NewInfoPopupView.m */,
 			);
 			name = "03 Views";
 			sourceTree = "<group>";
@@ -295,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				C8DA45EA1B4D07570041EB23 /* HomeDelegate.h */,
+				C8EC3C671B4EEABF0003F618 /* NewInfoPopupParent.h */,
 			);
 			name = "04 Protocols";
 			sourceTree = "<group>";
@@ -385,6 +400,7 @@
 				C87138CD1B4C096D009BD279 /* Lato-Regular.otf in Resources */,
 				C89F1EBC1B4D624600692DAD /* AddItemView.xib in Resources */,
 				C8400A9A1B4D1D5000EBDE88 /* CreateTopView.xib in Resources */,
+				C8EC3C661B4EE6BD0003F618 /* NewInfoPopupView.xib in Resources */,
 				C8A08BDA1B4BD5DC00B2C703 /* LaunchScreen.xib in Resources */,
 				C82049C81B4C1F2C005B3F3F /* HomeLowerView.xib in Resources */,
 				C87138CE1B4C096D009BD279 /* Lato-Bold.otf in Resources */,
@@ -410,6 +426,7 @@
 				C8A08BF51B4BD96F00B2C703 /* BaseJSViewController.m in Sources */,
 				C8A08BCF1B4BD5DC00B2C703 /* AppDelegate.m in Sources */,
 				C8DA45E11B4D03110041EB23 /* HomeLowerView.m in Sources */,
+				C8EC3C611B4EB79A0003F618 /* JSPickerView.m in Sources */,
 				C8DA45D91B4D02380041EB23 /* JSCustomSegue.m in Sources */,
 				C8400A961B4D1ABE00EBDE88 /* CreateTopView.m in Sources */,
 				C8DA45E51B4D03910041EB23 /* CreateJobseekerController.m in Sources */,
@@ -418,6 +435,7 @@
 				C8DA45DC1B4D02890041EB23 /* JSCustomUnwindSegue.m in Sources */,
 				C89F1EBA1B4D620800692DAD /* AddItemView.m in Sources */,
 				C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */,
+				C8EC3C641B4EE6390003F618 /* NewInfoPopupView.m in Sources */,
 				C8D12ACA1B4E55A400DCFC83 /* AboutViewController.m in Sources */,
 				C8DA45E81B4D03CA0041EB23 /* CreateEmployerController.m in Sources */,
 				C800D3741B4E901700E81F69 /* ForgotPasswordController.m in Sources */,

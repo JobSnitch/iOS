@@ -10,8 +10,14 @@
 
 @implementation AddItemView
 
+-(void) setupFields:(id) sender {
+    self.oTextField.returnKeyType = UIReturnKeyDone;
+    self.oTextField.delegate = sender;
+    self.oTextField.tag = 700;
+}
+
 - (IBAction)oActionArrow:(id)sender {
-    NSLog(@"arrow");
+    [self.parent delegateHasAdded];
 }
 
 @end
