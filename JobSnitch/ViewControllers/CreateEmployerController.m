@@ -145,6 +145,10 @@ const float kMagicHeight2 = 764.0;
 - (IBAction)actionAddBilling:(id)sender {
 }
 
+- (IBAction)actionCreateEmployer:(id)sender {
+    [self performSegueWithIdentifier:@"CreateEmpToEmployer" sender:self];
+}
+
 #pragma mark - AddItemParent
 -(void) delegateHasAdded {
     if ([self.oReqBusinessReal.oTextField.text isEqualToString:@""]) {           // first the required one

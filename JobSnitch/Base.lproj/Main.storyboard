@@ -399,6 +399,83 @@
             </objects>
             <point key="canvasLocation" x="2642" y="-578"/>
         </scene>
+        <!--Employer Second View Controller-->
+        <scene sceneID="uGR-7i-y7D">
+            <objects>
+                <viewController storyboardIdentifier="EmployerSecondViewController" id="fqx-Lf-pzy" customClass="EmployerSecondViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gtf-t3-IGv"/>
+                        <viewControllerLayoutGuide type="bottom" id="2cQ-IY-5KF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c5e-Xc-QHW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="201" title="" id="LFQ-kn-OmU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dIc-bx-Fdn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3414" y="607"/>
+        </scene>
+        <!--Employer Third View Controller-->
+        <scene sceneID="rYf-V2-VzP">
+            <objects>
+                <viewController storyboardIdentifier="EmployerThirdViewController" id="x4q-9n-Ob0" customClass="EmployerThirdViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oME-iE-dl1"/>
+                        <viewControllerLayoutGuide type="bottom" id="7t3-SZ-TCy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0jU-c8-so7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="202" title="" id="cd5-1d-JVY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="as0-Wt-0rG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3414" y="1288"/>
+        </scene>
+        <!--Employer First View Controller-->
+        <scene sceneID="9mu-OM-ofX">
+            <objects>
+                <viewController storyboardIdentifier="EmployerFirstViewController" id="5WW-zy-BHS" customClass="EmployerFirstViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WZg-FQ-oLU"/>
+                        <viewControllerLayoutGuide type="bottom" id="jBV-T5-sWN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dE3-XJ-Bug">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="200" title="" id="Ycl-Ux-Aai"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pyW-W1-QHn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3415" y="-55"/>
+        </scene>
+        <!--Employer Tab Bar Controller-->
+        <scene sceneID="BbS-7p-zcL">
+            <objects>
+                <tabBarController storyboardIdentifier="EmployerTabBarController" id="YmL-ye-Hxo" customClass="EmployerTabBarController" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="rkf-Cc-WUk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="5WW-zy-BHS" kind="relationship" relationship="viewControllers" id="9a7-bp-aBl"/>
+                        <segue destination="fqx-Lf-pzy" kind="relationship" relationship="viewControllers" id="sIg-NN-qyb"/>
+                        <segue destination="x4q-9n-Ob0" kind="relationship" relationship="viewControllers" id="54q-ZP-9st"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fgJ-h0-Dhw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2597" y="275"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="Gjr-J1-eMu">
             <objects>
@@ -1343,6 +1420,9 @@
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="actionCreateEmployer:" destination="10E-iF-AvQ" eventType="touchUpInside" id="4y1-N6-hhV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1409,6 +1489,7 @@
                         <outlet property="oScrollView" destination="H1E-On-BkP" id="VWA-up-VUo"/>
                         <outlet property="oTopView" destination="GZG-A6-2WT" id="DCU-nR-Oen"/>
                         <outlet property="oWidthConstraint" destination="y9A-8q-GHt" id="NEv-2S-Nfq"/>
+                        <segue destination="YmL-ye-Hxo" kind="custom" identifier="CreateEmpToEmployer" customClass="JSCustomSegue" id="omh-D5-lpg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSn-t6-jss" userLabel="First Responder" sceneMemberID="firstResponder"/>

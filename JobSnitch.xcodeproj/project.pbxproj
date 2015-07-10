@@ -15,6 +15,19 @@
 		C87138CD1B4C096D009BD279 /* Lato-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C87138CA1B4C096D009BD279 /* Lato-Regular.otf */; };
 		C87138CE1B4C096D009BD279 /* Lato-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C87138CB1B4C096D009BD279 /* Lato-Bold.otf */; };
 		C87138CF1B4C096D009BD279 /* Lato-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = C87138CC1B4C096D009BD279 /* Lato-Black.otf */; };
+		C893BF2F1B4FAAA700217402 /* EmployerTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF2E1B4FAAA700217402 /* EmployerTabBarController.m */; };
+		C893BF321B4FB64900217402 /* EmployerFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF311B4FB64900217402 /* EmployerFirstViewController.m */; };
+		C893BF351B4FB66300217402 /* EmployerSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF341B4FB66300217402 /* EmployerSecondViewController.m */; };
+		C893BF381B4FB68500217402 /* EmployerThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF371B4FB68500217402 /* EmployerThirdViewController.m */; };
+		C893BF3C1B4FB98F00217402 /* EmployerRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF3B1B4FB98F00217402 /* EmployerRecord.m */; };
+		C893BF3F1B4FC16400217402 /* BusinessRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF3E1B4FC16400217402 /* BusinessRecord.m */; };
+		C893BF421B4FC6C500217402 /* BusinessRestrictedView.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF411B4FC6C500217402 /* BusinessRestrictedView.m */; };
+		C893BF441B4FC6E600217402 /* BusinessRestrictedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C893BF431B4FC6E600217402 /* BusinessRestrictedView.xib */; };
+		C893BF471B4FE05C00217402 /* PostingRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF461B4FE05C00217402 /* PostingRecord.m */; };
+		C893BF4A1B4FE75800217402 /* PostingRestrictedView.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF491B4FE75800217402 /* PostingRestrictedView.m */; };
+		C893BF4C1B4FE76700217402 /* PostingRestrictedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C893BF4B1B4FE76700217402 /* PostingRestrictedView.xib */; };
+		C893BF4F1B4FFA0E00217402 /* EmployerFirstView.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF4E1B4FFA0E00217402 /* EmployerFirstView.m */; };
+		C893BF511B4FFA4800217402 /* EmployerFirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C893BF501B4FFA4800217402 /* EmployerFirstView.xib */; };
 		C89F1EBA1B4D620800692DAD /* AddItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C89F1EB91B4D620800692DAD /* AddItemView.m */; };
 		C89F1EBC1B4D624600692DAD /* AddItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89F1EBB1B4D624600692DAD /* AddItemView.xib */; };
 		C8A08BCC1B4BD5DC00B2C703 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A08BCB1B4BD5DC00B2C703 /* main.m */; };
@@ -62,6 +75,29 @@
 		C87138CA1B4C096D009BD279 /* Lato-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.otf"; path = "Fonts/Lato-Regular.otf"; sourceTree = "<group>"; };
 		C87138CB1B4C096D009BD279 /* Lato-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.otf"; path = "Fonts/Lato-Bold.otf"; sourceTree = "<group>"; };
 		C87138CC1B4C096D009BD279 /* Lato-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.otf"; path = "Fonts/Lato-Black.otf"; sourceTree = "<group>"; };
+		C893BF2D1B4FAAA700217402 /* EmployerTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployerTabBarController.h; path = ViewControllers/EmployerTabBarController.h; sourceTree = "<group>"; };
+		C893BF2E1B4FAAA700217402 /* EmployerTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployerTabBarController.m; path = ViewControllers/EmployerTabBarController.m; sourceTree = "<group>"; };
+		C893BF301B4FB64900217402 /* EmployerFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployerFirstViewController.h; path = ViewControllers/EmployerFirstViewController.h; sourceTree = "<group>"; };
+		C893BF311B4FB64900217402 /* EmployerFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployerFirstViewController.m; path = ViewControllers/EmployerFirstViewController.m; sourceTree = "<group>"; };
+		C893BF331B4FB66300217402 /* EmployerSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployerSecondViewController.h; path = ViewControllers/EmployerSecondViewController.h; sourceTree = "<group>"; };
+		C893BF341B4FB66300217402 /* EmployerSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployerSecondViewController.m; path = ViewControllers/EmployerSecondViewController.m; sourceTree = "<group>"; };
+		C893BF361B4FB68500217402 /* EmployerThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployerThirdViewController.h; path = ViewControllers/EmployerThirdViewController.h; sourceTree = "<group>"; };
+		C893BF371B4FB68500217402 /* EmployerThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployerThirdViewController.m; path = ViewControllers/EmployerThirdViewController.m; sourceTree = "<group>"; };
+		C893BF3A1B4FB98F00217402 /* EmployerRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployerRecord.h; path = DataModel/EmployerRecord.h; sourceTree = "<group>"; };
+		C893BF3B1B4FB98F00217402 /* EmployerRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployerRecord.m; path = DataModel/EmployerRecord.m; sourceTree = "<group>"; };
+		C893BF3D1B4FC16400217402 /* BusinessRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusinessRecord.h; path = DataModel/BusinessRecord.h; sourceTree = "<group>"; };
+		C893BF3E1B4FC16400217402 /* BusinessRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusinessRecord.m; path = DataModel/BusinessRecord.m; sourceTree = "<group>"; };
+		C893BF401B4FC6C500217402 /* BusinessRestrictedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusinessRestrictedView.h; path = Views/BusinessRestrictedView.h; sourceTree = "<group>"; };
+		C893BF411B4FC6C500217402 /* BusinessRestrictedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusinessRestrictedView.m; path = Views/BusinessRestrictedView.m; sourceTree = "<group>"; };
+		C893BF431B4FC6E600217402 /* BusinessRestrictedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessRestrictedView.xib; sourceTree = "<group>"; };
+		C893BF451B4FE05C00217402 /* PostingRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostingRecord.h; path = DataModel/PostingRecord.h; sourceTree = "<group>"; };
+		C893BF461B4FE05C00217402 /* PostingRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostingRecord.m; path = DataModel/PostingRecord.m; sourceTree = "<group>"; };
+		C893BF481B4FE75800217402 /* PostingRestrictedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostingRestrictedView.h; path = Views/PostingRestrictedView.h; sourceTree = "<group>"; };
+		C893BF491B4FE75800217402 /* PostingRestrictedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostingRestrictedView.m; path = Views/PostingRestrictedView.m; sourceTree = "<group>"; };
+		C893BF4B1B4FE76700217402 /* PostingRestrictedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostingRestrictedView.xib; sourceTree = "<group>"; };
+		C893BF4D1B4FFA0E00217402 /* EmployerFirstView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployerFirstView.h; path = Views/EmployerFirstView.h; sourceTree = "<group>"; };
+		C893BF4E1B4FFA0E00217402 /* EmployerFirstView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployerFirstView.m; path = Views/EmployerFirstView.m; sourceTree = "<group>"; };
+		C893BF501B4FFA4800217402 /* EmployerFirstView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmployerFirstView.xib; sourceTree = "<group>"; };
 		C89F1EB81B4D620800692DAD /* AddItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddItemView.h; path = Views/AddItemView.h; sourceTree = "<group>"; };
 		C89F1EB91B4D620800692DAD /* AddItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddItemView.m; path = Views/AddItemView.m; sourceTree = "<group>"; };
 		C89F1EBB1B4D624600692DAD /* AddItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddItemView.xib; sourceTree = "<group>"; };
@@ -147,6 +183,19 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		C893BF391B4FB8F200217402 /* 08 DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				C893BF3A1B4FB98F00217402 /* EmployerRecord.h */,
+				C893BF3B1B4FB98F00217402 /* EmployerRecord.m */,
+				C893BF3D1B4FC16400217402 /* BusinessRecord.h */,
+				C893BF3E1B4FC16400217402 /* BusinessRecord.m */,
+				C893BF451B4FE05C00217402 /* PostingRecord.h */,
+				C893BF461B4FE05C00217402 /* PostingRecord.m */,
+			);
+			name = "08 DataModel";
+			sourceTree = "<group>";
+		};
 		C8A08BBD1B4BD5DB00B2C703 = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +225,7 @@
 				C8A08BF61B4BDCF300B2C703 /* 05 Storyboards */,
 				C8A08BF71B4BDD3C00B2C703 /* 06 Resources */,
 				C8400A9B1B4D3DE000EBDE88 /* 07 Controls */,
+				C893BF391B4FB8F200217402 /* 08 DataModel */,
 				C8A08BC91B4BD5DC00B2C703 /* Supporting Files */,
 			);
 			path = JobSnitch;
@@ -228,6 +278,14 @@
 				C8D12ACF1B4E561300DCFC83 /* BugReportViewController.m */,
 				C800D3721B4E901700E81F69 /* ForgotPasswordController.h */,
 				C800D3731B4E901700E81F69 /* ForgotPasswordController.m */,
+				C893BF2D1B4FAAA700217402 /* EmployerTabBarController.h */,
+				C893BF2E1B4FAAA700217402 /* EmployerTabBarController.m */,
+				C893BF301B4FB64900217402 /* EmployerFirstViewController.h */,
+				C893BF311B4FB64900217402 /* EmployerFirstViewController.m */,
+				C893BF331B4FB66300217402 /* EmployerSecondViewController.h */,
+				C893BF341B4FB66300217402 /* EmployerSecondViewController.m */,
+				C893BF361B4FB68500217402 /* EmployerThirdViewController.h */,
+				C893BF371B4FB68500217402 /* EmployerThirdViewController.m */,
 			);
 			name = "02 ViewControllers";
 			sourceTree = "<group>";
@@ -251,6 +309,9 @@
 				C8400A991B4D1D5000EBDE88 /* CreateTopView.xib */,
 				C89F1EBB1B4D624600692DAD /* AddItemView.xib */,
 				C8EC3C651B4EE6BD0003F618 /* NewInfoPopupView.xib */,
+				C893BF431B4FC6E600217402 /* BusinessRestrictedView.xib */,
+				C893BF4B1B4FE76700217402 /* PostingRestrictedView.xib */,
+				C893BF501B4FFA4800217402 /* EmployerFirstView.xib */,
 			);
 			name = "05 Storyboards";
 			sourceTree = "<group>";
@@ -290,6 +351,12 @@
 				C8EC3C601B4EB79A0003F618 /* JSPickerView.m */,
 				C8EC3C621B4EE6390003F618 /* NewInfoPopupView.h */,
 				C8EC3C631B4EE6390003F618 /* NewInfoPopupView.m */,
+				C893BF401B4FC6C500217402 /* BusinessRestrictedView.h */,
+				C893BF411B4FC6C500217402 /* BusinessRestrictedView.m */,
+				C893BF481B4FE75800217402 /* PostingRestrictedView.h */,
+				C893BF491B4FE75800217402 /* PostingRestrictedView.m */,
+				C893BF4D1B4FFA0E00217402 /* EmployerFirstView.h */,
+				C893BF4E1B4FFA0E00217402 /* EmployerFirstView.m */,
 			);
 			name = "03 Views";
 			sourceTree = "<group>";
@@ -395,6 +462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8A08C011B4BED5F00B2C703 /* HomeCenterView.xib in Resources */,
+				C893BF511B4FFA4800217402 /* EmployerFirstView.xib in Resources */,
 				C8A08BD51B4BD5DC00B2C703 /* Main.storyboard in Resources */,
 				C82049C61B4C1E29005B3F3F /* HomeUpperView.xib in Resources */,
 				C87138CD1B4C096D009BD279 /* Lato-Regular.otf in Resources */,
@@ -404,7 +472,9 @@
 				C8A08BDA1B4BD5DC00B2C703 /* LaunchScreen.xib in Resources */,
 				C82049C81B4C1F2C005B3F3F /* HomeLowerView.xib in Resources */,
 				C87138CE1B4C096D009BD279 /* Lato-Bold.otf in Resources */,
+				C893BF441B4FC6E600217402 /* BusinessRestrictedView.xib in Resources */,
 				C87138CF1B4C096D009BD279 /* Lato-Black.otf in Resources */,
+				C893BF4C1B4FE76700217402 /* PostingRestrictedView.xib in Resources */,
 				C8A08BD71B4BD5DC00B2C703 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,23 +494,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8A08BF51B4BD96F00B2C703 /* BaseJSViewController.m in Sources */,
+				C893BF321B4FB64900217402 /* EmployerFirstViewController.m in Sources */,
 				C8A08BCF1B4BD5DC00B2C703 /* AppDelegate.m in Sources */,
 				C8DA45E11B4D03110041EB23 /* HomeLowerView.m in Sources */,
 				C8EC3C611B4EB79A0003F618 /* JSPickerView.m in Sources */,
 				C8DA45D91B4D02380041EB23 /* JSCustomSegue.m in Sources */,
 				C8400A961B4D1ABE00EBDE88 /* CreateTopView.m in Sources */,
+				C893BF3C1B4FB98F00217402 /* EmployerRecord.m in Sources */,
 				C8DA45E51B4D03910041EB23 /* CreateJobseekerController.m in Sources */,
+				C893BF421B4FC6C500217402 /* BusinessRestrictedView.m in Sources */,
 				C8DA45E21B4D03110041EB23 /* HomeUpperView.m in Sources */,
 				C8A08BFB1B4BDEA600B2C703 /* HomeViewController.m in Sources */,
 				C8DA45DC1B4D02890041EB23 /* JSCustomUnwindSegue.m in Sources */,
 				C89F1EBA1B4D620800692DAD /* AddItemView.m in Sources */,
+				C893BF3F1B4FC16400217402 /* BusinessRecord.m in Sources */,
 				C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */,
+				C893BF351B4FB66300217402 /* EmployerSecondViewController.m in Sources */,
 				C8EC3C641B4EE6390003F618 /* NewInfoPopupView.m in Sources */,
 				C8D12ACA1B4E55A400DCFC83 /* AboutViewController.m in Sources */,
+				C893BF4F1B4FFA0E00217402 /* EmployerFirstView.m in Sources */,
+				C893BF2F1B4FAAA700217402 /* EmployerTabBarController.m in Sources */,
 				C8DA45E81B4D03CA0041EB23 /* CreateEmployerController.m in Sources */,
+				C893BF471B4FE05C00217402 /* PostingRecord.m in Sources */,
 				C800D3741B4E901700E81F69 /* ForgotPasswordController.m in Sources */,
 				C8D12AD01B4E561300DCFC83 /* BugReportViewController.m in Sources */,
 				C8A08BFF1B4BECD400B2C703 /* HomeCenterView.m in Sources */,
+				C893BF381B4FB68500217402 /* EmployerThirdViewController.m in Sources */,
+				C893BF4A1B4FE75800217402 /* PostingRestrictedView.m in Sources */,
 				C8A08BCC1B4BD5DC00B2C703 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
