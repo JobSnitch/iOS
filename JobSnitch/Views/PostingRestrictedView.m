@@ -36,8 +36,6 @@
                                           self.oCurvedImage.frame.size.width, self.oCurvedImage.frame.size.height)];
     [self.oExpandButton setFrame:CGRectMake(realWidth*0.84 + originX, centerY - self.oExpandButton.frame.size.height*0.5,
                                             self.oExpandButton.frame.size.width, self.oExpandButton.frame.size.height)];
-//    [self.oExpandImage setFrame:CGRectMake(realWidth*0.8 + originX, centerY - self.oExpandImage.frame.size.height*0.5,
-//                                            self.oExpandImage.frame.size.width, self.oExpandImage.frame.size.height)];
 }
 
 - (IBAction)actionExpand:(id)sender {
@@ -64,19 +62,6 @@
     
 }
 
-//-(void) initRecognizer {
-//    self.oExpandImage.userInteractionEnabled = YES;
-//    if (_expandTapRecognizer) _expandTapRecognizer = nil;
-//    _expandTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                                                   action:@selector(handleExpand:)];
-//    [self.oExpandImage addGestureRecognizer:_expandTapRecognizer];
-//}
-//
-//-(void) handleExpand:(UITapGestureRecognizer *)recognizer {
-//    if (recognizer.state == UIGestureRecognizerStateEnded){
-//        NSLog(@"expand");
-//    }
-//}
 
 
 @end

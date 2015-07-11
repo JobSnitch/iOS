@@ -43,6 +43,10 @@
 		C8D12ACA1B4E55A400DCFC83 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12AC91B4E55A400DCFC83 /* AboutViewController.m */; };
 		C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12ACC1B4E55C100DCFC83 /* ContactViewController.m */; };
 		C8D12AD01B4E561300DCFC83 /* BugReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12ACF1B4E561300DCFC83 /* BugReportViewController.m */; };
+		C8D5F3981B5164BD0078E3A8 /* PostingExpandedView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D5F3971B5164BD0078E3A8 /* PostingExpandedView.m */; };
+		C8D5F39A1B5165030078E3A8 /* PostingExpandedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D5F3991B5165030078E3A8 /* PostingExpandedView.xib */; };
+		C8D5F39D1B5180FD0078E3A8 /* PostingEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D5F39C1B5180FD0078E3A8 /* PostingEditView.m */; };
+		C8D5F39F1B51811B0078E3A8 /* PostingEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D5F39E1B51811B0078E3A8 /* PostingEditView.xib */; };
 		C8DA45D91B4D02380041EB23 /* JSCustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45D81B4D02380041EB23 /* JSCustomSegue.m */; };
 		C8DA45DC1B4D02890041EB23 /* JSCustomUnwindSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45DB1B4D02890041EB23 /* JSCustomUnwindSegue.m */; };
 		C8DA45E11B4D03110041EB23 /* HomeLowerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45DE1B4D03110041EB23 /* HomeLowerView.m */; };
@@ -127,6 +131,12 @@
 		C8D12ACC1B4E55C100DCFC83 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactViewController.m; path = ViewControllers/ContactViewController.m; sourceTree = "<group>"; };
 		C8D12ACE1B4E561300DCFC83 /* BugReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugReportViewController.h; path = ViewControllers/BugReportViewController.h; sourceTree = "<group>"; };
 		C8D12ACF1B4E561300DCFC83 /* BugReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BugReportViewController.m; path = ViewControllers/BugReportViewController.m; sourceTree = "<group>"; };
+		C8D5F3961B5164BD0078E3A8 /* PostingExpandedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostingExpandedView.h; path = Views/PostingExpandedView.h; sourceTree = "<group>"; };
+		C8D5F3971B5164BD0078E3A8 /* PostingExpandedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostingExpandedView.m; path = Views/PostingExpandedView.m; sourceTree = "<group>"; };
+		C8D5F3991B5165030078E3A8 /* PostingExpandedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostingExpandedView.xib; sourceTree = "<group>"; };
+		C8D5F39B1B5180FD0078E3A8 /* PostingEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostingEditView.h; path = Views/PostingEditView.h; sourceTree = "<group>"; };
+		C8D5F39C1B5180FD0078E3A8 /* PostingEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostingEditView.m; path = Views/PostingEditView.m; sourceTree = "<group>"; };
+		C8D5F39E1B51811B0078E3A8 /* PostingEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostingEditView.xib; sourceTree = "<group>"; };
 		C8DA45D71B4D02380041EB23 /* JSCustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSCustomSegue.h; path = ViewControllers/JSCustomSegue.h; sourceTree = "<group>"; };
 		C8DA45D81B4D02380041EB23 /* JSCustomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSCustomSegue.m; path = ViewControllers/JSCustomSegue.m; sourceTree = "<group>"; };
 		C8DA45DA1B4D02890041EB23 /* JSCustomUnwindSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSCustomUnwindSegue.h; path = ViewControllers/JSCustomUnwindSegue.h; sourceTree = "<group>"; };
@@ -312,6 +322,8 @@
 				C893BF431B4FC6E600217402 /* BusinessRestrictedView.xib */,
 				C893BF4B1B4FE76700217402 /* PostingRestrictedView.xib */,
 				C893BF501B4FFA4800217402 /* EmployerFirstView.xib */,
+				C8D5F3991B5165030078E3A8 /* PostingExpandedView.xib */,
+				C8D5F39E1B51811B0078E3A8 /* PostingEditView.xib */,
 			);
 			name = "05 Storyboards";
 			sourceTree = "<group>";
@@ -357,6 +369,10 @@
 				C893BF491B4FE75800217402 /* PostingRestrictedView.m */,
 				C893BF4D1B4FFA0E00217402 /* EmployerFirstView.h */,
 				C893BF4E1B4FFA0E00217402 /* EmployerFirstView.m */,
+				C8D5F3961B5164BD0078E3A8 /* PostingExpandedView.h */,
+				C8D5F3971B5164BD0078E3A8 /* PostingExpandedView.m */,
+				C8D5F39B1B5180FD0078E3A8 /* PostingEditView.h */,
+				C8D5F39C1B5180FD0078E3A8 /* PostingEditView.m */,
 			);
 			name = "03 Views";
 			sourceTree = "<group>";
@@ -461,6 +477,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8D5F39F1B51811B0078E3A8 /* PostingEditView.xib in Resources */,
+				C8D5F39A1B5165030078E3A8 /* PostingExpandedView.xib in Resources */,
 				C8A08C011B4BED5F00B2C703 /* HomeCenterView.xib in Resources */,
 				C893BF511B4FFA4800217402 /* EmployerFirstView.xib in Resources */,
 				C8A08BD51B4BD5DC00B2C703 /* Main.storyboard in Resources */,
@@ -499,6 +517,7 @@
 				C8DA45E11B4D03110041EB23 /* HomeLowerView.m in Sources */,
 				C8EC3C611B4EB79A0003F618 /* JSPickerView.m in Sources */,
 				C8DA45D91B4D02380041EB23 /* JSCustomSegue.m in Sources */,
+				C8D5F39D1B5180FD0078E3A8 /* PostingEditView.m in Sources */,
 				C8400A961B4D1ABE00EBDE88 /* CreateTopView.m in Sources */,
 				C893BF3C1B4FB98F00217402 /* EmployerRecord.m in Sources */,
 				C8DA45E51B4D03910041EB23 /* CreateJobseekerController.m in Sources */,
@@ -511,6 +530,7 @@
 				C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */,
 				C893BF351B4FB66300217402 /* EmployerSecondViewController.m in Sources */,
 				C8EC3C641B4EE6390003F618 /* NewInfoPopupView.m in Sources */,
+				C8D5F3981B5164BD0078E3A8 /* PostingExpandedView.m in Sources */,
 				C8D12ACA1B4E55A400DCFC83 /* AboutViewController.m in Sources */,
 				C893BF4F1B4FFA0E00217402 /* EmployerFirstView.m in Sources */,
 				C893BF2F1B4FAAA700217402 /* EmployerTabBarController.m in Sources */,

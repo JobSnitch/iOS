@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *oFolderImage;
 @property (weak, nonatomic) IBOutlet UIImageView *oCurvedImage;
 @property (weak, nonatomic) IBOutlet UIButton *oExpandButton;
-//@property (weak, nonatomic) IBOutlet UIImageView *oExpandImage;
 
 -(void) layoutFields: (CGSize) realSize;
 -(void) postData;
