@@ -17,9 +17,14 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PostingExpandedView">
+            <connections>
+                <outlet property="oBackImage" destination="f0t-Tu-gms" id="su8-DL-6UG"/>
+                <outlet property="view" destination="iN0-l3-epB" id="h9W-GZ-w11"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PostingExpandedView">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="600" height="408"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -166,7 +171,6 @@
             <connections>
                 <outlet property="oAfternoonLabel" destination="9aB-ct-vxX" id="ott-gQ-jul"/>
                 <outlet property="oAfternoonSwitch" destination="Dql-Ob-csw" id="dFX-bR-Vbg"/>
-                <outlet property="oBackImage" destination="f0t-Tu-gms" id="arS-e6-sFD"/>
                 <outlet property="oBinButton" destination="LOh-sQ-yqB" id="ce0-8v-RLq"/>
                 <outlet property="oDescriptionLabel" destination="vDX-ns-muN" id="CnA-VD-zCZ"/>
                 <outlet property="oEveningLabel" destination="dZh-x3-cZX" id="Nzd-aR-HuA"/>

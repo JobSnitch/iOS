@@ -44,7 +44,6 @@
 		C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12ACC1B4E55C100DCFC83 /* ContactViewController.m */; };
 		C8D12AD01B4E561300DCFC83 /* BugReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12ACF1B4E561300DCFC83 /* BugReportViewController.m */; };
 		C8D5F3981B5164BD0078E3A8 /* PostingExpandedView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D5F3971B5164BD0078E3A8 /* PostingExpandedView.m */; };
-		C8D5F39A1B5165030078E3A8 /* PostingExpandedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D5F3991B5165030078E3A8 /* PostingExpandedView.xib */; };
 		C8D5F39D1B5180FD0078E3A8 /* PostingEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D5F39C1B5180FD0078E3A8 /* PostingEditView.m */; };
 		C8D5F39F1B51811B0078E3A8 /* PostingEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D5F39E1B51811B0078E3A8 /* PostingEditView.xib */; };
 		C8DA45D91B4D02380041EB23 /* JSCustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45D81B4D02380041EB23 /* JSCustomSegue.m */; };
@@ -133,7 +132,6 @@
 		C8D12ACF1B4E561300DCFC83 /* BugReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BugReportViewController.m; path = ViewControllers/BugReportViewController.m; sourceTree = "<group>"; };
 		C8D5F3961B5164BD0078E3A8 /* PostingExpandedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostingExpandedView.h; path = Views/PostingExpandedView.h; sourceTree = "<group>"; };
 		C8D5F3971B5164BD0078E3A8 /* PostingExpandedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostingExpandedView.m; path = Views/PostingExpandedView.m; sourceTree = "<group>"; };
-		C8D5F3991B5165030078E3A8 /* PostingExpandedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostingExpandedView.xib; sourceTree = "<group>"; };
 		C8D5F39B1B5180FD0078E3A8 /* PostingEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostingEditView.h; path = Views/PostingEditView.h; sourceTree = "<group>"; };
 		C8D5F39C1B5180FD0078E3A8 /* PostingEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostingEditView.m; path = Views/PostingEditView.m; sourceTree = "<group>"; };
 		C8D5F39E1B51811B0078E3A8 /* PostingEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostingEditView.xib; sourceTree = "<group>"; };
@@ -322,7 +320,6 @@
 				C893BF431B4FC6E600217402 /* BusinessRestrictedView.xib */,
 				C893BF4B1B4FE76700217402 /* PostingRestrictedView.xib */,
 				C893BF501B4FFA4800217402 /* EmployerFirstView.xib */,
-				C8D5F3991B5165030078E3A8 /* PostingExpandedView.xib */,
 				C8D5F39E1B51811B0078E3A8 /* PostingEditView.xib */,
 			);
 			name = "05 Storyboards";
@@ -478,7 +475,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8D5F39F1B51811B0078E3A8 /* PostingEditView.xib in Resources */,
-				C8D5F39A1B5165030078E3A8 /* PostingExpandedView.xib in Resources */,
 				C8A08C011B4BED5F00B2C703 /* HomeCenterView.xib in Resources */,
 				C893BF511B4FFA4800217402 /* EmployerFirstView.xib in Resources */,
 				C8A08BD51B4BD5DC00B2C703 /* Main.storyboard in Resources */,

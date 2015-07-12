@@ -13,6 +13,8 @@
 #import "PostingRecord.h"
 #import "PostingRestrictedView.h"
 #import "EmployerFirstView.h"
+#import "PostingExpandedView.h"
+
 
 @interface EmployerFirstViewController ()
 
@@ -38,6 +40,7 @@
 
 -(void) viewDidLayoutSubviews {
     [self.mainView layoutFields:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
+    [self.mainView setFrame:self.view.frame];
     for (UIView * aView in self.subviews) {
         if ([aView isMemberOfClass:[BusinessRestrictedView class]]) {
             [((BusinessRestrictedView *)aView) layoutFields:CGSizeMake(self.view.bounds.size.width, 48.0)];
@@ -47,6 +50,11 @@
             [((PostingRestrictedView *)aView) layoutFields:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width * 78.0 / 414.0)];
             [aView setFrame:CGRectMake(0, aView.frame.origin.y, self.view.bounds.size.width, self.rowHeight)];
         }
+//        if ([aView isMemberOfClass:[PostingExpandedView class]]) {
+//            [((PostingExpandedView *)aView) layoutFields:CGSizeMake(self.view.bounds.size.width, 408.0)];
+//            aView.backgroundColor = [UIColor blueColor];
+//            [aView setFrame:CGRectMake(0, aView.frame.origin.y, self.view.bounds.size.width, 408.0)];
+//        }
     }
     
     [self.view layoutIfNeeded];
@@ -200,12 +208,37 @@
     [newPosting setImage:[UIImage imageNamed:@"new_posting.png"] forState:UIControlStateNormal];
     [newPosting addTarget:self action:@selector(doNewPosting:)forControlEvents:UIControlEventTouchDown];
     [self.oScrollView addSubview:newPosting];
+    [self.subviews addObject:newPosting];
 }
 
 -(void) doNewPosting:(id) sender {
-    NSLog(@"newpost");
+    CGFloat startY = ((UIView *)sender).frame.origin.y;
+    [self setupAddPostingView: startY];
+    [self lowerBelowViews: startY];
+    [self.oScrollView setContentSize:CGSizeMake(self.oScrollView.bounds.size.width, self.oScrollView.bounds.size.height + 408.0)];
 }
 
+-(void) setupAddPostingView:(CGFloat)startY  {
+    CGRect topFrame = CGRectMake(0, startY,
+                                 self.view.bounds.size.width, 408.0);
+    PostingExpandedView *currView = nil;
+    currView = [[PostingExpandedView alloc] initWithFrame:topFrame];
+    [self.oScrollView addSubview:currView];
+    [self.subviews addObject:currView];
+}
+
+-(void) lowerBelowViews:(CGFloat)startY  {
+    CGAffineTransform descend = CGAffineTransformMakeTranslation(0.0, 408.0 - self.rowHeight );
+    for (UIView * aView in self.subviews) {
+        if (aView.frame.origin.y > startY + 0.1) {
+            AnimationBlock descendUpper = ^(void){
+                [aView setTransform:descend];
+            };
+            [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveLinear|UIViewAnimationOptionBeginFromCurrentState
+                             animations:descendUpper completion:nil];
+        }
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
