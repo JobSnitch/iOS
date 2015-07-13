@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @protocol EmployerFirstParent <NSObject>
--(void) delegateHasCanceled;
--(void) delegateHasSaved;
+-(void) delegateHasCanceled:(id)sender;
+-(void) delegateHasSaved:(id)sender;
 - (void)delegateAddJobType:(id)sender;
 - (void)delegateAddIndustry:(id)sender;
+- (void)delegateExpandPosting:(id)sender;
 
 @end

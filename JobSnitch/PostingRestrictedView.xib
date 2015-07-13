@@ -67,7 +67,7 @@
                     <rect key="frame" x="520" y="29" width="28" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Dr3-zH-nbp">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Dr3-zH-nbp" customClass="JSEditPostingButton">
                     <rect key="frame" x="552" y="22" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="expand_arrow">
@@ -85,7 +85,7 @@
                 <outlet property="oBackgroundImg" destination="HSB-6a-4ek" id="kSA-AH-SSF"/>
                 <outlet property="oCurvedImage" destination="kPt-eN-dLN" id="w3V-Ue-abp"/>
                 <outlet property="oDescrLabel" destination="8me-1Q-Nop" id="rwR-uT-c9S"/>
-                <outlet property="oExpandButton" destination="Dr3-zH-nbp" id="sTD-hq-hny"/>
+                <outlet property="oExpandButton" destination="Dr3-zH-nbp" id="zFJ-rI-T0v"/>
                 <outlet property="oFolderImage" destination="OFP-iY-zUt" id="V1J-HP-BO1"/>
                 <outlet property="oShortLabel" destination="j8M-Fq-eYq" id="g4r-kB-bhd"/>
                 <outlet property="oTitleLabel" destination="joj-ZZ-A2f" id="t4d-RE-dZf"/>

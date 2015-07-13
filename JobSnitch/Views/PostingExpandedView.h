@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "EmployerFirstParent.h"
-#import "BusinessRecord.h"
 
 @interface PostingExpandedView : UIView
 @property (strong, nonatomic)  UIImageView *oBackImage;
@@ -30,9 +29,7 @@
 @property (strong, nonatomic) UISwitch *oNightSwitch;
 
 @property (assign) id<EmployerFirstParent> parent;         // the parent controller implements this
-@property (weak, nonatomic) BusinessRecord *currBusiness;
 
-
--(void) layoutFields: (CGSize) realSize;
+-(void) layoutFields: (CGSize) realSize offsetY:(CGFloat) yoffset;
 
 @end

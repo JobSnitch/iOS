@@ -10,6 +10,7 @@
 		C800D3741B4E901700E81F69 /* ForgotPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = C800D3731B4E901700E81F69 /* ForgotPasswordController.m */; };
 		C81C34951B53C4C6005E16E5 /* JSAddPostingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C81C34941B53C4C6005E16E5 /* JSAddPostingButton.m */; };
 		C81C34981B53CE3B005E16E5 /* PostingAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = C81C34971B53CE3B005E16E5 /* PostingAddView.m */; };
+		C81C349B1B53D558005E16E5 /* JSEditPostingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C81C349A1B53D558005E16E5 /* JSEditPostingButton.m */; };
 		C82049C61B4C1E29005B3F3F /* HomeUpperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82049C51B4C1E29005B3F3F /* HomeUpperView.xib */; };
 		C82049C81B4C1F2C005B3F3F /* HomeLowerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82049C71B4C1F2C005B3F3F /* HomeLowerView.xib */; };
 		C8400A961B4D1ABE00EBDE88 /* CreateTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8400A951B4D1ABE00EBDE88 /* CreateTopView.m */; };
@@ -47,7 +48,6 @@
 		C8D12AD01B4E561300DCFC83 /* BugReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12ACF1B4E561300DCFC83 /* BugReportViewController.m */; };
 		C8D5F3981B5164BD0078E3A8 /* PostingExpandedView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D5F3971B5164BD0078E3A8 /* PostingExpandedView.m */; };
 		C8D5F39D1B5180FD0078E3A8 /* PostingEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D5F39C1B5180FD0078E3A8 /* PostingEditView.m */; };
-		C8D5F39F1B51811B0078E3A8 /* PostingEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D5F39E1B51811B0078E3A8 /* PostingEditView.xib */; };
 		C8DA45D91B4D02380041EB23 /* JSCustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45D81B4D02380041EB23 /* JSCustomSegue.m */; };
 		C8DA45DC1B4D02890041EB23 /* JSCustomUnwindSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45DB1B4D02890041EB23 /* JSCustomUnwindSegue.m */; };
 		C8DA45E11B4D03110041EB23 /* HomeLowerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DA45DE1B4D03110041EB23 /* HomeLowerView.m */; };
@@ -76,6 +76,8 @@
 		C81C34941B53C4C6005E16E5 /* JSAddPostingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSAddPostingButton.m; path = Views/JSAddPostingButton.m; sourceTree = "<group>"; };
 		C81C34961B53CE3B005E16E5 /* PostingAddView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostingAddView.h; path = Views/PostingAddView.h; sourceTree = "<group>"; };
 		C81C34971B53CE3B005E16E5 /* PostingAddView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostingAddView.m; path = Views/PostingAddView.m; sourceTree = "<group>"; };
+		C81C34991B53D558005E16E5 /* JSEditPostingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSEditPostingButton.h; path = Views/JSEditPostingButton.h; sourceTree = "<group>"; };
+		C81C349A1B53D558005E16E5 /* JSEditPostingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSEditPostingButton.m; path = Views/JSEditPostingButton.m; sourceTree = "<group>"; };
 		C82049C51B4C1E29005B3F3F /* HomeUpperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeUpperView.xib; sourceTree = "<group>"; };
 		C82049C71B4C1F2C005B3F3F /* HomeLowerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeLowerView.xib; sourceTree = "<group>"; };
 		C8400A941B4D1ABE00EBDE88 /* CreateTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateTopView.h; path = Views/CreateTopView.h; sourceTree = "<group>"; };
@@ -141,7 +143,6 @@
 		C8D5F3971B5164BD0078E3A8 /* PostingExpandedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostingExpandedView.m; path = Views/PostingExpandedView.m; sourceTree = "<group>"; };
 		C8D5F39B1B5180FD0078E3A8 /* PostingEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostingEditView.h; path = Views/PostingEditView.h; sourceTree = "<group>"; };
 		C8D5F39C1B5180FD0078E3A8 /* PostingEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostingEditView.m; path = Views/PostingEditView.m; sourceTree = "<group>"; };
-		C8D5F39E1B51811B0078E3A8 /* PostingEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostingEditView.xib; sourceTree = "<group>"; };
 		C8DA45D71B4D02380041EB23 /* JSCustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSCustomSegue.h; path = ViewControllers/JSCustomSegue.h; sourceTree = "<group>"; };
 		C8DA45D81B4D02380041EB23 /* JSCustomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSCustomSegue.m; path = ViewControllers/JSCustomSegue.m; sourceTree = "<group>"; };
 		C8DA45DA1B4D02890041EB23 /* JSCustomUnwindSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSCustomUnwindSegue.h; path = ViewControllers/JSCustomUnwindSegue.h; sourceTree = "<group>"; };
@@ -327,7 +328,6 @@
 				C893BF431B4FC6E600217402 /* BusinessRestrictedView.xib */,
 				C893BF4B1B4FE76700217402 /* PostingRestrictedView.xib */,
 				C893BF501B4FFA4800217402 /* EmployerFirstView.xib */,
-				C8D5F39E1B51811B0078E3A8 /* PostingEditView.xib */,
 			);
 			name = "05 Storyboards";
 			sourceTree = "<group>";
@@ -381,6 +381,8 @@
 				C81C34941B53C4C6005E16E5 /* JSAddPostingButton.m */,
 				C81C34961B53CE3B005E16E5 /* PostingAddView.h */,
 				C81C34971B53CE3B005E16E5 /* PostingAddView.m */,
+				C81C34991B53D558005E16E5 /* JSEditPostingButton.h */,
+				C81C349A1B53D558005E16E5 /* JSEditPostingButton.m */,
 			);
 			name = "03 Views";
 			sourceTree = "<group>";
@@ -486,7 +488,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8D5F39F1B51811B0078E3A8 /* PostingEditView.xib in Resources */,
 				C8A08C011B4BED5F00B2C703 /* HomeCenterView.xib in Resources */,
 				C893BF511B4FFA4800217402 /* EmployerFirstView.xib in Resources */,
 				C8A08BD51B4BD5DC00B2C703 /* Main.storyboard in Resources */,
@@ -540,6 +541,7 @@
 				C893BF351B4FB66300217402 /* EmployerSecondViewController.m in Sources */,
 				C8EC3C641B4EE6390003F618 /* NewInfoPopupView.m in Sources */,
 				C8D5F3981B5164BD0078E3A8 /* PostingExpandedView.m in Sources */,
+				C81C349B1B53D558005E16E5 /* JSEditPostingButton.m in Sources */,
 				C8D12ACA1B4E55A400DCFC83 /* AboutViewController.m in Sources */,
 				C81C34951B53C4C6005E16E5 /* JSAddPostingButton.m in Sources */,
 				C893BF4F1B4FFA0E00217402 /* EmployerFirstView.m in Sources */,

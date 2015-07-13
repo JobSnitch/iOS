@@ -7,7 +7,8 @@
 //
 
 #import "PostingExpandedView.h"
+#import "BusinessRecord.h"
 
 @interface PostingAddView : PostingExpandedView
-
+@property (weak, nonatomic) BusinessRecord *currBusiness;
 @end

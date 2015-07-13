@@ -30,7 +30,7 @@
     self.oBackImage.image = [UIImage imageNamed:@"post_expanded_back.png"];
     [self addSubview:self.oBackImage];
     
-    [super layoutFields:realSize];
+    [super layoutFields:realSize offsetY:0.0];
 }
 
 @end

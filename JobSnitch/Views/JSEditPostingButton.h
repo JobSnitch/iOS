@@ -1,16 +1,14 @@
 //
-//  PostingEditView.h
+//  JSEditPostingButton.h
 //  JobSnitch
 //
-//  Created by Andrei Sava on 11/07/15.
+//  Created by Andrei Sava on 13/07/15.
 //  Copyright (c) 2015 JobSnitch. All rights reserved.
 //
 
-#import "PostingExpandedView.h"
 #import "PostingRecord.h"
 
-@interface PostingEditView : PostingExpandedView
+@interface JSEditPostingButton : UIButton
 @property (weak, nonatomic) PostingRecord *currPosting;
 
--(void) fillFields;
 @end

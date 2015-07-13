@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JSEditPostingButton.h"
+#import "EmployerFirstParent.h"
 
 @interface PostingRestrictedView : UIView
 @property (weak, nonatomic) IBOutlet UIImageView *oBackgroundImg;
@@ -17,7 +19,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *oDescrLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *oFolderImage;
 @property (weak, nonatomic) IBOutlet UIImageView *oCurvedImage;
-@property (weak, nonatomic) IBOutlet UIButton *oExpandButton;
+@property (weak, nonatomic) IBOutlet JSEditPostingButton *oExpandButton;
+
+@property (assign) id<EmployerFirstParent> parent;         // the parent controller implements this
 
 -(void) layoutFields: (CGSize) realSize;
 -(void) postData;

@@ -14,17 +14,20 @@
 #import "PostingRestrictedView.h"
 #import "EmployerFirstView.h"
 #import "PostingAddView.h"
+#import "PostingEditView.h"
+#import "PostingExpandedView.h"
 #import "JSAddPostingButton.h"
 
 @interface EmployerFirstViewController () <UITextFieldDelegate, UITextViewDelegate, EmployerFirstParent>
 
 @property (weak, nonatomic)     UIScrollView *oScrollView;
 @property (nonatomic, strong)   EmployerRecord *currentEmployer;
-@property (nonatomic, strong)  NSMutableArray *subviews;
+@property (nonatomic, strong)   NSMutableArray *subviews;
 @property (nonatomic) CGFloat   scrollViewHeight;
 @property (nonatomic) CGFloat   rowHeight;
 @property (nonatomic, strong)   EmployerFirstView *mainView;
-@property (nonatomic, strong)   PostingAddView *postingView;
+@property (nonatomic, strong)   PostingExpandedView *postingView;
+@property (weak, nonatomic)     PostingRestrictedView *suprview;
 
 @end
 
@@ -130,7 +133,6 @@
         
         currBusiness.postings = postings;
     }
-
 }
 
 #pragma mark - interface
@@ -193,7 +195,9 @@
     currView.oDescrLabel.text = currPosting.descrption;
     currView.oShortLabel.text = [NSString stringWithFormat:@"%d", currPosting.noShortlisted];
     currView.oApplicLabel.text = [NSString stringWithFormat:@"%d", currPosting.noApplications];
+    currView.oExpandButton.currPosting = currPosting;
     [currView postData];
+    currView.parent = self;
     [self.oScrollView addSubview:currView];
     [self.subviews addObject:currView];
 }
@@ -211,30 +215,33 @@
     [self.subviews addObject:newPosting];
 }
 
+#pragma mark - add posting
 -(void) doNewPosting:(id) sender {
     if (self.postingView) {
         return;
     }
+    CGFloat height = 408.0;
     CGFloat startY = ((UIView *)sender).frame.origin.y;
     [self setupAddPostingView: startY forBusiness: ((JSAddPostingButton *) sender).currBusiness];
-    [self lowerBelowViews: startY];
-    [self.oScrollView setContentSize:CGSizeMake(self.oScrollView.bounds.size.width, self.scrollViewHeight + 408.0 - self.rowHeight)];
+    [self lowerBelowViews:startY viewHeight:height];
+    [self.oScrollView setContentSize:CGSizeMake(self.oScrollView.bounds.size.width, self.scrollViewHeight + height - self.rowHeight)];
 }
 
 -(void) setupAddPostingView:(CGFloat)startY forBusiness:(BusinessRecord *) currBusiness {
+    CGFloat height = 408.0;
     CGRect topFrame = CGRectMake(0, startY,
-                                 self.view.bounds.size.width, 408.0);
+                                 self.view.bounds.size.width, height);
     self.postingView = [[PostingAddView alloc] initWithFrame:topFrame];
     [self.oScrollView addSubview:self.postingView];
     [self.subviews addObject:self.postingView];
     self.postingView.parent = self;
     self.postingView.oJTitleText.delegate = self;
     self.postingView.oDescriptionText.delegate = self;
-    self.postingView.currBusiness = currBusiness;
+    ((PostingAddView *)self.postingView).currBusiness = currBusiness;
 }
 
--(void) lowerBelowViews:(CGFloat)startY  {
-    CGAffineTransform descend = CGAffineTransformMakeTranslation(0.0, 408.0 - self.rowHeight );
+-(void) lowerBelowViews:(CGFloat)startY viewHeight:(CGFloat) height {
+    CGAffineTransform descend = CGAffineTransformMakeTranslation(0.0, height - self.rowHeight );
     for (UIView * aView in self.subviews) {
         if (aView.frame.origin.y > startY + 0.1) {
             AnimationBlock descendUpper = ^(void){
@@ -251,7 +258,7 @@
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     NSInteger thisTag = textField.tag;
     if (thisTag == 300) {
-        [self.oScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y+100.0) animated:YES];
+        [self.oScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y+textField.superview.frame.origin.y) animated:YES];
     }
     return YES;
 }
@@ -259,15 +266,17 @@
 -(BOOL)textFieldShouldReturn:(UITextField*)textField;
 {
     NSInteger nextTag = textField.tag + 1;
-    // Try to find next responder
+    NSInteger thisTag = textField.tag;
     UIResponder* nextResponder = [self.oScrollView viewWithTag:nextTag];
     if (nextResponder) {
-        // Found next responder, so set it.
+        if ((thisTag == 300) && ![textField.text isEqualToString:@""]) {
+            [self.postingView.oBinButton setImage:[UIImage imageNamed:@"full_bin"] forState:UIControlStateNormal];
+        }
         [nextResponder becomeFirstResponder];
-        [self.oScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y+150.0) animated:YES];
+        [self.oScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y+textField.superview.frame.origin.y + 50.0) animated:YES];
     } else {
         [textField resignFirstResponder];
-        [self.oScrollView setContentOffset:CGPointMake(0, 0) animated:NO];      // bug if YES?
+        [self.oScrollView setContentOffset:CGPointMake(0, 0) animated:NO];
     }
     return NO; // We do not want UITextField to insert line-breaks.
 }
@@ -275,7 +284,7 @@
 #pragma mark - UITextViewDelegate
 -(BOOL) textViewShouldBeginEditing:(UITextView *)textView {
     textView.text = @"";
-    [self.oScrollView setContentOffset:CGPointMake(0, textView.frame.origin.y+100.0) animated:YES];
+    [self.oScrollView setContentOffset:CGPointMake(0, textView.frame.origin.y+ textView.superview.frame.origin.y) animated:YES];
     return YES;
 }
 
@@ -294,27 +303,80 @@
     return TRUE;
 }
 
--(void) delegateHasCanceled {
-    CGFloat startY = self.postingView.frame.origin.y;
-    [self removePostingView];
-    [self raiseBelowViews:startY];
-    [self.oScrollView setContentSize:CGSizeMake(self.oScrollView.bounds.size.width, self.scrollViewHeight)];
+#pragma mark - EmployerFirstParent
+
+-(void) delegateHasCanceled:(id)sender {
+    if ([self.postingView isKindOfClass:[PostingEditView class]]) {
+        [self findAndDelete:((PostingEditView *)self.postingView).currPosting];
+        [self removePostingView];
+        self.subviews = nil;
+        self.mainView = nil;
+        [self setupView];
+    } else {
+        CGFloat startY = self.postingView.frame.origin.y;
+        [self removePostingView];
+        [self raiseBelowViews:startY];
+        [self.oScrollView setContentSize:CGSizeMake(self.oScrollView.bounds.size.width, self.scrollViewHeight)];
+    }
 }
 
--(void) delegateHasSaved {
-    [self savePosting];
-    [self removePostingView];
-    self.subviews = nil;
-    self.mainView = nil;
-    [self setupView];
+-(void) delegateHasSaved:(id)sender {
+    if ([self.postingView isKindOfClass:[PostingEditView class]]) {
+        [self.suprview.oExpandButton setImage:[UIImage imageNamed:@"expand_arrow"] forState:UIControlStateNormal];
+        [self findandReplace:((PostingEditView *)self.postingView).currPosting];
+        self.suprview.oTitleLabel.text = self.postingView.oJTitleText.text;
+        self.suprview.oDescrLabel.text = self.postingView.oDescriptionText.text;
+        CGFloat startY = self.postingView.frame.origin.y;
+        [self removePostingView];
+        [self raiseBelowViews:startY];
+        [self.oScrollView setContentSize:CGSizeMake(self.oScrollView.bounds.size.width, self.scrollViewHeight)];
+    } else {
+        [self savePosting];
+        [self removePostingView];
+        self.subviews = nil;
+        self.mainView = nil;
+        [self setupView];
+    }
 }
 
 -(void) savePosting{
-    BusinessRecord * currBusiness = self.postingView.currBusiness;
-    NSMutableArray *postings = [currBusiness.postings  mutableCopy ];
+    BusinessRecord * currBusiness = ((PostingAddView *)self.postingView).currBusiness;
+    NSMutableArray *postings = [currBusiness.postings  mutableCopy];
     currBusiness.postings = nil;
     PostingRecord *currPosting = nil;
     currPosting = [[PostingRecord alloc] init];
+    [self setupFromFields:currPosting];
+    [postings addObject:currPosting];
+    
+    currBusiness.postings = postings;
+}
+
+-(void) findAndDelete:(PostingRecord *) currPosting {
+    for (BusinessRecord *currBusiness in self.currentEmployer.businesses) {
+        for (PostingRecord *aPosting in currBusiness.postings) {
+            if (aPosting == currPosting) {
+                NSMutableArray *postings = [currBusiness.postings mutableCopy];
+                [postings removeObject:aPosting];
+                currBusiness.postings = nil;
+                currBusiness.postings = postings;
+                break;
+            }
+        }
+    }
+}
+
+-(void) findandReplace:(PostingRecord *) currPosting {
+    for (BusinessRecord *currBusiness in self.currentEmployer.businesses) {
+        for (PostingRecord *aPosting in currBusiness.postings) {
+            if (aPosting == currPosting) {
+                [self setupFromFields:currPosting];
+                break;
+            }
+        }
+    }
+}
+
+-(void) setupFromFields:(PostingRecord *) currPosting {
     currPosting.title = self.postingView.oJTitleText.text;
     currPosting.descrption = self.postingView.oDescriptionText.text;
     currPosting.noApplications = 0;
@@ -325,9 +387,6 @@
     currPosting.nightShift = self.postingView.oNightSwitch.on;
     currPosting.type = self.postingView.oJTypeLabel.text;
     currPosting.industry = self.postingView.oIndustryLabel.text;
-    [postings addObject:currPosting];
-    
-    currBusiness.postings = postings;
 }
 
 -(void) removePostingView {
@@ -350,15 +409,6 @@
     }
 }
 
-#pragma mark - pickers
-- (void)delegateAddJobType:(id)sender {
-    [super showJobtypePicker];
-}
-
-- (void)delegateAddIndustry:(id)sender {
-    [super showIndustryPicker];
-}
-
 #pragma mark - overwrite
 -(void) refreshScreen {
     NSDictionary *text1Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:14],
@@ -379,6 +429,42 @@
     [self.view layoutIfNeeded];
 }
 
+#pragma mark - edit posting
+-(void) delegateExpandPosting:(id)sender {
+    if (self.postingView) {
+        return;
+    }
+    CGFloat height = 467.0;
+    self.suprview = (PostingRestrictedView *)(((UIView *)sender).superview);
+    CGFloat startY = self.suprview.frame.origin.y ;
+    [self setupEditPostingView: startY forPosting: ((JSEditPostingButton *) sender).currPosting];
+    [self.oScrollView bringSubviewToFront:self.suprview];
+    [self.suprview.oExpandButton setImage:[UIImage imageNamed:@"compress_arrow_white"] forState:UIControlStateNormal];
+    [self lowerBelowViews:startY viewHeight:height];
+    [self.oScrollView setContentSize:CGSizeMake(self.oScrollView.bounds.size.width, self.scrollViewHeight + height - self.rowHeight)];
+}
+
+-(void) setupEditPostingView:(CGFloat)startY forPosting:(PostingRecord *) currPosting {
+    CGRect topFrame = CGRectMake(0, startY,
+                                 self.view.bounds.size.width, 467.0);
+    self.postingView = [[PostingEditView alloc] initWithFrame:topFrame];
+    [self.oScrollView addSubview:self.postingView];
+    [self.subviews addObject:self.postingView];
+    self.postingView.parent = self;
+    self.postingView.oJTitleText.delegate = self;
+    self.postingView.oDescriptionText.delegate = self;
+    ((PostingEditView *)self.postingView).currPosting = currPosting;
+    [((PostingEditView *)self.postingView) fillFields];
+}
+
+#pragma mark - pickers
+- (void)delegateAddJobType:(id)sender {
+    [super showJobtypePicker];
+}
+
+- (void)delegateAddIndustry:(id)sender {
+    [super showIndustryPicker];
+}
 
 #pragma mark - other
 

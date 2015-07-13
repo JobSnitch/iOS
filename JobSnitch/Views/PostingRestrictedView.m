@@ -15,9 +15,10 @@
 @implementation PostingRestrictedView
 
 -(void) layoutFields: (CGSize) realSize{
-    CGFloat fraction = realSize.height/78.0;
-    CGFloat realWidth = 401.0 * fraction;
-    CGFloat originX = realSize.width - realWidth;
+//    CGFloat fraction = realSize.height/78.0;
+//    CGFloat realWidth = 401.0 * fraction;
+    CGFloat originX = 14.0;
+    CGFloat realWidth = realSize.width - originX;
     [self.oBackgroundImg setFrame:CGRectMake(originX, 0, realWidth, realSize.height)];
     CGFloat centerY = realSize.height*0.5;
     [self.oWavesImage setFrame:CGRectMake(realWidth*0.04 + originX, centerY - self.oWavesImage.frame.size.height*0.5 - 2.0,
@@ -39,7 +40,7 @@
 }
 
 - (IBAction)actionExpand:(id)sender {
-    NSLog(@"expand");
+    [self.parent delegateExpandPosting:sender];
 }
 
 -(void) postData {
