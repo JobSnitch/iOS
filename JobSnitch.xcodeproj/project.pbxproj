@@ -13,6 +13,8 @@
 		C81C349B1B53D558005E16E5 /* JSEditPostingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C81C349A1B53D558005E16E5 /* JSEditPostingButton.m */; };
 		C82049C61B4C1E29005B3F3F /* HomeUpperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82049C51B4C1E29005B3F3F /* HomeUpperView.xib */; };
 		C82049C81B4C1F2C005B3F3F /* HomeLowerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82049C71B4C1F2C005B3F3F /* HomeLowerView.xib */; };
+		C82F45751B54207A0071E985 /* ApplicationCollectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C82F45741B54207A0071E985 /* ApplicationCollectViewCell.m */; };
+		C82F45771B5420C10071E985 /* ApplicationCollectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82F45761B5420C10071E985 /* ApplicationCollectViewCell.xib */; };
 		C8400A961B4D1ABE00EBDE88 /* CreateTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8400A951B4D1ABE00EBDE88 /* CreateTopView.m */; };
 		C8400A9A1B4D1D5000EBDE88 /* CreateTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8400A991B4D1D5000EBDE88 /* CreateTopView.xib */; };
 		C87138CD1B4C096D009BD279 /* Lato-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C87138CA1B4C096D009BD279 /* Lato-Regular.otf */; };
@@ -43,6 +45,7 @@
 		C8A08BFB1B4BDEA600B2C703 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A08BFA1B4BDEA600B2C703 /* HomeViewController.m */; };
 		C8A08BFF1B4BECD400B2C703 /* HomeCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A08BFE1B4BECD400B2C703 /* HomeCenterView.m */; };
 		C8A08C011B4BED5F00B2C703 /* HomeCenterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A08C001B4BED5F00B2C703 /* HomeCenterView.xib */; };
+		C8BE60571B54012100527469 /* ApplicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BE60561B54012100527469 /* ApplicationsViewController.m */; };
 		C8D12ACA1B4E55A400DCFC83 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12AC91B4E55A400DCFC83 /* AboutViewController.m */; };
 		C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12ACC1B4E55C100DCFC83 /* ContactViewController.m */; };
 		C8D12AD01B4E561300DCFC83 /* BugReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12ACF1B4E561300DCFC83 /* BugReportViewController.m */; };
@@ -80,6 +83,9 @@
 		C81C349A1B53D558005E16E5 /* JSEditPostingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSEditPostingButton.m; path = Views/JSEditPostingButton.m; sourceTree = "<group>"; };
 		C82049C51B4C1E29005B3F3F /* HomeUpperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeUpperView.xib; sourceTree = "<group>"; };
 		C82049C71B4C1F2C005B3F3F /* HomeLowerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeLowerView.xib; sourceTree = "<group>"; };
+		C82F45731B54207A0071E985 /* ApplicationCollectViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationCollectViewCell.h; path = Views/ApplicationCollectViewCell.h; sourceTree = "<group>"; };
+		C82F45741B54207A0071E985 /* ApplicationCollectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationCollectViewCell.m; path = Views/ApplicationCollectViewCell.m; sourceTree = "<group>"; };
+		C82F45761B5420C10071E985 /* ApplicationCollectViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplicationCollectViewCell.xib; sourceTree = "<group>"; };
 		C8400A941B4D1ABE00EBDE88 /* CreateTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateTopView.h; path = Views/CreateTopView.h; sourceTree = "<group>"; };
 		C8400A951B4D1ABE00EBDE88 /* CreateTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateTopView.m; path = Views/CreateTopView.m; sourceTree = "<group>"; };
 		C8400A991B4D1D5000EBDE88 /* CreateTopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTopView.xib; sourceTree = "<group>"; };
@@ -133,6 +139,8 @@
 		C8A08BFE1B4BECD400B2C703 /* HomeCenterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCenterView.m; path = Views/HomeCenterView.m; sourceTree = "<group>"; };
 		C8A08C001B4BED5F00B2C703 /* HomeCenterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCenterView.xib; sourceTree = "<group>"; };
 		C8B0DEFF1B539451009F6EC6 /* EmployerFirstParent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmployerFirstParent.h; sourceTree = "<group>"; };
+		C8BE60551B54012100527469 /* ApplicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationsViewController.h; path = ViewControllers/ApplicationsViewController.h; sourceTree = "<group>"; };
+		C8BE60561B54012100527469 /* ApplicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationsViewController.m; path = ViewControllers/ApplicationsViewController.m; sourceTree = "<group>"; };
 		C8D12AC81B4E55A400DCFC83 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = ViewControllers/AboutViewController.h; sourceTree = "<group>"; };
 		C8D12AC91B4E55A400DCFC83 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = ViewControllers/AboutViewController.m; sourceTree = "<group>"; };
 		C8D12ACB1B4E55C100DCFC83 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactViewController.h; path = ViewControllers/ContactViewController.h; sourceTree = "<group>"; };
@@ -302,6 +310,8 @@
 				C893BF341B4FB66300217402 /* EmployerSecondViewController.m */,
 				C893BF361B4FB68500217402 /* EmployerThirdViewController.h */,
 				C893BF371B4FB68500217402 /* EmployerThirdViewController.m */,
+				C8BE60551B54012100527469 /* ApplicationsViewController.h */,
+				C8BE60561B54012100527469 /* ApplicationsViewController.m */,
 			);
 			name = "02 ViewControllers";
 			sourceTree = "<group>";
@@ -328,6 +338,7 @@
 				C893BF431B4FC6E600217402 /* BusinessRestrictedView.xib */,
 				C893BF4B1B4FE76700217402 /* PostingRestrictedView.xib */,
 				C893BF501B4FFA4800217402 /* EmployerFirstView.xib */,
+				C82F45761B5420C10071E985 /* ApplicationCollectViewCell.xib */,
 			);
 			name = "05 Storyboards";
 			sourceTree = "<group>";
@@ -383,6 +394,8 @@
 				C81C34971B53CE3B005E16E5 /* PostingAddView.m */,
 				C81C34991B53D558005E16E5 /* JSEditPostingButton.h */,
 				C81C349A1B53D558005E16E5 /* JSEditPostingButton.m */,
+				C82F45731B54207A0071E985 /* ApplicationCollectViewCell.h */,
+				C82F45741B54207A0071E985 /* ApplicationCollectViewCell.m */,
 			);
 			name = "03 Views";
 			sourceTree = "<group>";
@@ -492,6 +505,7 @@
 				C893BF511B4FFA4800217402 /* EmployerFirstView.xib in Resources */,
 				C8A08BD51B4BD5DC00B2C703 /* Main.storyboard in Resources */,
 				C82049C61B4C1E29005B3F3F /* HomeUpperView.xib in Resources */,
+				C82F45771B5420C10071E985 /* ApplicationCollectViewCell.xib in Resources */,
 				C87138CD1B4C096D009BD279 /* Lato-Regular.otf in Resources */,
 				C89F1EBC1B4D624600692DAD /* AddItemView.xib in Resources */,
 				C8400A9A1B4D1D5000EBDE88 /* CreateTopView.xib in Resources */,
@@ -528,10 +542,12 @@
 				C8DA45D91B4D02380041EB23 /* JSCustomSegue.m in Sources */,
 				C8D5F39D1B5180FD0078E3A8 /* PostingEditView.m in Sources */,
 				C8400A961B4D1ABE00EBDE88 /* CreateTopView.m in Sources */,
+				C82F45751B54207A0071E985 /* ApplicationCollectViewCell.m in Sources */,
 				C893BF3C1B4FB98F00217402 /* EmployerRecord.m in Sources */,
 				C8DA45E51B4D03910041EB23 /* CreateJobseekerController.m in Sources */,
 				C893BF421B4FC6C500217402 /* BusinessRestrictedView.m in Sources */,
 				C81C34981B53CE3B005E16E5 /* PostingAddView.m in Sources */,
+				C8BE60571B54012100527469 /* ApplicationsViewController.m in Sources */,
 				C8DA45E21B4D03110041EB23 /* HomeUpperView.m in Sources */,
 				C8A08BFB1B4BDEA600B2C703 /* HomeViewController.m in Sources */,
 				C8DA45DC1B4D02890041EB23 /* JSCustomUnwindSegue.m in Sources */,

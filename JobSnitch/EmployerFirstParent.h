@@ -14,5 +14,6 @@
 - (void)delegateAddJobType:(id)sender;
 - (void)delegateAddIndustry:(id)sender;
 - (void)delegateExpandPosting:(id)sender;
+- (void)delegateApplications:(id)sender;
 
 @end

@@ -33,14 +33,20 @@
                                           self.oFolderImage.frame.size.width, self.oFolderImage.frame.size.height)];
     [self.oApplicLabel setFrame:CGRectMake(realWidth*0.68 + originX, centerY - self.oApplicLabel.frame.size.height*0.5,
                                           self.oApplicLabel.frame.size.width, self.oApplicLabel.frame.size.height)];
-    [self.oCurvedImage setFrame:CGRectMake(realWidth*0.74 + originX, centerY - self.oCurvedImage.frame.size.height*0.5,
-                                          self.oCurvedImage.frame.size.width, self.oCurvedImage.frame.size.height)];
+//    [self.oCurvedImage setFrame:CGRectMake(realWidth*0.74 + originX, centerY - self.oCurvedImage.frame.size.height*0.5,
+//                                           self.oCurvedImage.frame.size.width, self.oCurvedImage.frame.size.height)];
+    [self.oCurvedButton setFrame:CGRectMake(realWidth*0.74 + originX, centerY - self.oCurvedButton.frame.size.height*0.5,
+                                           self.oCurvedButton.frame.size.width, self.oCurvedButton.frame.size.height)];
     [self.oExpandButton setFrame:CGRectMake(realWidth*0.84 + originX, centerY - self.oExpandButton.frame.size.height*0.5,
                                             self.oExpandButton.frame.size.width, self.oExpandButton.frame.size.height)];
 }
 
 - (IBAction)actionExpand:(id)sender {
     [self.parent delegateExpandPosting:sender];
+}
+
+- (IBAction)actionApplications:(id)sender {
+    [self.parent delegateApplications:sender];
 }
 
 -(void) postData {

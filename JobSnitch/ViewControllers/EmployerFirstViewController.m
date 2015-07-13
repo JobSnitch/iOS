@@ -17,8 +17,10 @@
 #import "PostingEditView.h"
 #import "PostingExpandedView.h"
 #import "JSAddPostingButton.h"
+#import "ApplicationsViewController.h"
 
-@interface EmployerFirstViewController () <UITextFieldDelegate, UITextViewDelegate, EmployerFirstParent>
+@interface EmployerFirstViewController () <UITextFieldDelegate, UITextViewDelegate, EmployerFirstParent,
+                                                EmployerContainerDelegate>
 
 @property (weak, nonatomic)     UIScrollView *oScrollView;
 @property (nonatomic, strong)   EmployerRecord *currentEmployer;
@@ -28,6 +30,7 @@
 @property (nonatomic, strong)   EmployerFirstView *mainView;
 @property (nonatomic, strong)   PostingExpandedView *postingView;
 @property (weak, nonatomic)     PostingRestrictedView *suprview;
+@property (nonatomic, strong)   ApplicationsViewController *applController;
 
 @end
 
@@ -196,6 +199,7 @@
     currView.oShortLabel.text = [NSString stringWithFormat:@"%d", currPosting.noShortlisted];
     currView.oApplicLabel.text = [NSString stringWithFormat:@"%d", currPosting.noApplications];
     currView.oExpandButton.currPosting = currPosting;
+    currView.oCurvedButton.currPosting = currPosting;
     [currView postData];
     currView.parent = self;
     [self.oScrollView addSubview:currView];
@@ -464,6 +468,47 @@
 
 - (void)delegateAddIndustry:(id)sender {
     [super showIndustryPicker];
+}
+
+#pragma mark - show applications
+-(void) delegateApplications:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.applController = (ApplicationsViewController *) [storyboard instantiateViewControllerWithIdentifier:@"ApplicationsViewController"];
+    [self addChildViewController:self.applController];
+    [self.applController didMoveToParentViewController:self];
+    self.applController.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height -49);
+    [self prepareChildWithSender:sender];
+    [self.view addSubview:self.applController.view];
+    [self.applController setupFields];
+    
+    self.applController.delegate = self;
+}
+
+-(void) hasFinishedApplications {
+    [self.applController willMoveToParentViewController:nil];
+    [self.applController.view removeFromSuperview];
+    [self.applController removeFromParentViewController];
+    self.applController  =nil;
+}
+
+
+-(void)prepareChildWithSender:(id)sender{
+    self.suprview = (PostingRestrictedView *)(((UIView *)sender).superview);
+    PostingRecord * currPosting = ((JSEditPostingButton *) sender).currPosting;
+    BusinessRecord *currBusiness = nil;
+    for (BusinessRecord *aBusiness in self.currentEmployer.businesses) {
+        for (PostingRecord *aPosting in aBusiness.postings) {
+            if (aPosting == currPosting) {
+                currBusiness = aBusiness;
+                break;
+            }
+        }
+    }
+    if (currBusiness && currPosting) {
+        self.applController.currentEmployer = self.currentEmployer;
+        self.applController.currBusiness = currBusiness;
+        self.applController.currPosting = currPosting;
+    }
 }
 
 #pragma mark - other

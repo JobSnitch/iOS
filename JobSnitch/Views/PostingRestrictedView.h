@@ -18,8 +18,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *oApplicLabel;
 @property (weak, nonatomic) IBOutlet UILabel *oDescrLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *oFolderImage;
-@property (weak, nonatomic) IBOutlet UIImageView *oCurvedImage;
+//@property (weak, nonatomic) IBOutlet UIImageView *oCurvedImage;
 @property (weak, nonatomic) IBOutlet JSEditPostingButton *oExpandButton;
+@property (weak, nonatomic) IBOutlet JSEditPostingButton *oCurvedButton;
 
 @property (assign) id<EmployerFirstParent> parent;         // the parent controller implements this
 

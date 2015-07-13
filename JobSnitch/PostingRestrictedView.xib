@@ -63,10 +63,6 @@
                     <rect key="frame" x="450" y="27" width="27" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="curved_arrow" id="kPt-eN-dLN">
-                    <rect key="frame" x="520" y="29" width="28" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Dr3-zH-nbp" customClass="JSEditPostingButton">
                     <rect key="frame" x="552" y="22" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -77,13 +73,23 @@
                         <action selector="actionExpand:" destination="iN0-l3-epB" eventType="touchUpInside" id="l7e-P6-fF7"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7pp-sw-fa9" customClass="JSEditPostingButton">
+                    <rect key="frame" x="520" y="20" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="curved_arrow">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="actionApplications:" destination="iN0-l3-epB" eventType="touchUpInside" id="QpT-m8-SFS"/>
+                    </connections>
+                </button>
             </subviews>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="oApplicLabel" destination="occ-FG-3fx" id="Dtc-Hw-3X8"/>
                 <outlet property="oBackgroundImg" destination="HSB-6a-4ek" id="kSA-AH-SSF"/>
-                <outlet property="oCurvedImage" destination="kPt-eN-dLN" id="w3V-Ue-abp"/>
+                <outlet property="oCurvedButton" destination="7pp-sw-fa9" id="fcD-s2-YIq"/>
                 <outlet property="oDescrLabel" destination="8me-1Q-Nop" id="rwR-uT-c9S"/>
                 <outlet property="oExpandButton" destination="Dr3-zH-nbp" id="zFJ-rI-T0v"/>
                 <outlet property="oFolderImage" destination="OFP-iY-zUt" id="V1J-HP-BO1"/>
