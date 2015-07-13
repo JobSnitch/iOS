@@ -10,6 +10,13 @@
 
 @interface BaseJSViewController : UIViewController
 @property (nonatomic, strong) UIImageView *backgroundGradient;
+@property (nonatomic, strong)   NSString *pickerSelectionJT;
+@property (nonatomic, strong)   NSString *pickerSelectionI;
 
 -(void) initBackground;
+-(void) setupJobtypePicker;
+-(void) setupIndustryPicker;
+-(void) bringPickersToFront;
+-(void) showJobtypePicker;
+-(void) showIndustryPicker;
 @end

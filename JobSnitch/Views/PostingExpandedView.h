@@ -7,25 +7,31 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EmployerFirstParent.h"
+#import "BusinessRecord.h"
 
 @interface PostingExpandedView : UIView
 @property (strong, nonatomic)  UIImageView *oBackImage;
-//@property (weak, nonatomic) IBOutlet UILabel *oJTitleLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *oJTypeLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *oIndustryLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *oEveningLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *oAfternoonLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *oMorningLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *oNightLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *oDescriptionLabel;
-//@property (weak, nonatomic) IBOutlet UIButton *oPlusButton;
-//@property (weak, nonatomic) IBOutlet UIButton *oBinButton;
-//@property (weak, nonatomic) IBOutlet UIButton *oJTypeButton;
-//@property (weak, nonatomic) IBOutlet UIButton *oIndustryButton;
-//@property (weak, nonatomic) IBOutlet UISwitch *oMorningSwitch;
-//@property (weak, nonatomic) IBOutlet UISwitch *oAfternoonSwitch;
-//@property (weak, nonatomic) IBOutlet UISwitch *oEveningSwitch;
-//@property (weak, nonatomic) IBOutlet UISwitch *oNightSwitch;
+@property (strong, nonatomic)  UITextField *oJTitleText;
+@property (strong, nonatomic)  UITextView *oDescriptionText;
+@property (strong, nonatomic)  UILabel *oJTypeLabel;
+@property (strong, nonatomic) UILabel *oIndustryLabel;
+@property (strong, nonatomic) UILabel *oEveningLabel;
+@property (strong, nonatomic) UILabel *oAfternoonLabel;
+@property (strong, nonatomic) UILabel *oMorningLabel;
+@property (strong, nonatomic) UILabel *oNightLabel;
+@property (strong, nonatomic) UIButton *oPlusButton;
+@property (strong, nonatomic) UIButton *oBinButton;
+@property (strong, nonatomic) UIButton *oJTypeButton;
+@property (strong, nonatomic) UIButton *oIndustryButton;
+@property (strong, nonatomic) UISwitch *oMorningSwitch;
+@property (strong, nonatomic) UISwitch *oAfternoonSwitch;
+@property (strong, nonatomic) UISwitch *oEveningSwitch;
+@property (strong, nonatomic) UISwitch *oNightSwitch;
+
+@property (assign) id<EmployerFirstParent> parent;         // the parent controller implements this
+@property (weak, nonatomic) BusinessRecord *currBusiness;
+
 
 -(void) layoutFields: (CGSize) realSize;
 

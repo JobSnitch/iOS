@@ -13,10 +13,10 @@
 #import "PostingRecord.h"
 #import "PostingRestrictedView.h"
 #import "EmployerFirstView.h"
-#import "PostingExpandedView.h"
+#import "PostingAddView.h"
+#import "JSAddPostingButton.h"
 
-
-@interface EmployerFirstViewController ()
+@interface EmployerFirstViewController () <UITextFieldDelegate, UITextViewDelegate, EmployerFirstParent>
 
 @property (weak, nonatomic)     UIScrollView *oScrollView;
 @property (nonatomic, strong)   EmployerRecord *currentEmployer;
@@ -24,6 +24,7 @@
 @property (nonatomic) CGFloat   scrollViewHeight;
 @property (nonatomic) CGFloat   rowHeight;
 @property (nonatomic, strong)   EmployerFirstView *mainView;
+@property (nonatomic, strong)   PostingAddView *postingView;
 
 @end
 
@@ -36,6 +37,8 @@
     [self setupEmployer];
     
     [self setupView];
+    [super setupJobtypePicker];
+    [super setupIndustryPicker];
 }
 
 -(void) viewDidLayoutSubviews {
@@ -50,12 +53,8 @@
             [((PostingRestrictedView *)aView) layoutFields:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width * 78.0 / 414.0)];
             [aView setFrame:CGRectMake(0, aView.frame.origin.y, self.view.bounds.size.width, self.rowHeight)];
         }
-//        if ([aView isMemberOfClass:[PostingExpandedView class]]) {
-//            [((PostingExpandedView *)aView) layoutFields:CGSizeMake(self.view.bounds.size.width, 408.0)];
-//            aView.backgroundColor = [UIColor blueColor];
-//            [aView setFrame:CGRectMake(0, aView.frame.origin.y, self.view.bounds.size.width, 408.0)];
-//        }
     }
+    [super bringPickersToFront];
     
     [self.view layoutIfNeeded];
 }
@@ -141,7 +140,7 @@
     [self.view addSubview:self.mainView];
     
     [self setupHeader];
-    [self setupMainView];
+    [self setupScrollView];
 }
 
 -(void) setupHeader {
@@ -149,7 +148,7 @@
     self.mainView.oNameLabel.text = self.currentEmployer.name;
 }
 
--(void) setupMainView {
+-(void) setupScrollView {
     self.subviews = [[NSMutableArray alloc] init];
     self.oScrollView = self.mainView.oScrollView;
     [self.mainView bringSubviewToFront:self.mainView.oScrollView];
@@ -203,28 +202,35 @@
     CGFloat buttonWidth = self.rowHeight *82.0/78.0;
     CGRect topFrame = CGRectMake(self.view.bounds.size.width- buttonWidth, self.scrollViewHeight,
                                  buttonWidth, self.rowHeight);
-    UIButton *newPosting = [UIButton buttonWithType: UIButtonTypeCustom];
+    JSAddPostingButton *newPosting = [JSAddPostingButton buttonWithType: UIButtonTypeCustom];
     [newPosting setFrame: topFrame];
     [newPosting setImage:[UIImage imageNamed:@"new_posting.png"] forState:UIControlStateNormal];
     [newPosting addTarget:self action:@selector(doNewPosting:)forControlEvents:UIControlEventTouchDown];
+    newPosting.currBusiness = currBusiness;
     [self.oScrollView addSubview:newPosting];
     [self.subviews addObject:newPosting];
 }
 
 -(void) doNewPosting:(id) sender {
+    if (self.postingView) {
+        return;
+    }
     CGFloat startY = ((UIView *)sender).frame.origin.y;
-    [self setupAddPostingView: startY];
+    [self setupAddPostingView: startY forBusiness: ((JSAddPostingButton *) sender).currBusiness];
     [self lowerBelowViews: startY];
-    [self.oScrollView setContentSize:CGSizeMake(self.oScrollView.bounds.size.width, self.oScrollView.bounds.size.height + 408.0)];
+    [self.oScrollView setContentSize:CGSizeMake(self.oScrollView.bounds.size.width, self.scrollViewHeight + 408.0 - self.rowHeight)];
 }
 
--(void) setupAddPostingView:(CGFloat)startY  {
+-(void) setupAddPostingView:(CGFloat)startY forBusiness:(BusinessRecord *) currBusiness {
     CGRect topFrame = CGRectMake(0, startY,
                                  self.view.bounds.size.width, 408.0);
-    PostingExpandedView *currView = nil;
-    currView = [[PostingExpandedView alloc] initWithFrame:topFrame];
-    [self.oScrollView addSubview:currView];
-    [self.subviews addObject:currView];
+    self.postingView = [[PostingAddView alloc] initWithFrame:topFrame];
+    [self.oScrollView addSubview:self.postingView];
+    [self.subviews addObject:self.postingView];
+    self.postingView.parent = self;
+    self.postingView.oJTitleText.delegate = self;
+    self.postingView.oDescriptionText.delegate = self;
+    self.postingView.currBusiness = currBusiness;
 }
 
 -(void) lowerBelowViews:(CGFloat)startY  {
@@ -239,6 +245,142 @@
         }
     }
 }
+
+
+#pragma mark - UITextFieldDelegate
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    NSInteger thisTag = textField.tag;
+    if (thisTag == 300) {
+        [self.oScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y+100.0) animated:YES];
+    }
+    return YES;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField;
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [self.oScrollView viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+        [self.oScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y+150.0) animated:YES];
+    } else {
+        [textField resignFirstResponder];
+        [self.oScrollView setContentOffset:CGPointMake(0, 0) animated:NO];      // bug if YES?
+    }
+    return NO; // We do not want UITextField to insert line-breaks.
+}
+
+#pragma mark - UITextViewDelegate
+-(BOOL) textViewShouldBeginEditing:(UITextView *)textView {
+    textView.text = @"";
+    [self.oScrollView setContentOffset:CGPointMake(0, textView.frame.origin.y+100.0) animated:YES];
+    return YES;
+}
+
+-(BOOL)textViewShouldReturn:(UITextView *) textView;
+{
+    [textView resignFirstResponder];
+    return NO;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return FALSE;
+    }
+    return TRUE;
+}
+
+-(void) delegateHasCanceled {
+    CGFloat startY = self.postingView.frame.origin.y;
+    [self removePostingView];
+    [self raiseBelowViews:startY];
+    [self.oScrollView setContentSize:CGSizeMake(self.oScrollView.bounds.size.width, self.scrollViewHeight)];
+}
+
+-(void) delegateHasSaved {
+    [self savePosting];
+    [self removePostingView];
+    self.subviews = nil;
+    self.mainView = nil;
+    [self setupView];
+}
+
+-(void) savePosting{
+    BusinessRecord * currBusiness = self.postingView.currBusiness;
+    NSMutableArray *postings = [currBusiness.postings  mutableCopy ];
+    currBusiness.postings = nil;
+    PostingRecord *currPosting = nil;
+    currPosting = [[PostingRecord alloc] init];
+    currPosting.title = self.postingView.oJTitleText.text;
+    currPosting.descrption = self.postingView.oDescriptionText.text;
+    currPosting.noApplications = 0;
+    currPosting.noShortlisted = 0;
+    currPosting.morningShift = self.postingView.oMorningSwitch.on;
+    currPosting.afternoonShift = self.postingView.oAfternoonSwitch.on;
+    currPosting.eveningShift = self.postingView.oEveningSwitch.on;
+    currPosting.nightShift = self.postingView.oNightSwitch.on;
+    currPosting.type = self.postingView.oJTypeLabel.text;
+    currPosting.industry = self.postingView.oIndustryLabel.text;
+    [postings addObject:currPosting];
+    
+    currBusiness.postings = postings;
+}
+
+-(void) removePostingView {
+    if (self.postingView) {
+        [self.postingView removeFromSuperview];
+        self.postingView = nil;
+    }
+}
+
+-(void) raiseBelowViews:(CGFloat)startY  {
+    CGAffineTransform climb = CGAffineTransformIdentity;
+    for (UIView * aView in self.subviews) {
+        if (aView.frame.origin.y > startY + 0.1) {
+            AnimationBlock descendUpper = ^(void){
+                [aView setTransform:climb];
+            };
+            [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveLinear|UIViewAnimationOptionBeginFromCurrentState
+                             animations:descendUpper completion:nil];
+        }
+    }
+}
+
+#pragma mark - pickers
+- (void)delegateAddJobType:(id)sender {
+    [super showJobtypePicker];
+}
+
+- (void)delegateAddIndustry:(id)sender {
+    [super showIndustryPicker];
+}
+
+#pragma mark - overwrite
+-(void) refreshScreen {
+    NSDictionary *text1Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:14],
+                                     NSForegroundColorAttributeName: [UIColor whiteColor]};
+    if (super.pickerSelectionJT) {
+        if (self.postingView) {
+            NSAttributedString* attributedText = [[NSAttributedString alloc] initWithString:super.pickerSelectionJT attributes:text1Attribute];
+            [self.postingView.oJTypeLabel setAttributedText:attributedText];
+        }
+    }
+    if (super.pickerSelectionI) {
+        if (self.postingView) {
+            NSAttributedString* attributedText = [[NSAttributedString alloc] initWithString:super.pickerSelectionI attributes:text1Attribute];
+            [self.postingView.oIndustryLabel setAttributedText:attributedText];
+        }
+    }
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
+}
+
+
+#pragma mark - other
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
