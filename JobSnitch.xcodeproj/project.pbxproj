@@ -33,6 +33,12 @@
 		C893BF4A1B4FE75800217402 /* PostingRestrictedView.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF491B4FE75800217402 /* PostingRestrictedView.m */; };
 		C893BF4F1B4FFA0E00217402 /* EmployerFirstView.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF4E1B4FFA0E00217402 /* EmployerFirstView.m */; };
 		C893BF511B4FFA4800217402 /* EmployerFirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C893BF501B4FFA4800217402 /* EmployerFirstView.xib */; };
+		C89EC1241B55676D008F3040 /* EmployeeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89EC1231B55676D008F3040 /* EmployeeTabBarController.m */; };
+		C89EC1271B556C83008F3040 /* EmployeeLandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89EC1261B556C83008F3040 /* EmployeeLandingViewController.m */; };
+		C89EC12A1B556CAE008F3040 /* EmployeeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89EC1291B556CAE008F3040 /* EmployeeInfoViewController.m */; };
+		C89EC12D1B556CE0008F3040 /* EmployeeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89EC12C1B556CE0008F3040 /* EmployeeSearchViewController.m */; };
+		C89EC1301B556D0C008F3040 /* EmployeeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89EC12F1B556D0C008F3040 /* EmployeeOptionsViewController.m */; };
+		C89EC1331B556D23008F3040 /* EmployeeSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89EC1321B556D23008F3040 /* EmployeeSettingsViewController.m */; };
 		C89F1EBA1B4D620800692DAD /* AddItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C89F1EB91B4D620800692DAD /* AddItemView.m */; };
 		C89F1EBC1B4D624600692DAD /* AddItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89F1EBB1B4D624600692DAD /* AddItemView.xib */; };
 		C8A08BCC1B4BD5DC00B2C703 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A08BCB1B4BD5DC00B2C703 /* main.m */; };
@@ -121,6 +127,18 @@
 		C893BF4D1B4FFA0E00217402 /* EmployerFirstView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployerFirstView.h; path = Views/EmployerFirstView.h; sourceTree = "<group>"; };
 		C893BF4E1B4FFA0E00217402 /* EmployerFirstView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployerFirstView.m; path = Views/EmployerFirstView.m; sourceTree = "<group>"; };
 		C893BF501B4FFA4800217402 /* EmployerFirstView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmployerFirstView.xib; sourceTree = "<group>"; };
+		C89EC1221B55676D008F3040 /* EmployeeTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployeeTabBarController.h; path = ViewControllers/EmployeeTabBarController.h; sourceTree = "<group>"; };
+		C89EC1231B55676D008F3040 /* EmployeeTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployeeTabBarController.m; path = ViewControllers/EmployeeTabBarController.m; sourceTree = "<group>"; };
+		C89EC1251B556C83008F3040 /* EmployeeLandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployeeLandingViewController.h; path = ViewControllers/EmployeeLandingViewController.h; sourceTree = "<group>"; };
+		C89EC1261B556C83008F3040 /* EmployeeLandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployeeLandingViewController.m; path = ViewControllers/EmployeeLandingViewController.m; sourceTree = "<group>"; };
+		C89EC1281B556CAE008F3040 /* EmployeeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployeeInfoViewController.h; path = ViewControllers/EmployeeInfoViewController.h; sourceTree = "<group>"; };
+		C89EC1291B556CAE008F3040 /* EmployeeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployeeInfoViewController.m; path = ViewControllers/EmployeeInfoViewController.m; sourceTree = "<group>"; };
+		C89EC12B1B556CE0008F3040 /* EmployeeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployeeSearchViewController.h; path = ViewControllers/EmployeeSearchViewController.h; sourceTree = "<group>"; };
+		C89EC12C1B556CE0008F3040 /* EmployeeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployeeSearchViewController.m; path = ViewControllers/EmployeeSearchViewController.m; sourceTree = "<group>"; };
+		C89EC12E1B556D0C008F3040 /* EmployeeOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployeeOptionsViewController.h; path = ViewControllers/EmployeeOptionsViewController.h; sourceTree = "<group>"; };
+		C89EC12F1B556D0C008F3040 /* EmployeeOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployeeOptionsViewController.m; path = ViewControllers/EmployeeOptionsViewController.m; sourceTree = "<group>"; };
+		C89EC1311B556D23008F3040 /* EmployeeSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployeeSettingsViewController.h; path = ViewControllers/EmployeeSettingsViewController.h; sourceTree = "<group>"; };
+		C89EC1321B556D23008F3040 /* EmployeeSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployeeSettingsViewController.m; path = ViewControllers/EmployeeSettingsViewController.m; sourceTree = "<group>"; };
 		C89F1EB81B4D620800692DAD /* AddItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddItemView.h; path = Views/AddItemView.h; sourceTree = "<group>"; };
 		C89F1EB91B4D620800692DAD /* AddItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddItemView.m; path = Views/AddItemView.m; sourceTree = "<group>"; };
 		C89F1EBB1B4D624600692DAD /* AddItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddItemView.xib; sourceTree = "<group>"; };
@@ -327,6 +345,18 @@
 				C893BF371B4FB68500217402 /* EmployerThirdViewController.m */,
 				C8BE60551B54012100527469 /* ApplicationsViewController.h */,
 				C8BE60561B54012100527469 /* ApplicationsViewController.m */,
+				C89EC1221B55676D008F3040 /* EmployeeTabBarController.h */,
+				C89EC1231B55676D008F3040 /* EmployeeTabBarController.m */,
+				C89EC1251B556C83008F3040 /* EmployeeLandingViewController.h */,
+				C89EC1261B556C83008F3040 /* EmployeeLandingViewController.m */,
+				C89EC1281B556CAE008F3040 /* EmployeeInfoViewController.h */,
+				C89EC1291B556CAE008F3040 /* EmployeeInfoViewController.m */,
+				C89EC12B1B556CE0008F3040 /* EmployeeSearchViewController.h */,
+				C89EC12C1B556CE0008F3040 /* EmployeeSearchViewController.m */,
+				C89EC12E1B556D0C008F3040 /* EmployeeOptionsViewController.h */,
+				C89EC12F1B556D0C008F3040 /* EmployeeOptionsViewController.m */,
+				C89EC1311B556D23008F3040 /* EmployeeSettingsViewController.h */,
+				C89EC1321B556D23008F3040 /* EmployeeSettingsViewController.m */,
 			);
 			name = "02 ViewControllers";
 			sourceTree = "<group>";
@@ -558,6 +588,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8A08BF51B4BD96F00B2C703 /* BaseJSViewController.m in Sources */,
+				C89EC12D1B556CE0008F3040 /* EmployeeSearchViewController.m in Sources */,
 				C893BF321B4FB64900217402 /* EmployerFirstViewController.m in Sources */,
 				C8A08BCF1B4BD5DC00B2C703 /* AppDelegate.m in Sources */,
 				C8DA45E11B4D03110041EB23 /* HomeLowerView.m in Sources */,
@@ -565,6 +596,7 @@
 				C8DA45D91B4D02380041EB23 /* JSCustomSegue.m in Sources */,
 				C8D5F39D1B5180FD0078E3A8 /* PostingEditView.m in Sources */,
 				C8400A961B4D1ABE00EBDE88 /* CreateTopView.m in Sources */,
+				C89EC12A1B556CAE008F3040 /* EmployeeInfoViewController.m in Sources */,
 				C82F45751B54207A0071E985 /* ApplicationCollectViewCell.m in Sources */,
 				C893BF3C1B4FB98F00217402 /* EmployerRecord.m in Sources */,
 				C8DA45E51B4D03910041EB23 /* CreateJobseekerController.m in Sources */,
@@ -578,6 +610,8 @@
 				C8A08BFB1B4BDEA600B2C703 /* HomeViewController.m in Sources */,
 				C8DA45DC1B4D02890041EB23 /* JSCustomUnwindSegue.m in Sources */,
 				C89F1EBA1B4D620800692DAD /* AddItemView.m in Sources */,
+				C89EC1331B556D23008F3040 /* EmployeeSettingsViewController.m in Sources */,
+				C89EC1241B55676D008F3040 /* EmployeeTabBarController.m in Sources */,
 				C893BF3F1B4FC16400217402 /* BusinessRecord.m in Sources */,
 				C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */,
 				C893BF351B4FB66300217402 /* EmployerSecondViewController.m in Sources */,
@@ -595,7 +629,9 @@
 				C8A08BFF1B4BECD400B2C703 /* HomeCenterView.m in Sources */,
 				C893BF381B4FB68500217402 /* EmployerThirdViewController.m in Sources */,
 				C893BF4A1B4FE75800217402 /* PostingRestrictedView.m in Sources */,
+				C89EC1301B556D0C008F3040 /* EmployeeOptionsViewController.m in Sources */,
 				C8A08BCC1B4BD5DC00B2C703 /* main.m in Sources */,
+				C89EC1271B556C83008F3040 /* EmployeeLandingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

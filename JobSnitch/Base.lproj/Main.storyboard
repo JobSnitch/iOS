@@ -440,6 +440,103 @@
             </objects>
             <point key="canvasLocation" x="3414" y="1288"/>
         </scene>
+        <!--Employee Search View Controller-->
+        <scene sceneID="Q8U-oN-n8p">
+            <objects>
+                <viewController storyboardIdentifier="EmployeeSearchViewController" id="SEv-mF-R41" customClass="EmployeeSearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ky6-jk-MDn"/>
+                        <viewControllerLayoutGuide type="bottom" id="IrG-Ba-gCP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="To8-eL-jeG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="401" title="" image="search_red" id="G2V-Xn-spJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nqd-ND-5WI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2739" y="2035"/>
+        </scene>
+        <!--Employee Options View Controller-->
+        <scene sceneID="Kg2-zN-zMo">
+            <objects>
+                <viewController storyboardIdentifier="EmployeeOptionsViewController" id="icd-1O-BJx" customClass="EmployeeOptionsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cBC-Kx-pjY"/>
+                        <viewControllerLayoutGuide type="bottom" id="QvU-x8-GlO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="raI-rx-b7k">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="402" title="" image="eye_red" id="339-gX-aBh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IPq-pt-a6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2739" y="2709"/>
+        </scene>
+        <!--Employee Settings View Controller-->
+        <scene sceneID="XXc-ql-0eg">
+            <objects>
+                <viewController storyboardIdentifier="EmployeeSettingsViewController" id="y56-J4-wld" customClass="EmployeeSettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eUn-Qa-EWV"/>
+                        <viewControllerLayoutGuide type="bottom" id="A6W-nx-vKi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hS9-vG-Q0c">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="403" title="" image="emp_bar_3" id="lvG-Mc-z5P"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kc6-Nl-ade" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2738" y="3393"/>
+        </scene>
+        <!--Employee Landing View Controller-->
+        <scene sceneID="HnP-iB-2mr">
+            <objects>
+                <viewController storyboardIdentifier="EmployeeLandingViewController" id="JCk-uz-6qV" customClass="EmployeeLandingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t6Q-A1-Z7R"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fg7-kN-1rv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bkw-dW-QfH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="400" title="" image="emp_bar_1" id="fsh-BR-gPD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vUm-MG-9VK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2740" y="1373"/>
+        </scene>
+        <!--Employee Tab Bar Controller-->
+        <scene sceneID="fn3-u2-CjV">
+            <objects>
+                <tabBarController id="ScD-cj-dcw" customClass="EmployeeTabBarController" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="E5K-Rv-UFc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="JCk-uz-6qV" kind="relationship" relationship="viewControllers" id="ZFD-TQ-Ydv"/>
+                        <segue destination="SEv-mF-R41" kind="relationship" relationship="viewControllers" id="unW-HY-A9U"/>
+                        <segue destination="icd-1O-BJx" kind="relationship" relationship="viewControllers" id="aBo-Rf-m9M"/>
+                        <segue destination="y56-J4-wld" kind="relationship" relationship="viewControllers" id="RtB-Kc-AOo"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fav-cu-yt3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1922" y="1705"/>
+        </scene>
         <!--Employer First View Controller-->
         <scene sceneID="9mu-OM-ofX">
             <objects>
@@ -1275,6 +1372,9 @@
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="actionCreateJobseeker:" destination="h63-1t-ovC" eventType="touchUpInside" id="Nb0-1R-dfs"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1371,6 +1471,7 @@
                         <outlet property="oScrollView" destination="5KB-I5-5nc" id="Lk2-8A-g5w"/>
                         <outlet property="oTopView" destination="z0v-gm-heo" id="h6a-WR-rQ7"/>
                         <outlet property="oWidthConstraint" destination="i1L-V7-gP4" id="P36-TK-MHs"/>
+                        <segue destination="ScD-cj-dcw" kind="custom" identifier="CreateEmpToEmployee" customClass="JSCustomSegue" id="d4x-Ge-YO2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="66u-Vg-O5x" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1663,9 +1764,13 @@
         <image name="cancel_red_icon" width="18" height="18"/>
         <image name="card_icon" width="25" height="19"/>
         <image name="detail_arrow_right" width="16" height="26"/>
+        <image name="emp_bar_1" width="43" height="43"/>
+        <image name="emp_bar_3" width="42" height="43"/>
+        <image name="eye_red" width="54" height="34"/>
         <image name="gradient_red_back_sq" width="414" height="414"/>
         <image name="home_logo" width="306" height="82"/>
         <image name="paypal_icon" width="25" height="25"/>
+        <image name="search_red" width="43" height="43"/>
         <image name="small_add_photo" width="61" height="60"/>
         <image name="top_left_logo" width="43" height="43"/>
         <image name="white_button" width="259" height="52"/>

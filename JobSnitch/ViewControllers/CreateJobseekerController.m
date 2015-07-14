@@ -183,6 +183,10 @@ const float kMagicHeight1 = 1268.0;
     [super showIndustryPicker];
 }
 
+- (IBAction)actionCreateJobseeker:(id)sender {
+    [self performSegueWithIdentifier:@"CreateEmpToEmployee" sender:self];
+}
+
 #pragma mark - UITextFieldDelegate
 -(BOOL)textFieldShouldReturn:(UITextField*)textField;
 {
