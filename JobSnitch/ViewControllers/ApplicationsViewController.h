@@ -24,5 +24,5 @@
 @property (assign) id<EmployerContainerDelegate> delegate;     // the parent controller implements this
 
 -(void) setupFields;
-
+-(void) prepareData;
 @end

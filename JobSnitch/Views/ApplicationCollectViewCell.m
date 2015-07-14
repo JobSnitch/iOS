@@ -25,4 +25,38 @@
     }
     return self;
 }
+
+- (IBAction)actionLeft:(id)sender {
+    [self.delegate delegateLeft];
+}
+
+- (IBAction)actionRight:(id)sender {
+    [self.delegate delegateRight];
+}
+
+- (IBAction)actionText:(id)sender {
+    [self.delegate delegateText];
+}
+
+- (IBAction)actionVideo:(id)sender {
+    [self.delegate delegateVideo];
+}
+
+- (IBAction)actionAudio:(id)sender {
+    [self.delegate delegateAudio];
+}
+
+- (IBAction)actionDelete:(id)sender {
+    [self.delegate delegateDelete];
+}
+
+- (IBAction)actionFolder:(id)sender {
+    [self.delegate delegateFolder];
+}
+
+- (IBAction)actionCheck:(id)sender {
+    [self.delegate delegateCheck];
+}
+
+
 @end

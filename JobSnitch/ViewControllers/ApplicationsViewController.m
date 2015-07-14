@@ -9,8 +9,9 @@
 #import "ApplicationsViewController.h"
 #import "BusinessRestrictedView.h"
 #import "ApplicationCollectViewCell.h"
+#import "ApplicationRecord.h"
 
-@interface ApplicationsViewController ()
+@interface ApplicationsViewController () <ApplicationCellDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *oSmallImage;
 @property (weak, nonatomic) IBOutlet UILabel *oEmployerName;
 @property (weak, nonatomic) IBOutlet UIView *oBusinessView;
@@ -18,14 +19,31 @@
 @property (weak, nonatomic) IBOutlet UILabel *oJobDescript;
 @property (nonatomic, weak) IBOutlet UICollectionView *oCollectionView;
 
+@property (nonatomic, strong)   NSMutableArray *applications;
+@property (nonatomic)   int     currentIndex;
 @end
 
 @implementation ApplicationsViewController
 #pragma mark - init
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.currentIndex = 0;
 }
+
+#pragma mark - data
+-(void) prepareData {
+    self.applications = [[NSMutableArray alloc] init];
+    for (int i=0; i< self.currPosting.noApplications; i++) {
+        ApplicationRecord *newAppl = [[ApplicationRecord alloc] init];
+        newAppl.name = [NSString stringWithFormat:@"Name %d", i+1];
+        newAppl.phoneNumber = [NSString stringWithFormat:@"%d%d%d", i+1, i+1, i+1];
+        newAppl.email = [NSString stringWithFormat:@"yourmail%d@mail.com", i+1];
+        newAppl.applPreference = (ApplicationPreferences) (random() %3);
+        [self.applications addObject:newAppl];
+    }
+}
+
+#pragma mark - interface
 
 -(void) setupFields {
     [self setupHeader];
@@ -74,7 +92,11 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.currPosting.noApplications;
+    if (self.applications ) {
+        return self.applications.count;
+    } else {
+        return 0;
+    }
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
@@ -91,41 +113,102 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ApplicationCollectViewCell *cell = (ApplicationCollectViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+    if (indexPath.row < self.applications.count) {
+        cell.delegate = self;
+        ApplicationRecord *currAppl = self.applications[indexPath.row];
+        cell.oNameLabel.text = currAppl.name;
+        cell.oCurrentLabel.text = [NSString stringWithFormat:@"%ld/%lu", (long)indexPath.row+1, (unsigned long)self.applications.count];
+        switch (currAppl.applPreference) {
+            case prefText:
+                cell.oTextButton.enabled = TRUE;
+                cell.oAudioButton.enabled = FALSE;
+                cell.oCameraButton.enabled = FALSE;
+                break;
+            case prefAudio:
+                cell.oTextButton.enabled = FALSE;
+                cell.oAudioButton.enabled = TRUE;
+                cell.oCameraButton.enabled = FALSE;
+                break;
+            case prefVideo:
+                cell.oTextButton.enabled = FALSE;
+                cell.oAudioButton.enabled = FALSE;
+                cell.oCameraButton.enabled = TRUE;
+                break;
+            default:
+                break;
+        }
+    }
     
     return cell;
 }
 
-//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-//{
-//    float pageWidth = self.view.bounds.size.width * 353.0/414.0;
-//    
-//    float currentOffset = scrollView.contentOffset.x;
-//    float targetOffset = targetContentOffset->x;
-//    float newTargetOffset = 0;
-//    
-//    if (targetOffset > currentOffset)
-//        newTargetOffset = ceilf(currentOffset / pageWidth) * pageWidth;
-//    else
-//        newTargetOffset = floorf(currentOffset / pageWidth) * pageWidth;
-//    
-//    if (newTargetOffset < 0)
-//        newTargetOffset = 0;
-//    else if (newTargetOffset > scrollView.contentSize.width)
-//        newTargetOffset = scrollView.contentSize.width;
-//    
-//    targetContentOffset->x = currentOffset;
-//    [scrollView setContentOffset:CGPointMake(newTargetOffset, 0) animated:YES];
-//}
-
-#pragma mark - other
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    int sum = 0;
+    for (UICollectionViewCell *cell in [self.oCollectionView visibleCells]) {
+        NSIndexPath *indexPath = [self.oCollectionView indexPathForCell:cell];
+        sum+= indexPath.row;
+    }
+    double currIndex = (double)sum/(double)[self.oCollectionView visibleCells].count;
+    self.currentIndex = round(currIndex);
+    
+    [self goToIndex];
 }
 
 #pragma mark - actions
 - (IBAction)actionBack:(id)sender {
     [self.delegate hasFinishedApplications];
+}
+
+-(void) delegateLeft {
+    if (self.currentIndex > 0) {
+        self.currentIndex--;
+        [self goToIndex];
+    }
+}
+
+-(void) delegateRight {
+    if (self.currentIndex < self.applications.count-1) {
+        self.currentIndex++;
+        [self goToIndex];
+    }
+}
+
+-(void) goToIndex {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
+    [self.oCollectionView scrollToItemAtIndexPath:indexPath
+                                 atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                         animated:YES];
+}
+
+#pragma mark - ApplicationCellDelegate
+-(void) delegateText {
+    
+}
+
+-(void) delegateAudio {
+    
+}
+
+-(void) delegateVideo {
+    
+}
+-(void) delegateDelete{
+    
+}
+
+-(void) delegateFolder {
+    
+}
+
+-(void) delegateCheck {
+    
+}
+
+
+#pragma mark - other
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

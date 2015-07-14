@@ -479,6 +479,7 @@
     self.applController.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height -49);
     [self prepareChildWithSender:sender];
     [self.view addSubview:self.applController.view];
+    [self.applController prepareData];
     [self.applController setupFields];
     
     self.applController.delegate = self;

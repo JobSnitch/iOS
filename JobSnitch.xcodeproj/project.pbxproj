@@ -17,6 +17,7 @@
 		C82F45771B5420C10071E985 /* ApplicationCollectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82F45761B5420C10071E985 /* ApplicationCollectViewCell.xib */; };
 		C8400A961B4D1ABE00EBDE88 /* CreateTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8400A951B4D1ABE00EBDE88 /* CreateTopView.m */; };
 		C8400A9A1B4D1D5000EBDE88 /* CreateTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8400A991B4D1D5000EBDE88 /* CreateTopView.xib */; };
+		C86829741B54F28F00AFD004 /* ApplicationRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C86829731B54F28F00AFD004 /* ApplicationRecord.m */; };
 		C87138CD1B4C096D009BD279 /* Lato-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C87138CA1B4C096D009BD279 /* Lato-Regular.otf */; };
 		C87138CE1B4C096D009BD279 /* Lato-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C87138CB1B4C096D009BD279 /* Lato-Bold.otf */; };
 		C87138CF1B4C096D009BD279 /* Lato-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = C87138CC1B4C096D009BD279 /* Lato-Black.otf */; };
@@ -89,6 +90,8 @@
 		C8400A941B4D1ABE00EBDE88 /* CreateTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateTopView.h; path = Views/CreateTopView.h; sourceTree = "<group>"; };
 		C8400A951B4D1ABE00EBDE88 /* CreateTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateTopView.m; path = Views/CreateTopView.m; sourceTree = "<group>"; };
 		C8400A991B4D1D5000EBDE88 /* CreateTopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTopView.xib; sourceTree = "<group>"; };
+		C86829721B54F28F00AFD004 /* ApplicationRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationRecord.h; path = DataModel/ApplicationRecord.h; sourceTree = "<group>"; };
+		C86829731B54F28F00AFD004 /* ApplicationRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationRecord.m; path = DataModel/ApplicationRecord.m; sourceTree = "<group>"; };
 		C87138CA1B4C096D009BD279 /* Lato-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.otf"; path = "Fonts/Lato-Regular.otf"; sourceTree = "<group>"; };
 		C87138CB1B4C096D009BD279 /* Lato-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.otf"; path = "Fonts/Lato-Bold.otf"; sourceTree = "<group>"; };
 		C87138CC1B4C096D009BD279 /* Lato-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.otf"; path = "Fonts/Lato-Black.otf"; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 				C893BF3E1B4FC16400217402 /* BusinessRecord.m */,
 				C893BF451B4FE05C00217402 /* PostingRecord.h */,
 				C893BF461B4FE05C00217402 /* PostingRecord.m */,
+				C86829721B54F28F00AFD004 /* ApplicationRecord.h */,
+				C86829731B54F28F00AFD004 /* ApplicationRecord.m */,
 			);
 			name = "08 DataModel";
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 				C82F45751B54207A0071E985 /* ApplicationCollectViewCell.m in Sources */,
 				C893BF3C1B4FB98F00217402 /* EmployerRecord.m in Sources */,
 				C8DA45E51B4D03910041EB23 /* CreateJobseekerController.m in Sources */,
+				C86829741B54F28F00AFD004 /* ApplicationRecord.m in Sources */,
 				C893BF421B4FC6C500217402 /* BusinessRestrictedView.m in Sources */,
 				C81C34981B53CE3B005E16E5 /* PostingAddView.m in Sources */,
 				C8BE60571B54012100527469 /* ApplicationsViewController.m in Sources */,
