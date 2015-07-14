@@ -17,6 +17,9 @@
 		C82F45771B5420C10071E985 /* ApplicationCollectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82F45761B5420C10071E985 /* ApplicationCollectViewCell.xib */; };
 		C8400A961B4D1ABE00EBDE88 /* CreateTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8400A951B4D1ABE00EBDE88 /* CreateTopView.m */; };
 		C8400A9A1B4D1D5000EBDE88 /* CreateTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8400A991B4D1D5000EBDE88 /* CreateTopView.xib */; };
+		C843D2111B55740F00D3BF97 /* EmployeeRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C843D2101B55740F00D3BF97 /* EmployeeRecord.m */; };
+		C843D2141B55754400D3BF97 /* EmployeeFirstView.m in Sources */ = {isa = PBXBuildFile; fileRef = C843D2131B55754400D3BF97 /* EmployeeFirstView.m */; };
+		C843D2161B5575EB00D3BF97 /* EmployeeFirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C843D2151B5575EB00D3BF97 /* EmployeeFirstView.xib */; };
 		C86829741B54F28F00AFD004 /* ApplicationRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C86829731B54F28F00AFD004 /* ApplicationRecord.m */; };
 		C87138CD1B4C096D009BD279 /* Lato-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C87138CA1B4C096D009BD279 /* Lato-Regular.otf */; };
 		C87138CE1B4C096D009BD279 /* Lato-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C87138CB1B4C096D009BD279 /* Lato-Bold.otf */; };
@@ -100,6 +103,11 @@
 		C8400A941B4D1ABE00EBDE88 /* CreateTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateTopView.h; path = Views/CreateTopView.h; sourceTree = "<group>"; };
 		C8400A951B4D1ABE00EBDE88 /* CreateTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateTopView.m; path = Views/CreateTopView.m; sourceTree = "<group>"; };
 		C8400A991B4D1D5000EBDE88 /* CreateTopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTopView.xib; sourceTree = "<group>"; };
+		C843D20F1B55740F00D3BF97 /* EmployeeRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployeeRecord.h; path = DataModel/EmployeeRecord.h; sourceTree = "<group>"; };
+		C843D2101B55740F00D3BF97 /* EmployeeRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployeeRecord.m; path = DataModel/EmployeeRecord.m; sourceTree = "<group>"; };
+		C843D2121B55754400D3BF97 /* EmployeeFirstView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployeeFirstView.h; path = Views/EmployeeFirstView.h; sourceTree = "<group>"; };
+		C843D2131B55754400D3BF97 /* EmployeeFirstView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployeeFirstView.m; path = Views/EmployeeFirstView.m; sourceTree = "<group>"; };
+		C843D2151B5575EB00D3BF97 /* EmployeeFirstView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmployeeFirstView.xib; sourceTree = "<group>"; };
 		C86829721B54F28F00AFD004 /* ApplicationRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationRecord.h; path = DataModel/ApplicationRecord.h; sourceTree = "<group>"; };
 		C86829731B54F28F00AFD004 /* ApplicationRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationRecord.m; path = DataModel/ApplicationRecord.m; sourceTree = "<group>"; };
 		C87138CA1B4C096D009BD279 /* Lato-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.otf"; path = "Fonts/Lato-Regular.otf"; sourceTree = "<group>"; };
@@ -249,6 +257,8 @@
 				C893BF461B4FE05C00217402 /* PostingRecord.m */,
 				C86829721B54F28F00AFD004 /* ApplicationRecord.h */,
 				C86829731B54F28F00AFD004 /* ApplicationRecord.m */,
+				C843D20F1B55740F00D3BF97 /* EmployeeRecord.h */,
+				C843D2101B55740F00D3BF97 /* EmployeeRecord.m */,
 			);
 			name = "08 DataModel";
 			sourceTree = "<group>";
@@ -385,6 +395,7 @@
 				C82F45761B5420C10071E985 /* ApplicationCollectViewCell.xib */,
 				C8DEFD191B553FE7007C0CBD /* TextApplPopupView.xib */,
 				C8DEFD201B555527007C0CBD /* ContactPopupView.xib */,
+				C843D2151B5575EB00D3BF97 /* EmployeeFirstView.xib */,
 			);
 			name = "05 Storyboards";
 			sourceTree = "<group>";
@@ -411,6 +422,8 @@
 		C8A08BFC1B4BEC4400B2C703 /* 03 Views */ = {
 			isa = PBXGroup;
 			children = (
+				C843D2121B55754400D3BF97 /* EmployeeFirstView.h */,
+				C843D2131B55754400D3BF97 /* EmployeeFirstView.m */,
 				C8A08BFD1B4BECD400B2C703 /* HomeCenterView.h */,
 				C8A08BFE1B4BECD400B2C703 /* HomeCenterView.m */,
 				C8DA45DD1B4D03110041EB23 /* HomeLowerView.h */,
@@ -554,6 +567,7 @@
 			files = (
 				C8A08C011B4BED5F00B2C703 /* HomeCenterView.xib in Resources */,
 				C893BF511B4FFA4800217402 /* EmployerFirstView.xib in Resources */,
+				C843D2161B5575EB00D3BF97 /* EmployeeFirstView.xib in Resources */,
 				C8A08BD51B4BD5DC00B2C703 /* Main.storyboard in Resources */,
 				C82049C61B4C1E29005B3F3F /* HomeUpperView.xib in Resources */,
 				C82F45771B5420C10071E985 /* ApplicationCollectViewCell.xib in Resources */,
@@ -616,7 +630,9 @@
 				C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */,
 				C893BF351B4FB66300217402 /* EmployerSecondViewController.m in Sources */,
 				C8EC3C641B4EE6390003F618 /* NewInfoPopupView.m in Sources */,
+				C843D2141B55754400D3BF97 /* EmployeeFirstView.m in Sources */,
 				C8D5F3981B5164BD0078E3A8 /* PostingExpandedView.m in Sources */,
+				C843D2111B55740F00D3BF97 /* EmployeeRecord.m in Sources */,
 				C81C349B1B53D558005E16E5 /* JSEditPostingButton.m in Sources */,
 				C8D12ACA1B4E55A400DCFC83 /* AboutViewController.m in Sources */,
 				C81C34951B53C4C6005E16E5 /* JSAddPostingButton.m in Sources */,

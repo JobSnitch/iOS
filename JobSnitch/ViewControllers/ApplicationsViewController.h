@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 JobSnitch. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseJSViewController.h"
 #import "EmployerRecord.h"
 #import "BusinessRecord.h"
 #import "PostingRecord.h"
@@ -16,7 +16,7 @@
 
 @end
 
-@interface ApplicationsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ApplicationsViewController : BaseJSViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, weak)   EmployerRecord *currentEmployer;
 @property (nonatomic, weak)   BusinessRecord *currBusiness;
 @property (nonatomic, weak)   PostingRecord *currPosting;

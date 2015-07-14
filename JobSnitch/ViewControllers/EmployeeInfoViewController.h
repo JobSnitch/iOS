@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 JobSnitch. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseJSViewController.h"
 
-@interface EmployeeInfoViewController : UIViewController
+@interface EmployeeInfoViewController : BaseJSViewController
 
 @end
