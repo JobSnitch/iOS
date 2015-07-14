@@ -10,7 +10,7 @@
 @protocol ApplicationCellDelegate <NSObject>
 -(void) delegateLeft;
 -(void) delegateRight;
--(void) delegateText;
+-(void) delegateText:(id)sender;
 -(void) delegateAudio;
 -(void) delegateVideo;
 -(void) delegateDelete;

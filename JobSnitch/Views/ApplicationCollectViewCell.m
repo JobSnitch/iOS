@@ -35,7 +35,7 @@
 }
 
 - (IBAction)actionText:(id)sender {
-    [self.delegate delegateText];
+    [self.delegate delegateText:self];
 }
 
 - (IBAction)actionVideo:(id)sender {

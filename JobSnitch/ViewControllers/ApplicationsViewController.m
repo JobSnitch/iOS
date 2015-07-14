@@ -10,6 +10,7 @@
 #import "BusinessRestrictedView.h"
 #import "ApplicationCollectViewCell.h"
 #import "ApplicationRecord.h"
+#import "TextApplPopupView.h"
 
 @interface ApplicationsViewController () <ApplicationCellDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *oSmallImage;
@@ -21,6 +22,9 @@
 
 @property (nonatomic, strong)   NSMutableArray *applications;
 @property (nonatomic)   int     currentIndex;
+
+@property (nonatomic, strong)   TextApplPopupView *popupTextView;
+
 @end
 
 @implementation ApplicationsViewController
@@ -28,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.currentIndex = 0;
+    self.popupTextView = nil;
 }
 
 #pragma mark - data
@@ -181,8 +186,21 @@
 }
 
 #pragma mark - ApplicationCellDelegate
--(void) delegateText {
-    
+-(void) delegateText:(id)sender {
+    if (self.popupTextView) {
+        [self.popupTextView removeFromSuperview];
+        self.popupTextView = nil;
+    } else {
+        CGFloat startY = ((UIView *)sender).frame.size.height *0.5;
+        startY += ((UIView *)sender).superview.frame.origin.y;
+        startY -= 240.0;
+        CGRect topFrame = CGRectMake(0, startY,
+                                     self.view.bounds.size.width, 240.0);
+        self.popupTextView = [[[NSBundle mainBundle] loadNibNamed:@"TextApplPopupView" owner:self options:nil] objectAtIndex:0];
+        [self.popupTextView setFrame:topFrame];
+        [self.view addSubview:self.popupTextView];
+        [self.popupTextView setupContent];
+    }
 }
 
 -(void) delegateAudio {

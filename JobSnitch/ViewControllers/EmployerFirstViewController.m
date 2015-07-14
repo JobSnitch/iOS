@@ -189,22 +189,6 @@
 }
 
 -(void) setupPostingViewFor:(PostingRecord *) currPosting {
-//    CGRect topFrame = CGRectMake(0, self.scrollViewHeight,
-//                                 self.view.bounds.size.width, self.rowHeight);
-//    PostingRestrictedView *currView = nil;
-//    currView = [[[NSBundle mainBundle] loadNibNamed:@"PostingRestrictedView" owner:self options:nil] objectAtIndex:0];
-//    [currView setFrame:topFrame];
-//    currView.oTitleLabel.text = currPosting.title;
-//    currView.oDescrLabel.text = currPosting.descrption;
-//    currView.oShortLabel.text = [NSString stringWithFormat:@"%d", currPosting.noShortlisted];
-//    currView.oApplicLabel.text = [NSString stringWithFormat:@"%d", currPosting.noApplications];
-//    currView.oExpandButton.currPosting = currPosting;
-//    currView.oCurvedButton.currPosting = currPosting;
-//    [currView postData];
-//    currView.parent = self;
-//    [self.oScrollView addSubview:currView];
-//    [self.subviews addObject:currView];
-    
     
     CGRect topFrame = CGRectMake(0, self.scrollViewHeight,
                                  self.view.bounds.size.width, self.rowHeight);
