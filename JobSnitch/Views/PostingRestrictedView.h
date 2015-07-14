@@ -9,21 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "JSEditPostingButton.h"
 #import "EmployerFirstParent.h"
+#import "PostingRecord.h"
 
 @interface PostingRestrictedView : UIView
-@property (weak, nonatomic) IBOutlet UIImageView *oBackgroundImg;
-@property (weak, nonatomic) IBOutlet UIImageView *oWavesImage;
-@property (weak, nonatomic) IBOutlet UILabel *oTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *oShortLabel;
-@property (weak, nonatomic) IBOutlet UILabel *oApplicLabel;
-@property (weak, nonatomic) IBOutlet UILabel *oDescrLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *oFolderImage;
-//@property (weak, nonatomic) IBOutlet UIImageView *oCurvedImage;
-@property (weak, nonatomic) IBOutlet JSEditPostingButton *oExpandButton;
-@property (weak, nonatomic) IBOutlet JSEditPostingButton *oCurvedButton;
+@property (strong, nonatomic)   UIImageView *oBackgroundImg;
+@property (strong, nonatomic)   UIImageView *oWavesImage;
+@property (strong, nonatomic)   UILabel *oTitleLabel;
+@property (strong, nonatomic)   UILabel *oShortLabel;
+@property (strong, nonatomic)   UILabel *oApplicLabel;
+@property (strong, nonatomic)   UILabel *oDescrLabel;
+@property (strong, nonatomic)   UIImageView *oFolderImage;
+@property (strong, nonatomic)   JSEditPostingButton *oExpandButton;
+@property (strong, nonatomic)   JSEditPostingButton *oCurvedButton;
 
 @property (assign) id<EmployerFirstParent> parent;         // the parent controller implements this
 
--(void) layoutFields: (CGSize) realSize;
--(void) postData;
+-(void) postData: (PostingRecord *)currPosting;
 @end

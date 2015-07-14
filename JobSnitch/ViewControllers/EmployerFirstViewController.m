@@ -55,10 +55,10 @@
             [((BusinessRestrictedView *)aView) layoutFields:CGSizeMake(self.view.bounds.size.width, 48.0)];
             [aView setFrame:CGRectMake(0, aView.frame.origin.y, self.oScrollView.bounds.size.width, 48.0)];
         }
-        if ([aView isMemberOfClass:[PostingRestrictedView class]]) {
-            [((PostingRestrictedView *)aView) layoutFields:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width * 78.0 / 414.0)];
-            [aView setFrame:CGRectMake(0, aView.frame.origin.y, self.view.bounds.size.width, self.rowHeight)];
-        }
+//        if ([aView isMemberOfClass:[PostingRestrictedView class]]) {
+//            [((PostingRestrictedView *)aView) layoutFields:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width * 78.0 / 414.0)];
+//            [aView setFrame:CGRectMake(0, aView.frame.origin.y, self.view.bounds.size.width, self.rowHeight)];
+//        }
     }
     [super bringPickersToFront];
     
@@ -189,21 +189,31 @@
 }
 
 -(void) setupPostingViewFor:(PostingRecord *) currPosting {
+//    CGRect topFrame = CGRectMake(0, self.scrollViewHeight,
+//                                 self.view.bounds.size.width, self.rowHeight);
+//    PostingRestrictedView *currView = nil;
+//    currView = [[[NSBundle mainBundle] loadNibNamed:@"PostingRestrictedView" owner:self options:nil] objectAtIndex:0];
+//    [currView setFrame:topFrame];
+//    currView.oTitleLabel.text = currPosting.title;
+//    currView.oDescrLabel.text = currPosting.descrption;
+//    currView.oShortLabel.text = [NSString stringWithFormat:@"%d", currPosting.noShortlisted];
+//    currView.oApplicLabel.text = [NSString stringWithFormat:@"%d", currPosting.noApplications];
+//    currView.oExpandButton.currPosting = currPosting;
+//    currView.oCurvedButton.currPosting = currPosting;
+//    [currView postData];
+//    currView.parent = self;
+//    [self.oScrollView addSubview:currView];
+//    [self.subviews addObject:currView];
+    
+    
     CGRect topFrame = CGRectMake(0, self.scrollViewHeight,
                                  self.view.bounds.size.width, self.rowHeight);
-    PostingRestrictedView *currView = nil;
-    currView = [[[NSBundle mainBundle] loadNibNamed:@"PostingRestrictedView" owner:self options:nil] objectAtIndex:0];
-    [currView setFrame:topFrame];
-    currView.oTitleLabel.text = currPosting.title;
-    currView.oDescrLabel.text = currPosting.descrption;
-    currView.oShortLabel.text = [NSString stringWithFormat:@"%d", currPosting.noShortlisted];
-    currView.oApplicLabel.text = [NSString stringWithFormat:@"%d", currPosting.noApplications];
-    currView.oExpandButton.currPosting = currPosting;
-    currView.oCurvedButton.currPosting = currPosting;
-    [currView postData];
+    PostingRestrictedView *currView = [[PostingRestrictedView alloc] initWithFrame:topFrame];
+    [currView postData:currPosting];
     currView.parent = self;
     [self.oScrollView addSubview:currView];
     [self.subviews addObject:currView];
+
 }
 
 -(void) setupNewPostingFor:(BusinessRecord *)currBusiness {
@@ -326,10 +336,10 @@
 
 -(void) delegateHasSaved:(id)sender {
     if ([self.postingView isKindOfClass:[PostingEditView class]]) {
-        [self.suprview.oExpandButton setImage:[UIImage imageNamed:@"expand_arrow"] forState:UIControlStateNormal];
         [self findandReplace:((PostingEditView *)self.postingView).currPosting];
-        self.suprview.oTitleLabel.text = self.postingView.oJTitleText.text;
-        self.suprview.oDescrLabel.text = self.postingView.oDescriptionText.text;
+//        self.suprview.oTitleLabel.text = self.postingView.oJTitleText.text;
+//        self.suprview.oDescrLabel.text = self.postingView.oDescriptionText.text;
+        [self.suprview postData:((PostingEditView *)self.postingView).currPosting];
         CGFloat startY = self.postingView.frame.origin.y;
         [self removePostingView];
         [self raiseBelowViews:startY];
@@ -383,8 +393,8 @@
 -(void) setupFromFields:(PostingRecord *) currPosting {
     currPosting.title = self.postingView.oJTitleText.text;
     currPosting.descrption = self.postingView.oDescriptionText.text;
-    currPosting.noApplications = 0;
-    currPosting.noShortlisted = 0;
+//    currPosting.noApplications = 0;
+//    currPosting.noShortlisted = 0;
     currPosting.morningShift = self.postingView.oMorningSwitch.on;
     currPosting.afternoonShift = self.postingView.oAfternoonSwitch.on;
     currPosting.eveningShift = self.postingView.oEveningSwitch.on;

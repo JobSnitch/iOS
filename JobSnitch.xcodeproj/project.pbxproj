@@ -31,7 +31,6 @@
 		C893BF441B4FC6E600217402 /* BusinessRestrictedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C893BF431B4FC6E600217402 /* BusinessRestrictedView.xib */; };
 		C893BF471B4FE05C00217402 /* PostingRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF461B4FE05C00217402 /* PostingRecord.m */; };
 		C893BF4A1B4FE75800217402 /* PostingRestrictedView.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF491B4FE75800217402 /* PostingRestrictedView.m */; };
-		C893BF4C1B4FE76700217402 /* PostingRestrictedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C893BF4B1B4FE76700217402 /* PostingRestrictedView.xib */; };
 		C893BF4F1B4FFA0E00217402 /* EmployerFirstView.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF4E1B4FFA0E00217402 /* EmployerFirstView.m */; };
 		C893BF511B4FFA4800217402 /* EmployerFirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C893BF501B4FFA4800217402 /* EmployerFirstView.xib */; };
 		C89F1EBA1B4D620800692DAD /* AddItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C89F1EB91B4D620800692DAD /* AddItemView.m */; };
@@ -114,7 +113,6 @@
 		C893BF461B4FE05C00217402 /* PostingRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostingRecord.m; path = DataModel/PostingRecord.m; sourceTree = "<group>"; };
 		C893BF481B4FE75800217402 /* PostingRestrictedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostingRestrictedView.h; path = Views/PostingRestrictedView.h; sourceTree = "<group>"; };
 		C893BF491B4FE75800217402 /* PostingRestrictedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostingRestrictedView.m; path = Views/PostingRestrictedView.m; sourceTree = "<group>"; };
-		C893BF4B1B4FE76700217402 /* PostingRestrictedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostingRestrictedView.xib; sourceTree = "<group>"; };
 		C893BF4D1B4FFA0E00217402 /* EmployerFirstView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployerFirstView.h; path = Views/EmployerFirstView.h; sourceTree = "<group>"; };
 		C893BF4E1B4FFA0E00217402 /* EmployerFirstView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployerFirstView.m; path = Views/EmployerFirstView.m; sourceTree = "<group>"; };
 		C893BF501B4FFA4800217402 /* EmployerFirstView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmployerFirstView.xib; sourceTree = "<group>"; };
@@ -341,7 +339,6 @@
 				C89F1EBB1B4D624600692DAD /* AddItemView.xib */,
 				C8EC3C651B4EE6BD0003F618 /* NewInfoPopupView.xib */,
 				C893BF431B4FC6E600217402 /* BusinessRestrictedView.xib */,
-				C893BF4B1B4FE76700217402 /* PostingRestrictedView.xib */,
 				C893BF501B4FFA4800217402 /* EmployerFirstView.xib */,
 				C82F45761B5420C10071E985 /* ApplicationCollectViewCell.xib */,
 			);
@@ -520,7 +517,6 @@
 				C87138CE1B4C096D009BD279 /* Lato-Bold.otf in Resources */,
 				C893BF441B4FC6E600217402 /* BusinessRestrictedView.xib in Resources */,
 				C87138CF1B4C096D009BD279 /* Lato-Black.otf in Resources */,
-				C893BF4C1B4FE76700217402 /* PostingRestrictedView.xib in Resources */,
 				C8A08BD71B4BD5DC00B2C703 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

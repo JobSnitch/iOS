@@ -14,42 +14,98 @@
 
 @implementation PostingRestrictedView
 
--(void) layoutFields: (CGSize) realSize{
-//    CGFloat fraction = realSize.height/78.0;
-//    CGFloat realWidth = 401.0 * fraction;
-    CGFloat originX = 14.0;
-    CGFloat realWidth = realSize.width - originX;
-    [self.oBackgroundImg setFrame:CGRectMake(originX, 0, realWidth, realSize.height)];
-    CGFloat centerY = realSize.height*0.5;
-    [self.oWavesImage setFrame:CGRectMake(realWidth*0.04 + originX, centerY - self.oWavesImage.frame.size.height*0.5 - 2.0,
-                                          self.oWavesImage.frame.size.width, self.oWavesImage.frame.size.height)];
-    [self.oTitleLabel setFrame:CGRectMake(realWidth*0.2 + originX, centerY - self.oTitleLabel.frame.size.height*0.5 - 10.0,
-                                          realWidth*0.3, self.oTitleLabel.frame.size.height)];
-    [self.oDescrLabel setFrame:CGRectMake(realWidth*0.2 + originX, centerY - self.oDescrLabel.frame.size.height*0.5 + 10.0,
-                                          realWidth*0.3, self.oDescrLabel.frame.size.height)];
-    [self.oShortLabel setFrame:CGRectMake(realWidth*0.52 + originX, centerY - self.oShortLabel.frame.size.height*0.5,
-                                          self.oShortLabel.frame.size.width, self.oShortLabel.frame.size.height)];
-    [self.oFolderImage setFrame:CGRectMake(realWidth*0.58 + originX, centerY - self.oFolderImage.frame.size.height*0.5,
-                                          self.oFolderImage.frame.size.width, self.oFolderImage.frame.size.height)];
-    [self.oApplicLabel setFrame:CGRectMake(realWidth*0.68 + originX, centerY - self.oApplicLabel.frame.size.height*0.5,
-                                          self.oApplicLabel.frame.size.width, self.oApplicLabel.frame.size.height)];
-//    [self.oCurvedImage setFrame:CGRectMake(realWidth*0.74 + originX, centerY - self.oCurvedImage.frame.size.height*0.5,
-//                                           self.oCurvedImage.frame.size.width, self.oCurvedImage.frame.size.height)];
-    [self.oCurvedButton setFrame:CGRectMake(realWidth*0.74 + originX, centerY - self.oCurvedButton.frame.size.height*0.5,
-                                           self.oCurvedButton.frame.size.width, self.oCurvedButton.frame.size.height)];
-    [self.oExpandButton setFrame:CGRectMake(realWidth*0.84 + originX, centerY - self.oExpandButton.frame.size.height*0.5,
-                                            self.oExpandButton.frame.size.width, self.oExpandButton.frame.size.height)];
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        CGSize siz = CGSizeMake(frame.size.width, frame.size.height);
+        [self layoutFields:siz];
+    }
+    
+    return self;
 }
 
-- (IBAction)actionExpand:(id)sender {
+
+-(void) layoutFields: (CGSize) realSize{
+    CGFloat originX = 14.0;
+    CGFloat realWidth = realSize.width - originX;
+    CGFloat centerY = realSize.height*0.5;
+    
+    self.oBackgroundImg = [[UIImageView alloc] initWithFrame:CGRectMake(originX, 0, realWidth, realSize.height)];
+    self.oBackgroundImg.image = [UIImage imageNamed:@"posting_compr_back_active"];
+    [self addSubview:self.oBackgroundImg];
+    
+    self.oWavesImage = [[UIImageView alloc] initWithFrame:CGRectMake(realWidth*0.04 + originX, centerY - 45.0*0.5 - 2.0, 45.0, 45.0)];
+    self.oWavesImage.image = [UIImage imageNamed:@"radio_waves_strong"];
+    [self addSubview:self.oWavesImage];
+    
+    NSDictionary *text1Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Black" size:15],
+                                     NSForegroundColorAttributeName: [UIColor whiteColor]};
+    NSDictionary *text2Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:12],
+                                     NSForegroundColorAttributeName: [UIColor whiteColor]};
+    NSDictionary *text3Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Bold" size:15],
+                                     NSForegroundColorAttributeName: [UIColor whiteColor]};
+
+    self.oTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(realWidth*0.2 + originX, centerY - 26.0*0.5 - 10.0, realWidth*0.3, 26.0)];
+    [self.oTitleLabel setAttributedText:[[NSAttributedString alloc] initWithString:@"Name" attributes:text1Attribute]];
+    [self addSubview:self.oTitleLabel];
+
+    self.oDescrLabel = [[UILabel alloc] initWithFrame:CGRectMake(realWidth*0.2 + originX, centerY - 25.0*0.5 + 10.0, realWidth*0.3, 25.0)];
+    [self.oDescrLabel setAttributedText:[[NSAttributedString alloc] initWithString:@"Descr" attributes:text2Attribute]];
+    [self addSubview:self.oDescrLabel];
+
+    self.oShortLabel = [[UILabel alloc] initWithFrame:CGRectMake(realWidth*0.52 + originX, centerY - 26.0*0.5,  27.0, 26.0)];
+    [self.oShortLabel setAttributedText:[[NSAttributedString alloc] initWithString:@"0" attributes:text3Attribute]];
+    [self addSubview:self.oShortLabel];
+    
+    self.oApplicLabel = [[UILabel alloc] initWithFrame:CGRectMake(realWidth*0.68 + originX, centerY - 26.0*0.5,  27.0, 26.0)];
+    [self.oApplicLabel setAttributedText:[[NSAttributedString alloc] initWithString:@"0" attributes:text3Attribute]];
+    [self addSubview:self.oApplicLabel];
+    
+    self.oFolderImage = [[UIImageView alloc] initWithFrame:CGRectMake(realWidth*0.58 + originX, centerY - 21.0*0.5, 27.0, 21.0)];
+    self.oFolderImage.image = [UIImage imageNamed:@"folder_active"];
+    [self addSubview:self.oFolderImage];
+    
+    self.oCurvedButton = [JSEditPostingButton buttonWithType: UIButtonTypeCustom];
+    [self.oCurvedButton setFrame:CGRectMake(realWidth*0.74 + originX, centerY - 32.0*0.5, 32.0, 32.0)];
+    [self.oCurvedButton addTarget:self action:@selector(actionApplications:) forControlEvents:UIControlEventTouchUpInside];
+    [self.oCurvedButton setImage:[UIImage imageNamed:@"curved_arrow"] forState:UIControlStateNormal];
+    [self addSubview: self.oCurvedButton];
+    
+    self.oExpandButton = [JSEditPostingButton buttonWithType: UIButtonTypeCustom];
+    [self.oExpandButton setFrame:CGRectMake(realWidth*0.84 + originX, centerY - 40.0*0.5, 40.0, 40.0)];
+    [self.oExpandButton addTarget:self action:@selector(actionExpand:) forControlEvents:UIControlEventTouchUpInside];
+    [self.oExpandButton setImage:[UIImage imageNamed:@"expand_arrow"] forState:UIControlStateNormal];
+    [self addSubview: self.oExpandButton];
+    
+}
+
+- (void)actionExpand:(id)sender {
     [self.parent delegateExpandPosting:sender];
 }
 
-- (IBAction)actionApplications:(id)sender {
+- (void)actionApplications:(id)sender {
     [self.parent delegateApplications:sender];
 }
 
--(void) postData {
+-(void) postData: (PostingRecord *)currPosting {
+    NSDictionary *text1Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Black" size:15],
+                                     NSForegroundColorAttributeName: [UIColor whiteColor]};
+    NSDictionary *text2Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:12],
+                                     NSForegroundColorAttributeName: [UIColor whiteColor]};
+    NSDictionary *text3Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Bold" size:15],
+                                     NSForegroundColorAttributeName: [UIColor whiteColor]};
+    
+    [self.oTitleLabel setAttributedText:[[NSAttributedString alloc] initWithString:currPosting.title attributes:text1Attribute]];
+    [self.oDescrLabel setAttributedText:[[NSAttributedString alloc] initWithString:currPosting.descrption attributes:text2Attribute]];
+    [self.oShortLabel setAttributedText:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", currPosting.noShortlisted]
+                                                                        attributes:text3Attribute]];
+    [self.oApplicLabel setAttributedText:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", currPosting.noApplications]
+                                                                        attributes:text3Attribute]];
+    self.oExpandButton.currPosting = currPosting;
+    self.oCurvedButton.currPosting = currPosting;
+    [self.oExpandButton setImage:[UIImage imageNamed:@"expand_arrow"] forState:UIControlStateNormal];
+    
     if ([self.oApplicLabel.text isEqualToString:@"0"]) {
         self.oShortLabel.hidden = TRUE;
         self.oFolderImage.hidden = TRUE;
