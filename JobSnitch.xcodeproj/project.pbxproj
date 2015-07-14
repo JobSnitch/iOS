@@ -60,6 +60,8 @@
 		C8DEFD181B553FCC007C0CBD /* TextApplPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DEFD171B553FCC007C0CBD /* TextApplPopupView.m */; };
 		C8DEFD1A1B553FE7007C0CBD /* TextApplPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8DEFD191B553FE7007C0CBD /* TextApplPopupView.xib */; };
 		C8DEFD1C1B55425F007C0CBD /* resume.pages in Resources */ = {isa = PBXBuildFile; fileRef = C8DEFD1B1B55425F007C0CBD /* resume.pages */; };
+		C8DEFD1F1B555514007C0CBD /* ContactPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DEFD1E1B555514007C0CBD /* ContactPopupView.m */; };
+		C8DEFD211B555527007C0CBD /* ContactPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8DEFD201B555527007C0CBD /* ContactPopupView.xib */; };
 		C8EC3C611B4EB79A0003F618 /* JSPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8EC3C601B4EB79A0003F618 /* JSPickerView.m */; };
 		C8EC3C641B4EE6390003F618 /* NewInfoPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8EC3C631B4EE6390003F618 /* NewInfoPopupView.m */; };
 		C8EC3C661B4EE6BD0003F618 /* NewInfoPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8EC3C651B4EE6BD0003F618 /* NewInfoPopupView.xib */; };
@@ -172,6 +174,9 @@
 		C8DEFD171B553FCC007C0CBD /* TextApplPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextApplPopupView.m; path = Views/TextApplPopupView.m; sourceTree = "<group>"; };
 		C8DEFD191B553FE7007C0CBD /* TextApplPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextApplPopupView.xib; sourceTree = "<group>"; };
 		C8DEFD1B1B55425F007C0CBD /* resume.pages */ = {isa = PBXFileReference; lastKnownFileType = file; path = resume.pages; sourceTree = "<group>"; };
+		C8DEFD1D1B555514007C0CBD /* ContactPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactPopupView.h; path = Views/ContactPopupView.h; sourceTree = "<group>"; };
+		C8DEFD1E1B555514007C0CBD /* ContactPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactPopupView.m; path = Views/ContactPopupView.m; sourceTree = "<group>"; };
+		C8DEFD201B555527007C0CBD /* ContactPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPopupView.xib; sourceTree = "<group>"; };
 		C8EC3C5F1B4EB79A0003F618 /* JSPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSPickerView.h; path = Views/JSPickerView.h; sourceTree = "<group>"; };
 		C8EC3C601B4EB79A0003F618 /* JSPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSPickerView.m; path = Views/JSPickerView.m; sourceTree = "<group>"; };
 		C8EC3C621B4EE6390003F618 /* NewInfoPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewInfoPopupView.h; path = Views/NewInfoPopupView.h; sourceTree = "<group>"; };
@@ -349,6 +354,7 @@
 				C893BF501B4FFA4800217402 /* EmployerFirstView.xib */,
 				C82F45761B5420C10071E985 /* ApplicationCollectViewCell.xib */,
 				C8DEFD191B553FE7007C0CBD /* TextApplPopupView.xib */,
+				C8DEFD201B555527007C0CBD /* ContactPopupView.xib */,
 			);
 			name = "05 Storyboards";
 			sourceTree = "<group>";
@@ -409,6 +415,8 @@
 				C82F45741B54207A0071E985 /* ApplicationCollectViewCell.m */,
 				C8DEFD161B553FCC007C0CBD /* TextApplPopupView.h */,
 				C8DEFD171B553FCC007C0CBD /* TextApplPopupView.m */,
+				C8DEFD1D1B555514007C0CBD /* ContactPopupView.h */,
+				C8DEFD1E1B555514007C0CBD /* ContactPopupView.m */,
 			);
 			name = "03 Views";
 			sourceTree = "<group>";
@@ -526,6 +534,7 @@
 				C8EC3C661B4EE6BD0003F618 /* NewInfoPopupView.xib in Resources */,
 				C8A08BDA1B4BD5DC00B2C703 /* LaunchScreen.xib in Resources */,
 				C8DEFD1C1B55425F007C0CBD /* resume.pages in Resources */,
+				C8DEFD211B555527007C0CBD /* ContactPopupView.xib in Resources */,
 				C82049C81B4C1F2C005B3F3F /* HomeLowerView.xib in Resources */,
 				C87138CE1B4C096D009BD279 /* Lato-Bold.otf in Resources */,
 				C893BF441B4FC6E600217402 /* BusinessRestrictedView.xib in Resources */,
@@ -562,6 +571,7 @@
 				C86829741B54F28F00AFD004 /* ApplicationRecord.m in Sources */,
 				C893BF421B4FC6C500217402 /* BusinessRestrictedView.m in Sources */,
 				C81C34981B53CE3B005E16E5 /* PostingAddView.m in Sources */,
+				C8DEFD1F1B555514007C0CBD /* ContactPopupView.m in Sources */,
 				C8BE60571B54012100527469 /* ApplicationsViewController.m in Sources */,
 				C8DEFD181B553FCC007C0CBD /* TextApplPopupView.m in Sources */,
 				C8DA45E21B4D03110041EB23 /* HomeUpperView.m in Sources */,

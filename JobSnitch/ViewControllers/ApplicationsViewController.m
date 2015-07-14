@@ -11,8 +11,10 @@
 #import "ApplicationCollectViewCell.h"
 #import "ApplicationRecord.h"
 #import "TextApplPopupView.h"
+#import "ContactPopupView.h"
+@import MessageUI;
 
-@interface ApplicationsViewController () <ApplicationCellDelegate>
+@interface ApplicationsViewController () <ApplicationCellDelegate, ContactPopupDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *oSmallImage;
 @property (weak, nonatomic) IBOutlet UILabel *oEmployerName;
 @property (weak, nonatomic) IBOutlet UIView *oBusinessView;
@@ -24,6 +26,7 @@
 @property (nonatomic)   int     currentIndex;
 
 @property (nonatomic, strong)   TextApplPopupView *popupTextView;
+@property (nonatomic, strong)   ContactPopupView *popupContactView;
 
 @end
 
@@ -208,10 +211,17 @@
 }
 
 -(void) delegateVideo {
-    
 }
+
 -(void) delegateDelete{
+    NSUInteger i = self.currentIndex;
     
+    [self.oCollectionView performBatchUpdates:^{
+        [self.applications removeObjectAtIndex:i];
+        NSIndexPath *indexPath =[NSIndexPath indexPathForRow:i inSection:0];
+        [self.oCollectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+    } completion:^(BOOL finished) {
+    }];
 }
 
 -(void) delegateFolder {
@@ -219,9 +229,123 @@
 }
 
 -(void) delegateCheck {
-    
+    if (self.popupContactView) {
+        [self.popupContactView removeFromSuperview];
+        self.popupContactView = nil;
+    } else {
+        CGFloat startY = self.oCollectionView.frame.size.height *0.8;
+        startY += self.oCollectionView.frame.origin.y;
+        startY -= 174.0;
+        CGRect topFrame = CGRectMake(0, startY, self.view.bounds.size.width, 174.0);
+        self.popupContactView = [[[NSBundle mainBundle] loadNibNamed:@"ContactPopupView" owner:self options:nil] objectAtIndex:0];
+        [self.popupContactView setFrame:topFrame];
+        self.popupContactView.delegate = self;
+        [self.view addSubview:self.popupContactView];
+    }
+}
+#pragma mark - ContactPopupDelegate
+-(void) delegatePhone:(id)sender {
+    NSString *telNo;
+//    if (self.currSeeker && self.currSeeker.phone) {
+//        telNo = self.currSeeker.phone;
+//    } else
+    {
+        telNo = @"0701-010101";
+    }
+    NSString *phoneNumber = [@"tel://" stringByAppendingString:telNo];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
 }
 
+-(void) delegateMessages:(id)sender {
+    if(![MFMessageComposeViewController canSendText]) {
+        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                               message:@"Your device doesn't support SMS!"
+                                                              delegate:nil cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:nil];
+        [warningAlert show];
+        return;
+    }
+    
+    NSArray *toRecipients;
+//    if (self.currSeeker && self.currSeeker.sms) {
+//        toRecipients = [NSArray arrayWithObject:self.currSeeker.sms];
+//    } else
+    {
+        toRecipients = [NSArray arrayWithObject:@"0701-010101"];
+    }
+    //    NSString *message = [NSString stringWithFormat:@"message"];
+    
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.messageComposeDelegate = self;
+    [messageController setRecipients:toRecipients];
+    //    [messageController setBody:message];
+    
+    // Present message view controller on screen
+    [self presentViewController:messageController animated:YES completion:nil];
+}
+
+-(void) delegateEmail:(id)sender {
+    // Email Subject
+    NSString *emailDate = [[NSString stringWithFormat:@"%@", [NSDate date]] substringWithRange:NSMakeRange(0, 10) ];
+    NSString *emailTitle = [NSString stringWithFormat:@"%@ %@", @"contact request JobSnitch at %@", emailDate];
+    // Email Content
+    //    NSString *messageBody = @"emailtext";
+    // To address
+    NSArray *toRecipients;
+//    if (self.currSeeker && self.currSeeker.email) {
+//        toRecipients = [NSArray arrayWithObject:self.currSeeker.email];
+//    } else
+    {
+        toRecipients = [NSArray arrayWithObject:@"youremail@mail.com"];
+    }
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    //    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setToRecipients:toRecipients];
+    
+    // Present mail view controller on screen
+    [self presentViewController:mc animated:YES completion:NULL];
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - MFMessageComposeViewControllerDelegate
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    switch (result) {
+        case MessageComposeResultCancelled:
+            break;
+        case MessageComposeResultFailed:
+        {
+            NSLog(@"Failed to send SMS!");
+            break;
+        }
+        case MessageComposeResultSent:
+            break;
+        default:
+            break;
+    }
+    // Close the SMS Interface
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - other
 - (void)didReceiveMemoryWarning {

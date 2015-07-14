@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ContactPopupView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="174"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popup_contact" translatesAutoresizingMaskIntoConstraints="NO" id="9tE-aK-cWt">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="174"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ybt-Ui-nYw">
+                    <rect key="frame" x="262" y="49" width="76" height="76"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="76" id="0Aj-1l-0lC"/>
+                        <constraint firstAttribute="width" constant="76" id="6bK-S9-5Xk"/>
+                    </constraints>
+                    <state key="normal" image="phone">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="actionPhone:" destination="iN0-l3-epB" eventType="touchUpInside" id="kjQ-s2-GQR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jfc-Bi-XTg">
+                    <rect key="frame" x="30" y="49" width="76" height="76"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="76" id="0FU-8B-O3C"/>
+                        <constraint firstAttribute="width" constant="76" id="Opc-qB-ISE"/>
+                    </constraints>
+                    <state key="normal" image="message">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="actionMessages:" destination="iN0-l3-epB" eventType="touchUpInside" id="XCx-dv-X55"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTC-dM-s5G">
+                    <rect key="frame" x="494" y="49" width="76" height="76"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="76" id="5QT-Ki-c8p"/>
+                        <constraint firstAttribute="height" constant="76" id="qD2-Iv-rHQ"/>
+                    </constraints>
+                    <state key="normal" image="envelope_disbl">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="actionEmail:" destination="iN0-l3-epB" eventType="touchUpInside" id="bll-Z3-ZbM"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="9tE-aK-cWt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0zO-AN-Yub"/>
+                <constraint firstAttribute="trailing" secondItem="9tE-aK-cWt" secondAttribute="trailing" id="AMG-fW-hWk"/>
+                <constraint firstAttribute="bottom" secondItem="9tE-aK-cWt" secondAttribute="bottom" id="Ep6-yo-cKT"/>
+                <constraint firstAttribute="centerY" secondItem="Jfc-Bi-XTg" secondAttribute="centerY" id="Fud-xJ-SCc"/>
+                <constraint firstItem="Jfc-Bi-XTg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="HSU-Z5-irk"/>
+                <constraint firstAttribute="trailing" secondItem="OTC-dM-s5G" secondAttribute="trailing" constant="30" id="OPV-OT-EYi"/>
+                <constraint firstAttribute="centerY" secondItem="Ybt-Ui-nYw" secondAttribute="centerY" id="fKy-83-OXb"/>
+                <constraint firstAttribute="centerY" secondItem="OTC-dM-s5G" secondAttribute="centerY" id="gKD-86-TOl"/>
+                <constraint firstItem="9tE-aK-cWt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="iDf-CY-Tu5"/>
+                <constraint firstAttribute="centerX" secondItem="Ybt-Ui-nYw" secondAttribute="centerX" id="qqY-xk-WV6"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="oEmailButton" destination="OTC-dM-s5G" id="1jB-nJ-Yjc"/>
+                <outlet property="oMessagesButton" destination="Jfc-Bi-XTg" id="3o4-kD-gcT"/>
+                <outlet property="oPhoneButton" destination="Ybt-Ui-nYw" id="jyq-Hr-U50"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="envelope_disbl" width="52" height="37"/>
+        <image name="message" width="76" height="66"/>
+        <image name="phone" width="52" height="51"/>
+        <image name="popup_contact" width="414" height="174"/>
+    </resources>
+</document>
