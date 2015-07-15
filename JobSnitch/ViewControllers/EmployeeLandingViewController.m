@@ -7,7 +7,6 @@
 //
 
 #import "EmployeeLandingViewController.h"
-#import "EmployeeRecord.h"
 #import "EmployeeFirstView.h"
 
 @import MapKit;
@@ -15,8 +14,6 @@
 @interface EmployeeLandingViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *oMapView;
 
-@property (nonatomic, strong)   EmployeeRecord *currentEmployee;
-@property (nonatomic, strong)   EmployeeFirstView *mainView;
 @property (nonatomic)       CLLocationCoordinate2D coords;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation * myLocation;
@@ -30,29 +27,19 @@
     [self initLocation];
     [self setupEmployee];
     
-    [self setupView];
+    [self setupEmployeeView];
 }
 
 -(void) viewDidLayoutSubviews {
-    [self.mainView layoutFields:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
-    [self.mainView setFrame:self.view.frame];
+    [self.employeeHeaderView layoutFields:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
+    [self.employeeHeaderView setFrame:self.view.frame];
     
     [self.view layoutIfNeeded];
 }
 
-#pragma mark - Data
--(void) setupEmployee {
-    self.currentEmployee = [[EmployeeRecord alloc] init];
-    self.currentEmployee.name = @"joe_blow";
-    self.currentEmployee.imageName = @"small_add_photo.png";
-    
-}
-
 #pragma mark - interface
--(void) setupView {
-    self.mainView = [[[NSBundle mainBundle] loadNibNamed:@"EmployeeFirstView" owner:self options:nil] objectAtIndex:0];
-    [self.mainView setFrame:self.view.frame];
-    [self.view addSubview:self.mainView];
+-(void) setupEmployeeView {
+    [super setupEmployeeView];
     
     [self setupHeader];
     [self.view bringSubviewToFront:self.oMapView];
@@ -66,8 +53,8 @@
 }
 
 -(void) setupHeader {
-    self.mainView.oTopImage.image = [UIImage imageNamed:self.currentEmployee.imageName];
-    self.mainView.oNameLabel.text = self.currentEmployee.name;
+    self.employeeHeaderView.oTopImage.image = [UIImage imageNamed:self.currentEmployee.imageName];
+    self.employeeHeaderView.oNameLabel.text = self.currentEmployee.name;
 }
 
 #pragma mark - CLLocationManagerDelegate

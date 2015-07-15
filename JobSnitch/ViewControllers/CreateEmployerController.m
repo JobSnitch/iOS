@@ -18,8 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIView *oReqBusiness;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIScrollView *oScrollView;
-//@property (weak, nonatomic) IBOutlet UIButton *oBusinessButton;
-//@property (weak, nonatomic) IBOutlet UIButton *oBillingButton;
 @property (weak, nonatomic) IBOutlet UITableView *oBusinessTable;
 @property (weak, nonatomic) IBOutlet UITableView *oBillingTable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oBusinessHeightConstraint;

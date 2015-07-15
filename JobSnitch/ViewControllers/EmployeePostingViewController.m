@@ -39,8 +39,7 @@
 
 #pragma mark - data
 -(void) prepareData {
-    self.currentEmployee = [[EmployeeRecord alloc] init];
-    self.currentEmployee.name = @"joe_blow";
+    [self setupEmployee];
 
     self.postings = [[NSMutableArray alloc] init];
     [self setupBusinesses];

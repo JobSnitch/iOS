@@ -15,8 +15,6 @@
     self.oTopImage.center = centerImage;
     CGPoint centerName = CGPointMake(realSize.width*0.5, 92.0);
     self.oNameLabel.center = centerName;
-//    CGRect scrollFrame = CGRectMake(0.0, 110.0, realSize.width, realSize.height - 110.0 -49.0);
-//    [self.oScrollView setFrame:scrollFrame];
 
 }
 

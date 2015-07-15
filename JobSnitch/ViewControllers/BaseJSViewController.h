@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EmployeeRecord.h"
+#import "EmployeeFirstView.h"
 
 @interface BaseJSViewController : UIViewController
 @property (nonatomic, strong) UIImageView *backgroundGradient;
 @property (nonatomic, strong)   NSString *pickerSelectionJT;
 @property (nonatomic, strong)   NSString *pickerSelectionI;
+
+// for Employee
+@property (nonatomic, strong)   EmployeeRecord *currentEmployee;
+@property (nonatomic, strong)   EmployeeFirstView *employeeHeaderView;
 
 -(void) initBackground;
 -(void) setupJobtypePicker;
@@ -19,4 +25,7 @@
 -(void) bringPickersToFront;
 -(void) showJobtypePicker;
 -(void) showIndustryPicker;
+
+-(void) setupEmployee;
+-(void) setupEmployeeView;
 @end

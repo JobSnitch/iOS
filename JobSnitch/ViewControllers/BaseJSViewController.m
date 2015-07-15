@@ -216,4 +216,19 @@
     
 }
 
+#pragma mark - Employee Data
+-(void) setupEmployee {
+    self.currentEmployee = [[EmployeeRecord alloc] init];
+    self.currentEmployee.name = @"joe_blow";
+    self.currentEmployee.imageName = @"small_add_photo.png";
+    
+}
+
+#pragma mark - Employee interface
+-(void) setupEmployeeView {
+    self.employeeHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"EmployeeFirstView" owner:self options:nil] objectAtIndex:0];
+    [self.employeeHeaderView setFrame:self.view.frame];
+    [self.view addSubview:self.employeeHeaderView];
+}
+
 @end
