@@ -11,5 +11,6 @@
 @interface EmployeeRecord : NSObject
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * imageName;
+@property (nonatomic, strong) NSArray * postings;
 
 @end

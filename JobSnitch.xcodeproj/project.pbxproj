@@ -13,6 +13,9 @@
 		C81C349B1B53D558005E16E5 /* JSEditPostingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C81C349A1B53D558005E16E5 /* JSEditPostingButton.m */; };
 		C82049C61B4C1E29005B3F3F /* HomeUpperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82049C51B4C1E29005B3F3F /* HomeUpperView.xib */; };
 		C82049C81B4C1F2C005B3F3F /* HomeLowerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82049C71B4C1F2C005B3F3F /* HomeLowerView.xib */; };
+		C82133391B5644F500776DB2 /* EmployeePostingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C82133381B5644F500776DB2 /* EmployeePostingViewController.m */; };
+		C821333C1B564E1F00776DB2 /* PostingCollectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C821333A1B564E1F00776DB2 /* PostingCollectViewCell.m */; };
+		C821333E1B564F2E00776DB2 /* PostingCollectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C821333D1B564F2E00776DB2 /* PostingCollectViewCell.xib */; };
 		C82F45751B54207A0071E985 /* ApplicationCollectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C82F45741B54207A0071E985 /* ApplicationCollectViewCell.m */; };
 		C82F45771B5420C10071E985 /* ApplicationCollectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82F45761B5420C10071E985 /* ApplicationCollectViewCell.xib */; };
 		C8400A961B4D1ABE00EBDE88 /* CreateTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8400A951B4D1ABE00EBDE88 /* CreateTopView.m */; };
@@ -97,6 +100,11 @@
 		C81C349A1B53D558005E16E5 /* JSEditPostingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSEditPostingButton.m; path = Views/JSEditPostingButton.m; sourceTree = "<group>"; };
 		C82049C51B4C1E29005B3F3F /* HomeUpperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeUpperView.xib; sourceTree = "<group>"; };
 		C82049C71B4C1F2C005B3F3F /* HomeLowerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeLowerView.xib; sourceTree = "<group>"; };
+		C82133371B5644F500776DB2 /* EmployeePostingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployeePostingViewController.h; path = ViewControllers/EmployeePostingViewController.h; sourceTree = "<group>"; };
+		C82133381B5644F500776DB2 /* EmployeePostingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployeePostingViewController.m; path = ViewControllers/EmployeePostingViewController.m; sourceTree = "<group>"; };
+		C821333A1B564E1F00776DB2 /* PostingCollectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostingCollectViewCell.m; path = Views/PostingCollectViewCell.m; sourceTree = "<group>"; };
+		C821333B1B564E1F00776DB2 /* PostingCollectViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostingCollectViewCell.h; path = Views/PostingCollectViewCell.h; sourceTree = "<group>"; };
+		C821333D1B564F2E00776DB2 /* PostingCollectViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostingCollectViewCell.xib; sourceTree = "<group>"; };
 		C82F45731B54207A0071E985 /* ApplicationCollectViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationCollectViewCell.h; path = Views/ApplicationCollectViewCell.h; sourceTree = "<group>"; };
 		C82F45741B54207A0071E985 /* ApplicationCollectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationCollectViewCell.m; path = Views/ApplicationCollectViewCell.m; sourceTree = "<group>"; };
 		C82F45761B5420C10071E985 /* ApplicationCollectViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplicationCollectViewCell.xib; sourceTree = "<group>"; };
@@ -367,6 +375,8 @@
 				C89EC12F1B556D0C008F3040 /* EmployeeOptionsViewController.m */,
 				C89EC1311B556D23008F3040 /* EmployeeSettingsViewController.h */,
 				C89EC1321B556D23008F3040 /* EmployeeSettingsViewController.m */,
+				C82133371B5644F500776DB2 /* EmployeePostingViewController.h */,
+				C82133381B5644F500776DB2 /* EmployeePostingViewController.m */,
 			);
 			name = "02 ViewControllers";
 			sourceTree = "<group>";
@@ -396,6 +406,7 @@
 				C8DEFD191B553FE7007C0CBD /* TextApplPopupView.xib */,
 				C8DEFD201B555527007C0CBD /* ContactPopupView.xib */,
 				C843D2151B5575EB00D3BF97 /* EmployeeFirstView.xib */,
+				C821333D1B564F2E00776DB2 /* PostingCollectViewCell.xib */,
 			);
 			name = "05 Storyboards";
 			sourceTree = "<group>";
@@ -460,6 +471,8 @@
 				C8DEFD171B553FCC007C0CBD /* TextApplPopupView.m */,
 				C8DEFD1D1B555514007C0CBD /* ContactPopupView.h */,
 				C8DEFD1E1B555514007C0CBD /* ContactPopupView.m */,
+				C821333A1B564E1F00776DB2 /* PostingCollectViewCell.m */,
+				C821333B1B564E1F00776DB2 /* PostingCollectViewCell.h */,
 			);
 			name = "03 Views";
 			sourceTree = "<group>";
@@ -581,6 +594,7 @@
 				C8DEFD211B555527007C0CBD /* ContactPopupView.xib in Resources */,
 				C82049C81B4C1F2C005B3F3F /* HomeLowerView.xib in Resources */,
 				C87138CE1B4C096D009BD279 /* Lato-Bold.otf in Resources */,
+				C821333E1B564F2E00776DB2 /* PostingCollectViewCell.xib in Resources */,
 				C893BF441B4FC6E600217402 /* BusinessRestrictedView.xib in Resources */,
 				C87138CF1B4C096D009BD279 /* Lato-Black.otf in Resources */,
 				C8A08BD71B4BD5DC00B2C703 /* Images.xcassets in Resources */,
@@ -630,6 +644,7 @@
 				C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */,
 				C893BF351B4FB66300217402 /* EmployerSecondViewController.m in Sources */,
 				C8EC3C641B4EE6390003F618 /* NewInfoPopupView.m in Sources */,
+				C82133391B5644F500776DB2 /* EmployeePostingViewController.m in Sources */,
 				C843D2141B55754400D3BF97 /* EmployeeFirstView.m in Sources */,
 				C8D5F3981B5164BD0078E3A8 /* PostingExpandedView.m in Sources */,
 				C843D2111B55740F00D3BF97 /* EmployeeRecord.m in Sources */,
@@ -646,6 +661,7 @@
 				C893BF381B4FB68500217402 /* EmployerThirdViewController.m in Sources */,
 				C893BF4A1B4FE75800217402 /* PostingRestrictedView.m in Sources */,
 				C89EC1301B556D0C008F3040 /* EmployeeOptionsViewController.m in Sources */,
+				C821333C1B564E1F00776DB2 /* PostingCollectViewCell.m in Sources */,
 				C8A08BCC1B4BD5DC00B2C703 /* main.m in Sources */,
 				C89EC1271B556C83008F3040 /* EmployeeLandingViewController.m in Sources */,
 			);

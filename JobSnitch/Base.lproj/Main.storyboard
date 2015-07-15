@@ -49,6 +49,7 @@
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -459,10 +460,10 @@
             </objects>
             <point key="canvasLocation" x="2739" y="2035"/>
         </scene>
-        <!--Employee Options View Controller-->
+        <!--Employee Posting View Controller-->
         <scene sceneID="Kg2-zN-zMo">
             <objects>
-                <viewController storyboardIdentifier="EmployeeOptionsViewController" id="icd-1O-BJx" customClass="EmployeeOptionsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmployeeOptionsViewController" id="icd-1O-BJx" customClass="EmployeePostingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cBC-Kx-pjY"/>
                         <viewControllerLayoutGuide type="bottom" id="QvU-x8-GlO"/>
@@ -470,9 +471,91 @@
                     <view key="view" contentMode="scaleToFill" id="raI-rx-b7k">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Db-sa-t21">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small_add_photo" translatesAutoresizingMaskIntoConstraints="NO" id="wLX-al-Fn7">
+                                        <rect key="frame" x="432" y="14" width="28" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="28" id="0CV-rh-1y1"/>
+                                            <constraint firstAttribute="height" constant="28" id="LhH-Ns-TzV"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hw1-gE-Yaw">
+                                        <rect key="frame" x="464" y="17" width="128" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="eXU-Ui-v7U"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCS-vW-FXL">
+                                        <rect key="frame" x="8" y="8" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="JzO-6a-hEp"/>
+                                            <constraint firstAttribute="height" constant="40" id="ZCG-PO-85i"/>
+                                        </constraints>
+                                        <state key="normal" image="back_arrow_red">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actionBack:" destination="icd-1O-BJx" eventType="touchUpInside" id="Kne-Xa-ncQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Hw1-gE-Yaw" secondAttribute="trailing" constant="8" id="0et-Jh-rkb"/>
+                                    <constraint firstItem="fCS-vW-FXL" firstAttribute="leading" secondItem="8Db-sa-t21" secondAttribute="leading" constant="8" id="6nI-cj-cAS"/>
+                                    <constraint firstAttribute="centerY" secondItem="wLX-al-Fn7" secondAttribute="centerY" id="76b-Lb-wQY"/>
+                                    <constraint firstItem="fCS-vW-FXL" firstAttribute="top" secondItem="8Db-sa-t21" secondAttribute="top" constant="8" id="9h1-o3-VxA"/>
+                                    <constraint firstAttribute="trailing" secondItem="wLX-al-Fn7" secondAttribute="trailing" constant="140" id="Jcu-0d-ZGx"/>
+                                    <constraint firstItem="Hw1-gE-Yaw" firstAttribute="top" secondItem="8Db-sa-t21" secondAttribute="top" constant="17" id="MZ2-PT-jhP"/>
+                                    <constraint firstItem="Hw1-gE-Yaw" firstAttribute="leading" secondItem="wLX-al-Fn7" secondAttribute="trailing" constant="4" id="g1t-OO-4YM"/>
+                                    <constraint firstAttribute="height" constant="56" id="gsg-XM-cQf"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zoC-i3-d7B">
+                                <rect key="frame" x="0.0" y="56" width="600" height="495"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tT9-Uf-re7">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellPIdentifier" id="sJx-TS-bRk" customClass="PostingCollectViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8Db-sa-t21" secondAttribute="trailing" id="8PF-1i-7Zq"/>
+                            <constraint firstItem="8Db-sa-t21" firstAttribute="leading" secondItem="raI-rx-b7k" secondAttribute="leading" id="Rql-lr-oop"/>
+                            <constraint firstItem="zoC-i3-d7B" firstAttribute="top" secondItem="8Db-sa-t21" secondAttribute="bottom" id="fwr-i3-qhZ"/>
+                            <constraint firstItem="8Db-sa-t21" firstAttribute="top" secondItem="raI-rx-b7k" secondAttribute="top" id="kYY-KL-XX0"/>
+                            <constraint firstAttribute="bottom" secondItem="zoC-i3-d7B" secondAttribute="bottom" constant="49" id="lvA-c6-MZ6"/>
+                            <constraint firstAttribute="trailing" secondItem="zoC-i3-d7B" secondAttribute="trailing" id="swg-cK-OVs"/>
+                            <constraint firstItem="zoC-i3-d7B" firstAttribute="leading" secondItem="raI-rx-b7k" secondAttribute="leading" id="zxi-6O-sA4"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="402" title="" image="eye_red" id="339-gX-aBh"/>
+                    <connections>
+                        <outlet property="oCollectionView" destination="zoC-i3-d7B" id="0Io-d2-nVs"/>
+                        <outlet property="oEmployeeName" destination="Hw1-gE-Yaw" id="bJU-1n-B7f"/>
+                        <outlet property="oSmallImage" destination="wLX-al-Fn7" id="lg5-SO-LMj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPq-pt-a6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -20,4 +20,10 @@
 @property (nonatomic) int   noApplications;
 @property (nonatomic) int   noShortlisted;              // ?
 
+@property (nonatomic) BOOL   wantsText;
+@property (nonatomic) BOOL   wantsAudio;
+@property (nonatomic) BOOL   wantsVideo;
+
+@property (nonatomic, weak) id ownerBusiness;
+
 @end
