@@ -12,7 +12,7 @@
 
 @import MapKit;
 
-@interface EmployeeLandingViewController () <CLLocationManagerDelegate>
+@interface EmployeeLandingViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *oMapView;
 
 @property (nonatomic, strong)   EmployeeRecord *currentEmployee;
@@ -56,14 +56,13 @@
     
     [self setupHeader];
     [self.view bringSubviewToFront:self.oMapView];
+    [self.oMapView setShowsUserLocation:YES];
+    self.oMapView.delegate = self;
 }
 
 -(void) setupShowMap {
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance ( self.coords, 10000, 10000);
     [self.oMapView setRegion:region animated:NO];
-    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:self.coords];
-    [self.oMapView addAnnotation:annotation];
 }
 
 -(void) setupHeader {
@@ -102,9 +101,24 @@ static int countUpdates = 0;
     }
 }
 
--(void) locationManagerDidPauseLocationUpdates:(CLLocationManager *)manager {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        MKAnnotationView *pinView = (MKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinUserLocView"];
+        if (!pinView)
+        {
+            // If an existing pin view was not available, create one.
+            pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinUserLocView"];
+            pinView.canShowCallout = YES;
+            pinView.image = [UIImage imageNamed:@"pin_type1"];
+            pinView.centerOffset = CGPointMake(0, -32);
+        } else {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
+    return nil;
 }
-
 
 #pragma mark - other
 - (void)didReceiveMemoryWarning {
