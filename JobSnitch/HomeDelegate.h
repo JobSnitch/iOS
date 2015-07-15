@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @protocol HomeDelegate <NSObject>
+-(void) delegateShowAbout;
+-(void) delegateShowContact;
+-(void) delegateShowBugRep;
+@optional
 -(void) delegateForgotPassword;
 -(void) delegateLoginFacebook;
 -(void) delegateCreateJSeeker;
 -(void) delegateCreateEmployer;
--(void) delegateShowAbout;
--(void) delegateShowContact;
--(void) delegateShowBugRep;
 
 @end

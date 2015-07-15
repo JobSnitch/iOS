@@ -415,10 +415,10 @@
             </objects>
             <point key="canvasLocation" x="2642" y="-578"/>
         </scene>
-        <!--Employer Second View Controller-->
+        <!--Employee Info View Controller-->
         <scene sceneID="uGR-7i-y7D">
             <objects>
-                <viewController storyboardIdentifier="EmployerSecondViewController" id="fqx-Lf-pzy" customClass="EmployerSecondViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmployeeInfoViewController" id="fqx-Lf-pzy" customClass="EmployeeInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gtf-t3-IGv"/>
                         <viewControllerLayoutGuide type="bottom" id="2cQ-IY-5KF"/>
@@ -429,6 +429,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" tag="201" title="" id="LFQ-kn-OmU"/>
+                    <connections>
+                        <segue destination="NPm-b0-3R2" kind="custom" identifier="InfoToAbout" customClass="JSCustomSegue" id="YeT-cy-ioN"/>
+                        <segue destination="4xx-VD-rO5" kind="custom" identifier="InfoToContact" customClass="JSCustomSegue" id="l2s-Ev-LbX"/>
+                        <segue destination="qia-fG-Csq" kind="custom" identifier="InfoToBugReport" customClass="JSCustomSegue" id="xRe-rR-GlT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dIc-bx-Fdn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2320,5 +2325,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Gfn-zy-DHQ"/>
+        <segue reference="l2s-Ev-LbX"/>
+        <segue reference="xRe-rR-GlT"/>
+        <segue reference="YeT-cy-ioN"/>
     </inferredMetricsTieBreakers>
 </document>
