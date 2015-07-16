@@ -14,7 +14,9 @@
 #import "TextApplPopupView.h"
 #import "ContactPopupView.h"
 
-@interface EmployeePostingViewController () <PostingCellDelegate> 
+@import MobileCoreServices;
+
+@interface EmployeePostingViewController () <PostingCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *oSmallImage;
 @property (weak, nonatomic) IBOutlet UILabel *oEmployeeName;
 @property (nonatomic, weak) IBOutlet UICollectionView *oCollectionView;
@@ -253,9 +255,61 @@
     
 }
 
+#pragma mark - video
 -(void) delegateVideo {
+    [self startVideoControllerFromViewController: self usingDelegate: self];
 }
 
+- (BOOL) startVideoControllerFromViewController: (UIViewController*) controller
+                                   usingDelegate: (id <UIImagePickerControllerDelegate,
+                                                   UINavigationControllerDelegate>) delegate {
+    
+    if ((delegate == nil) || (controller == nil))
+        return NO;
+    
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera] == YES) {
+        cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+    } else if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeSavedPhotosAlbum] == YES) {
+        cameraUI.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    } else {
+        cameraUI = nil;
+        return NO;
+    }
+    cameraUI.videoQuality = UIImagePickerControllerQualityTypeHigh;
+    
+    // Displays a control that allows the user to choose movie capture
+    cameraUI.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+    
+    cameraUI.allowsEditing = NO;
+    
+    cameraUI.delegate = delegate;
+    
+    [controller presentViewController:cameraUI animated:YES completion:nil];
+    return YES;
+}
+
+- (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
+    
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    
+    [self dismissViewControllerAnimated:NO completion:nil];
+    
+    // Handle a movie capture
+    if (CFStringCompare ((__bridge_retained CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
+        
+        NSURL *imagePickerURL = [info objectForKey:UIImagePickerControllerMediaURL];
+        
+        NSData *videoData = [NSData dataWithContentsOfURL:imagePickerURL];
+        
+        NSString *videoName = @"JSMovie.MOV";
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDir = [paths objectAtIndex:0];
+        NSString *videoPath = [documentsDir stringByAppendingPathComponent:videoName];
+        
+        [videoData writeToFile:videoPath atomically:YES];
+    }
+}
 
 #pragma mark - other
 - (void)didReceiveMemoryWarning {

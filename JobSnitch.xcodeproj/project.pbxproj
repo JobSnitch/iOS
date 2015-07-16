@@ -472,8 +472,8 @@
 				C8DEFD171B553FCC007C0CBD /* TextApplPopupView.m */,
 				C8DEFD1D1B555514007C0CBD /* ContactPopupView.h */,
 				C8DEFD1E1B555514007C0CBD /* ContactPopupView.m */,
-				C821333A1B564E1F00776DB2 /* PostingCollectViewCell.m */,
 				C821333B1B564E1F00776DB2 /* PostingCollectViewCell.h */,
+				C821333A1B564E1F00776DB2 /* PostingCollectViewCell.m */,
 			);
 			name = "03 Views";
 			sourceTree = "<group>";

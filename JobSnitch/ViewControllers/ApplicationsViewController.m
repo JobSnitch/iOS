@@ -13,6 +13,7 @@
 #import "TextApplPopupView.h"
 #import "ContactPopupView.h"
 @import MessageUI;
+@import MediaPlayer;
 
 @interface ApplicationsViewController () <ApplicationCellDelegate, ContactPopupDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *oSmallImage;
@@ -215,6 +216,7 @@
 }
 
 -(void) delegateVideo {
+    [self playVideo:@"JSMovie.MOV"];
 }
 
 -(void) delegateDelete{
@@ -350,6 +352,34 @@
     // Close the SMS Interface
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - videoplay
+-(void) playVideo:(NSString *)filename {
+    NSString *videoName = filename;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDir = [paths objectAtIndex:0];
+    NSString *videoPath = [documentsDir stringByAppendingPathComponent:videoName];
+    
+    NSURL * videoURL = [NSURL fileURLWithPath:videoPath];
+    MPMoviePlayerViewController* theMovie = [[MPMoviePlayerViewController alloc] initWithContentURL: videoURL];
+    [self presentMoviePlayerViewControllerAnimated:theMovie];
+    
+    // Register for the playback finished notification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(myVideoFinishedCallback:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:theMovie.moviePlayer];
+}
+
+// playback finished handler for MPMoviePlayerPlaybackDidFinishNotification
+-(void) myVideoFinishedCallback: (NSNotification*) aNotification
+{
+    MPMoviePlayerController* theMovie = [aNotification object];
+        [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: MPMoviePlayerPlaybackDidFinishNotification
+                                                  object: theMovie];
+}
+
 
 #pragma mark - other
 - (void)didReceiveMemoryWarning {
