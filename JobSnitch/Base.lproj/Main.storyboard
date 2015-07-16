@@ -2008,6 +2008,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1500"/>
                     <connections>
+                        <outlet property="oCreateButton" destination="w5C-hG-Eda" id="3vU-Ql-l65"/>
                         <outlet property="oHeightConstraint" destination="lUH-lX-xWW" id="kaW-iw-v0Z"/>
                         <outlet property="oIndustryButton" destination="es5-Pb-y7Y" id="MHF-Pe-Tgh"/>
                         <outlet property="oIndustryHeightConstraint" destination="fX7-d9-1MO" id="eaR-gt-U3Z"/>
@@ -2018,6 +2019,7 @@
                         <outlet property="oPostalField" destination="WgZ-2Q-cRI" id="bh5-Fc-ZXs"/>
                         <outlet property="oProxySlider" destination="a1L-eo-tYk" id="9cj-Mo-6ym"/>
                         <outlet property="oScrollView" destination="5KB-I5-5nc" id="Lk2-8A-g5w"/>
+                        <outlet property="oTitleLabel" destination="zcm-hn-Qeo" id="Iqf-O9-1Ap"/>
                         <outlet property="oTopView" destination="z0v-gm-heo" id="h6a-WR-rQ7"/>
                         <outlet property="oWidthConstraint" destination="i1L-V7-gP4" id="P36-TK-MHs"/>
                         <segue destination="ScD-cj-dcw" kind="custom" identifier="CreateEmpToEmployee" customClass="JSCustomSegue" id="d4x-Ge-YO2"/>
@@ -2293,9 +2295,11 @@
                         <outlet property="oBillingTable" destination="ycR-vY-fXh" id="bfw-cj-94C"/>
                         <outlet property="oBusinessHeightConstraint" destination="nLY-aJ-PBK" id="4o3-Qd-mMX"/>
                         <outlet property="oBusinessTable" destination="dvD-K7-sPc" id="AML-mL-Yae"/>
+                        <outlet property="oCreateButton" destination="xMe-qo-xDY" id="WZz-oE-120"/>
                         <outlet property="oHeightConstraint" destination="wWG-pb-ALH" id="aSa-hk-US2"/>
                         <outlet property="oReqBusiness" destination="ezs-Q8-yUY" id="Z9B-OM-06p"/>
                         <outlet property="oScrollView" destination="H1E-On-BkP" id="VWA-up-VUo"/>
+                        <outlet property="oTitleLabel" destination="NEI-S9-iaS" id="a8b-Q1-fGL"/>
                         <outlet property="oTopView" destination="GZG-A6-2WT" id="DCU-nR-Oen"/>
                         <outlet property="oWidthConstraint" destination="y9A-8q-GHt" id="NEv-2S-Nfq"/>
                         <segue destination="YmL-ye-Hxo" kind="custom" identifier="CreateEmpToEmployer" customClass="JSCustomSegue" id="omh-D5-lpg"/>
@@ -2329,8 +2333,8 @@
         <segue reference="QME-hA-SwO"/>
         <segue reference="Gfn-zy-DHQ"/>
         <segue reference="dzo-Ft-dq7"/>
-        <segue reference="59R-ZI-B64"/>
         <segue reference="gfU-vB-U1q"/>
         <segue reference="MXH-bY-i60"/>
+        <segue reference="omh-D5-lpg"/>
     </inferredMetricsTieBreakers>
 </document>

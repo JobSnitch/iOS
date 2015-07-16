@@ -12,5 +12,10 @@
 typedef void (^AnimationBlock)(void);
 typedef void (^CompletionBlock)(BOOL finished);
 
+typedef enum : NSUInteger {
+    creationContext,
+    settingContext
+} PersonContext;
+
 
 #endif

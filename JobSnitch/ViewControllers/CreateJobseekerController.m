@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *oIndustryTable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oJobTypeHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oIndustryHeightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *oTitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *oCreateButton;
 
 @property (strong, nonatomic)   CreateTopView *oTopViewReal;
 @property (nonatomic, strong)   UILabel * sliderLabel;
@@ -31,6 +33,7 @@
 @property (nonatomic, strong)   NSMutableArray *currentIndustries;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation * myLocation;
+@property (nonatomic)   PersonContext myContext;
 
 @end
 
@@ -40,6 +43,7 @@ const float kMagicHeight1 = 1268.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _myContext = creationContext;
     [self setupTables];
     [self setupCustomViews];
     [self setupSlider];
@@ -54,8 +58,6 @@ const float kMagicHeight1 = 1268.0;
     self.oPostalField.delegate = self;
     self.oPostalField.tag = 1004;
     self.oPostalField.returnKeyType = UIReturnKeyDone;
-    [super setupJobtypePicker];
-    [super setupIndustryPicker];
     self.currentJobTypes = [[NSMutableArray alloc] init];
     self.currentIndustries = [[NSMutableArray alloc] init];
 }
@@ -82,6 +84,10 @@ const float kMagicHeight1 = 1268.0;
     self.oTopViewReal.oPhoneField.returnKeyType = UIReturnKeyNext;
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [self customizeSettings:self];
+}
+
 -(void) viewDidAppear:(BOOL)animated {
     [self sliderAction2:self.oProxySlider];
 }
@@ -95,10 +101,23 @@ const float kMagicHeight1 = 1268.0;
         self.oIndustryHeightConstraint.constant = self.currentIndustries.count * [self tableView:self.oIndustryTable heightForRowAtIndexPath:0];
     }
     self.oHeightConstraint.constant = kMagicHeight1 + self.oJobTypeHeightConstraint.constant + self.oIndustryHeightConstraint.constant;
-
     [super bringPickersToFront];
 
     [self.view layoutIfNeeded];
+}
+
+#pragma mark - settings context
+-(void) customizeSettings:(id)sender {
+    if (sender == self) {
+        [super setupJobtypePicker];
+        [super setupIndustryPicker];
+    } else {
+        _myContext = settingContext;
+        self.oTitleLabel.text = @"Jobseeker Settings";
+        [self.oCreateButton setTitle:@"SAVE" forState:UIControlStateNormal];
+        [super setupJobtypePickerOffset:49.0];
+        [super setupIndustryPickerOffset:49.0];
+    }
 }
 
 // handle for UIKeyboardDidShowNotification
@@ -184,7 +203,19 @@ const float kMagicHeight1 = 1268.0;
 }
 
 - (IBAction)actionCreateJobseeker:(id)sender {
-    [self ValidateAndCreate];
+    switch (_myContext) {
+        case creationContext:
+            [self ValidateAndCreate];
+            break;
+        case settingContext:
+            [self ValidateAndSave];
+            break;
+        default:
+            break;
+    }
+}
+
+-(void) ValidateAndSave {
 }
 
 -(void) ValidateAndCreate {

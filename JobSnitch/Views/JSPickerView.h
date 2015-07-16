@@ -12,6 +12,7 @@
 @interface JSPickerView : UIView
 
 @property (nonatomic, assign, readonly) UIPickerView *picker;
+@property (nonatomic) CGFloat viewHeight;
 
 - (void) addTargetForDoneButton: (id) target action: (SEL) action;
 - (void) addTargetForCancelButton: (id) target action: (SEL) action;

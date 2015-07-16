@@ -43,7 +43,7 @@
 }
 
 -(void)setupAppearance {
-    [[UISlider appearance] setMaximumTrackTintColor:[UIColor redColor] ];
+    [[UISlider appearance] setMaximumTrackTintColor:[UIColor redColor] ];           // if CGContextPath bug, comment this
     [[UISlider appearance] setMinimumTrackTintColor:[UIColor redColor] ];
 }
 

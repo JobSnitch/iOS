@@ -22,6 +22,8 @@
 -(void) initBackground;
 -(void) setupJobtypePicker;
 -(void) setupIndustryPicker;
+-(void) setupJobtypePickerOffset:(CGFloat) offset;
+-(void) setupIndustryPickerOffset:(CGFloat) offset;
 -(void) bringPickersToFront;
 -(void) showJobtypePicker;
 -(void) showIndustryPicker;

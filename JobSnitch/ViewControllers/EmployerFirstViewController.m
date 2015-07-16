@@ -55,10 +55,6 @@
             [((BusinessRestrictedView *)aView) layoutFields:CGSizeMake(self.view.bounds.size.width, 48.0)];
             [aView setFrame:CGRectMake(0, aView.frame.origin.y, self.oScrollView.bounds.size.width, 48.0)];
         }
-//        if ([aView isMemberOfClass:[PostingRestrictedView class]]) {
-//            [((PostingRestrictedView *)aView) layoutFields:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width * 78.0 / 414.0)];
-//            [aView setFrame:CGRectMake(0, aView.frame.origin.y, self.view.bounds.size.width, self.rowHeight)];
-//        }
     }
     [super bringPickersToFront];
     

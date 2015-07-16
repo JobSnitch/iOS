@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *oBillingTable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oBusinessHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oBillingHeightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *oTitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *oCreateButton;
 
 @property (strong, nonatomic)  AddItemView *oReqBusinessReal;
 @property (strong, nonatomic)  CreateTopView *oTopViewReal;
@@ -30,6 +32,7 @@
 @property (nonatomic, strong)   NSMutableArray *currentBillings;
 @property (nonatomic, strong)   NewInfoPopupView *infoPopupView;
 @property (nonatomic, strong)   NSString *infoText;
+@property (nonatomic)   PersonContext myContext;
 
 @end
 
@@ -39,6 +42,7 @@ const float kMagicHeight2 = 764.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _myContext = creationContext;
     [self setupTables];
     [self setupCustomViews];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -107,6 +111,12 @@ const float kMagicHeight2 = 764.0;
     [self.oScrollView setContentOffset:CGPointMake(0, 0) animated:NO];      // bug if YES?
 }
 
+#pragma mark - settings context
+-(void) customizeSettings {
+    _myContext = settingContext;
+    self.oTitleLabel.text = @"Employer Settings";
+    [self.oCreateButton setTitle:@"SAVE" forState:UIControlStateNormal];
+}
 
 #pragma mark - UITextFieldDelegate
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -144,7 +154,19 @@ const float kMagicHeight2 = 764.0;
 }
 
 - (IBAction)actionCreateEmployer:(id)sender {
-    [self ValidateAndCreate];
+    switch (_myContext) {
+        case creationContext:
+            [self ValidateAndCreate];
+            break;
+        case settingContext:
+            [self ValidateAndSave];
+            break;
+        default:
+            break;
+    }
+}
+
+-(void) ValidateAndSave {
 }
 
 -(void) ValidateAndCreate {
@@ -291,11 +313,9 @@ const float kMagicHeight2 = 764.0;
 }
 
 #pragma mark - other
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

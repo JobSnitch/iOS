@@ -62,8 +62,9 @@
 }
 
 - (void) setupJobtypePicker {
-    self.jobtypePicker = [[JSPickerView alloc] initWithFrame:CGRectMake(0, _screenHeight-(216.0+JSPickerToolbarHeight),
-                                                                        _screenWidth, 216.0+JSPickerToolbarHeight)];
+    CGFloat hght = 216.0+JSPickerToolbarHeight;
+    self.jobtypePicker = [[JSPickerView alloc] initWithFrame:CGRectMake(0, _screenHeight-hght, _screenWidth, hght)];
+    self.jobtypePicker.viewHeight = hght;
     [self.jobtypePicker addTargetForDoneButton:self action:@selector(jobtypeDone)];
     [self.jobtypePicker addTargetForCancelButton:self action:@selector(jobtypeCancel)];
     [self.view addSubview:self.jobtypePicker];
@@ -80,8 +81,9 @@
 }
 
 - (void) setupIndustryPicker {
-    self.industryPicker = [[JSPickerView alloc] initWithFrame:CGRectMake(0, _screenHeight-(216.0+JSPickerToolbarHeight),
-                                                                         _screenWidth, 216.0+JSPickerToolbarHeight)];
+    CGFloat hght = 216.0+JSPickerToolbarHeight;
+    self.industryPicker = [[JSPickerView alloc] initWithFrame:CGRectMake(0, _screenHeight-hght, _screenWidth, hght)];
+    self.industryPicker.viewHeight = hght;
     [self.industryPicker addTargetForDoneButton:self action:@selector(industryDone)];
     [self.industryPicker addTargetForCancelButton:self action:@selector(industryCancel)];
     [self.view addSubview:self.industryPicker];
@@ -99,14 +101,55 @@
                            ];
 }
 
+-(void) setupJobtypePickerOffset:(CGFloat) offset {
+    CGFloat hght = 216.0+JSPickerToolbarHeight;
+    self.jobtypePicker = [[JSPickerView alloc] initWithFrame:CGRectMake(0, _screenHeight-hght-offset, _screenWidth, hght)];
+    self.jobtypePicker.viewHeight = hght;
+    [self.jobtypePicker addTargetForDoneButton:self action:@selector(jobtypeDone)];
+    [self.jobtypePicker addTargetForCancelButton:self action:@selector(jobtypeCancel)];
+    [self.view addSubview:self.jobtypePicker];
+    
+    self.jobtypePicker.hidden = true;
+    self.jobtypePicker.picker.dataSource = self;
+    self.jobtypePicker.picker.delegate = self;
+    
+    self.allJobTypes = @[
+                         @"Full-time",
+                         @"Freelance",
+                         @"Part-time",
+                         ];
+}
+
+-(void) setupIndustryPickerOffset:(CGFloat) offset {
+    CGFloat hght = 216.0+JSPickerToolbarHeight;
+    self.industryPicker = [[JSPickerView alloc] initWithFrame:CGRectMake(0, _screenHeight-hght-offset, _screenWidth, hght)];
+    self.industryPicker.viewHeight = hght;
+    [self.industryPicker addTargetForDoneButton:self action:@selector(industryDone)];
+    [self.industryPicker addTargetForCancelButton:self action:@selector(industryCancel)];
+    [self.view addSubview:self.industryPicker];
+    
+    self.industryPicker.hidden = true;
+    self.industryPicker.picker.dataSource = self;
+    self.industryPicker.picker.delegate = self;
+    
+    self.allIndustries = @[
+                           @"IT & Programming",
+                           @"Design & Multimedia",
+                           @"Writing & Translation",
+                           @"Sales & Marketing",
+                           @"Admin Support",
+                           ];
+}
+
+
 - (void) showJobtypePicker
 {
-    self.jobtypePicker.frame = CGRectMake(0, _screenHeight, _screenWidth, 216.0+JSPickerToolbarHeight);
+    self.jobtypePicker.frame = CGRectMake(0, _screenHeight, _screenWidth, self.industryPicker.viewHeight);
     self.jobtypePicker.hidden = false;
     [UIView animateWithDuration:0.5
                      animations:^{
-                         self.jobtypePicker.frame = CGRectMake(0, _screenHeight-(216.0+JSPickerToolbarHeight),
-                                                               _screenWidth, 216.0+JSPickerToolbarHeight);
+                         self.jobtypePicker.frame = CGRectMake(0, _screenHeight-self.industryPicker.viewHeight,
+                                                               _screenWidth, self.industryPicker.viewHeight);
                      } completion:^(BOOL finished) {
                          self.pickerSelectionJT = self.allJobTypes[0];
                          self.pickerSelectionI = nil;
@@ -118,7 +161,7 @@
 {
     [UIView animateWithDuration:0.3
                      animations:^{
-                         self.jobtypePicker.frame = CGRectMake(0, _screenHeight, _screenWidth, 216.0+JSPickerToolbarHeight);
+                         self.jobtypePicker.frame = CGRectMake(0, _screenHeight, _screenWidth, self.industryPicker.viewHeight);
                      } completion:^(BOOL finished) {
                          self.jobtypePicker.hidden = true;
                      }];
@@ -126,12 +169,12 @@
 
 - (void) showIndustryPicker
 {
-    self.industryPicker.frame = CGRectMake(0, _screenHeight, _screenWidth, 216.0+JSPickerToolbarHeight);
+    self.industryPicker.frame = CGRectMake(0, _screenHeight, _screenWidth, self.industryPicker.viewHeight);
     self.industryPicker.hidden = false;
     [UIView animateWithDuration:0.5
                      animations:^{
-                         self.industryPicker.frame = CGRectMake(0, _screenHeight-(216.0+JSPickerToolbarHeight),
-                                                                _screenWidth, 216.0+JSPickerToolbarHeight);
+                         self.industryPicker.frame = CGRectMake(0, _screenHeight-self.industryPicker.viewHeight,
+                                                                _screenWidth, self.industryPicker.viewHeight);
                      }completion:^(BOOL finished) {
                          self.pickerSelectionI = self.allIndustries[0];
                          self.pickerSelectionJT = nil;
@@ -142,7 +185,7 @@
 {
     [UIView animateWithDuration:0.3
                      animations:^{
-                         self.industryPicker.frame = CGRectMake(0, _screenHeight, _screenWidth, 216.0+JSPickerToolbarHeight);
+                         self.industryPicker.frame = CGRectMake(0, _screenHeight, _screenWidth, self.industryPicker.viewHeight);
                      } completion:^(BOOL finished) {
                          self.industryPicker.hidden = true;
                      }];

@@ -7,7 +7,14 @@
 //
 
 #import "BaseJSViewController.h"
+@protocol EmployerProfileContainerDelegate <NSObject>
+-(void) hasFinishedProfile;
+
+@end
 
 @interface CreateEmployerController : BaseJSViewController <UITextFieldDelegate>
 
+@property (assign) id<EmployerProfileContainerDelegate> delegate;     // the parent controller implements this
+
+-(void) customizeSettings;
 @end
