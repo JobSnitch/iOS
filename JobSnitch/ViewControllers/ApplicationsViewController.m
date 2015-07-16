@@ -14,8 +14,13 @@
 #import "ContactPopupView.h"
 @import MessageUI;
 @import MediaPlayer;
+@import AVFoundation;
 
-@interface ApplicationsViewController () <ApplicationCellDelegate, ContactPopupDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
+@interface ApplicationsViewController () <ApplicationCellDelegate, ContactPopupDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate,
+                                                AVAudioPlayerDelegate>
+{
+    AVAudioPlayer *player;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *oSmallImage;
 @property (weak, nonatomic) IBOutlet UILabel *oEmployerName;
 @property (weak, nonatomic) IBOutlet UIView *oBusinessView;
@@ -39,6 +44,11 @@
     self.popupTextView = nil;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    if (player.playing) {
+        [player stop];
+    }
+}
 #pragma mark - data
 -(void) prepareData {
     self.applications = [[NSMutableArray alloc] init];
@@ -212,7 +222,15 @@
 }
 
 -(void) delegateAudio {
-    
+    if (player) {
+        if (player.playing) {
+            [player stop];
+        } else {        // paused
+            [player play];
+        }
+    } else {
+        [self playAudio:@"JSAudio.m4a"];
+    }
 }
 
 -(void) delegateVideo {
@@ -378,6 +396,26 @@
         [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: MPMoviePlayerPlaybackDidFinishNotification
                                                   object: theMovie];
+}
+
+#pragma mark - audio play
+-(void) playAudio:(NSString *)filename {
+    NSString *audioName = filename;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDir = [paths objectAtIndex:0];
+    NSString *audioPath = [documentsDir stringByAppendingPathComponent:audioName];
+    
+    NSURL *inputFileURL = [NSURL fileURLWithPath:audioPath];
+    
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:inputFileURL error:nil];
+    if (player) {
+        [player setDelegate:self];
+    }
+    [player play];
+}
+
+#pragma mark - AVAudioPlayerDelegate
+- (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
 }
 
 

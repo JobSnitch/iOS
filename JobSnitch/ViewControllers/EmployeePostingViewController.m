@@ -15,8 +15,12 @@
 #import "ContactPopupView.h"
 
 @import MobileCoreServices;
+@import AVFoundation;
 
-@interface EmployeePostingViewController () <PostingCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface EmployeePostingViewController () <PostingCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVAudioRecorderDelegate>
+{
+    AVAudioRecorder *recorder;                          // the audio recorder
+}
 @property (weak, nonatomic) IBOutlet UIImageView *oSmallImage;
 @property (weak, nonatomic) IBOutlet UILabel *oEmployeeName;
 @property (nonatomic, weak) IBOutlet UICollectionView *oCollectionView;
@@ -38,7 +42,13 @@
 //    self.popupTextView = nil;
 }
 
-
+-(void) viewWillDisappear:(BOOL)animated {
+    if (recorder.recording) {
+        [recorder stop];
+        [recorder deleteRecording];
+    }
+    [super viewWillDisappear:animated];
+}
 #pragma mark - data
 -(void) prepareData {
     [self setupEmployee];
@@ -235,25 +245,60 @@
 
 #pragma mark - ApplicationCellDelegate
 -(void) delegateText:(id)sender {
-//    if (self.popupTextView) {
-//        [self.popupTextView removeFromSuperview];
-//        self.popupTextView = nil;
-//    } else {
-//        CGFloat startY = ((UIView *)sender).frame.size.height *0.5;
-//        startY += ((UIView *)sender).superview.frame.origin.y;
-//        startY -= 240.0;
-//        CGRect topFrame = CGRectMake(0, startY,
-//                                     self.view.bounds.size.width, 240.0);
-//        self.popupTextView = [[[NSBundle mainBundle] loadNibNamed:@"TextApplPopupView" owner:self options:nil] objectAtIndex:0];
-//        [self.popupTextView setFrame:topFrame];
-//        [self.view addSubview:self.popupTextView];
-//        [self.popupTextView setupContent];
-//    }
 }
 
+#pragma mark - video
+static bool isRecording = false;
 -(void) delegateAudio {
-    
+    if (isRecording) {
+        isRecording = !isRecording;
+        if (recorder.recording) {
+            [self finishedRecording];
+        }
+    } else {
+        isRecording = !isRecording;
+        if (!recorder.recording) {
+            [self startRecording];
+        }
+    }
 }
+
+-(void) startRecording {
+    // Set the audio file
+    NSArray *pathComponents = [NSArray arrayWithObjects:
+                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                               @"JSAudio.m4a",
+                               nil];
+    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+    
+    // Setup audio session
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    
+    // Define the recorder setting
+    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
+    
+    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
+    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
+    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
+    
+    // Initiate and prepare the recorder
+    recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
+    recorder.delegate = self;
+    recorder.meteringEnabled = YES;
+    [recorder prepareToRecord];
+    
+    [session setActive:YES error:nil];
+    // Start recording
+    [recorder record];
+}
+
+- (void)finishedRecording {
+    [recorder stop];
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setActive:NO error:nil];
+}
+
 
 #pragma mark - video
 -(void) delegateVideo {
