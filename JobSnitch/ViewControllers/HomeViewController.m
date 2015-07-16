@@ -367,6 +367,65 @@ const float kArrowHeight = 61.0;
     [self performSegueWithIdentifier:@"HomeToBugReport" sender:self];
 }
 
+-(void) delegateConnectEmployer {
+    [self ValidateEmployer];
+}
+
+- (void) ValidateEmployer {
+    // check empty fields
+    NSString *message = @"Please fill in the fields and try logging in again.";
+    if ( !self.lowerView.oEmailText.text.length)
+    {
+        [self createWarningView:message];
+        return ;
+    }
+    if ( !self.lowerView.oPasswordText.text.length)
+    {
+        [self createWarningView:message];
+        return ;
+    }
+    if (![self NSStringIsValidEmail:self.lowerView.oEmailText.text])
+    {
+        message = @"Email address not valid";
+        [self createWarningView:message];
+        return ;
+    }
+    [self processLoginEmployer];
+}
+
+-(void) processLoginEmployer {
+    [self performSegueWithIdentifier:@"HomeToEmployer" sender:self];
+}
+
+-(void) delegateConnectEmployee {
+    [self ValidateEmployee];
+}
+
+- (void) ValidateEmployee {
+    // check empty fields
+    NSString *message = @"Please fill in the fields and try logging in again.";
+    if ( !self.upperView.oEmailText.text.length)
+    {
+        [self createWarningView:message];
+        return ;
+    }
+    if ( !self.upperView.oPasswordText.text.length)
+    {
+        [self createWarningView:message];
+        return ;
+    }
+    if (![self NSStringIsValidEmail:self.upperView.oEmailText.text])
+    {
+        message = @"Email address not valid";
+        [self createWarningView:message];
+        return ;
+    }
+    [self processLoginEmployee];
+}
+
+-(void) processLoginEmployee {
+    [self performSegueWithIdentifier:@"HomeToEmployee" sender:self];
+}
 
 #pragma mark - other
 - (void)didReceiveMemoryWarning {

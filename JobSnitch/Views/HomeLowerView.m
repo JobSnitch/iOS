@@ -32,6 +32,7 @@
 }
 
 - (IBAction)actionConnect:(id)sender {
+    [self.parent delegateConnectEmployer];
 }
 
 

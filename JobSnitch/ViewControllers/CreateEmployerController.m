@@ -144,8 +144,42 @@ const float kMagicHeight2 = 764.0;
 }
 
 - (IBAction)actionCreateEmployer:(id)sender {
+    [self ValidateAndCreate];
+}
+
+-(void) ValidateAndCreate {
+    // check empty fields
+    NSString *message = @"Please fill in the required fields and try again.";
+    if ( !self.oTopViewReal.oUsernameField.text.length)
+    {
+        [self createWarningView:message];
+        return ;
+    }
+    if ( !self.oTopViewReal.oPasswordField.text.length)
+    {
+        [self createWarningView:message];
+        return ;
+    }
+    if ( !self.oTopViewReal.oEmailField.text.length)
+    {
+        [self createWarningView:message];
+        return ;
+    }
+    if (![self NSStringIsValidEmail:self.oTopViewReal.oEmailField.text])
+    {
+        message = @"Email address not valid";
+        [self createWarningView:message];
+        return ;
+    }
+    if ( !self.oReqBusinessReal.oTextField.text.length)
+    {
+        [self createWarningView:message];
+        return ;
+    }
+    
     [self performSegueWithIdentifier:@"CreateEmpToEmployer" sender:self];
 }
+
 
 #pragma mark - AddItemParent
 -(void) delegateHasAdded {

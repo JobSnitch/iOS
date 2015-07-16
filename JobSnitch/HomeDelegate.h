@@ -17,5 +17,7 @@
 -(void) delegateLoginFacebook;
 -(void) delegateCreateJSeeker;
 -(void) delegateCreateEmployer;
+-(void) delegateConnectEmployer;
+-(void) delegateConnectEmployee;
 
 @end

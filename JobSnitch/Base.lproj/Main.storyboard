@@ -1315,6 +1315,8 @@
                         <segue destination="4xx-VD-rO5" kind="custom" identifier="HomeToContact" customClass="JSCustomSegue" id="dzo-Ft-dq7"/>
                         <segue destination="qia-fG-Csq" kind="custom" identifier="HomeToBugReport" customClass="JSCustomSegue" id="gfU-vB-U1q"/>
                         <segue destination="4gh-Ek-Xt6" kind="custom" identifier="HomeToForgotPassword" customClass="JSCustomSegue" id="Wib-IK-A4s"/>
+                        <segue destination="YmL-ye-Hxo" kind="custom" identifier="HomeToEmployer" customClass="JSCustomSegue" id="59R-ZI-B64"/>
+                        <segue destination="ScD-cj-dcw" kind="custom" identifier="HomeToEmployee" customClass="JSCustomSegue" id="QME-hA-SwO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0JN-Ux-mYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2324,9 +2326,11 @@
         <image name="white_dot_button" width="315" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="QME-hA-SwO"/>
         <segue reference="Gfn-zy-DHQ"/>
-        <segue reference="l2s-Ev-LbX"/>
-        <segue reference="xRe-rR-GlT"/>
-        <segue reference="YeT-cy-ioN"/>
+        <segue reference="dzo-Ft-dq7"/>
+        <segue reference="59R-ZI-B64"/>
+        <segue reference="gfU-vB-U1q"/>
+        <segue reference="MXH-bY-i60"/>
     </inferredMetricsTieBreakers>
 </document>

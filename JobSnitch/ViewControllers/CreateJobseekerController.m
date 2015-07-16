@@ -184,6 +184,39 @@ const float kMagicHeight1 = 1268.0;
 }
 
 - (IBAction)actionCreateJobseeker:(id)sender {
+    [self ValidateAndCreate];
+}
+
+-(void) ValidateAndCreate {
+    // check empty fields
+    NSString *message = @"Please fill in the required fields and try again.";
+    if ( !self.oTopViewReal.oUsernameField.text.length)
+    {
+        [self createWarningView:message];
+        return ;
+    }
+    if ( !self.oTopViewReal.oPasswordField.text.length)
+    {
+        [self createWarningView:message];
+        return ;
+    }
+    if ( !self.oTopViewReal.oEmailField.text.length)
+    {
+        [self createWarningView:message];
+        return ;
+    }
+    if ( !self.oPostalField.text.length)
+    {
+        [self createWarningView:message];
+        return ;
+    }
+    if (![self NSStringIsValidEmail:self.oTopViewReal.oEmailField.text])
+    {
+        message = @"Email address not valid";
+        [self createWarningView:message];
+        return ;
+    }
+    
     [self performSegueWithIdentifier:@"CreateEmpToEmployee" sender:self];
 }
 

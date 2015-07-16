@@ -28,4 +28,7 @@
 
 -(void) setupEmployee;
 -(void) setupEmployeeView;
+
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString;
+-(void) createWarningView:(NSString *)message;
 @end
