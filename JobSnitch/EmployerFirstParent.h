@@ -15,5 +15,6 @@
 - (void)delegateAddIndustry:(id)sender;
 - (void)delegateExpandPosting:(id)sender;
 - (void)delegateApplications:(id)sender;
+- (void)delegateBroadcast:(id)sender;
 
 @end

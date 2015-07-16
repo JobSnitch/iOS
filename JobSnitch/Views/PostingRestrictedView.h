@@ -13,7 +13,7 @@
 
 @interface PostingRestrictedView : UIView
 @property (strong, nonatomic)   UIImageView *oBackgroundImg;
-@property (strong, nonatomic)   UIImageView *oWavesImage;
+@property (strong, nonatomic)   JSEditPostingButton *oWavesButton;
 @property (strong, nonatomic)   UILabel *oTitleLabel;
 @property (strong, nonatomic)   UILabel *oShortLabel;
 @property (strong, nonatomic)   UILabel *oApplicLabel;

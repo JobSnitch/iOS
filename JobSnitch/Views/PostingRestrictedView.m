@@ -35,10 +35,16 @@
     self.oBackgroundImg.image = [UIImage imageNamed:@"posting_compr_back_active"];
     [self addSubview:self.oBackgroundImg];
     
-    self.oWavesImage = [[UIImageView alloc] initWithFrame:CGRectMake(realWidth*0.04 + originX, centerY - 45.0*0.5 - 2.0, 45.0, 45.0)];
-    self.oWavesImage.image = [UIImage imageNamed:@"radio_waves_strong"];
-    [self addSubview:self.oWavesImage];
-    
+//    self.oWavesImage = [[UIImageView alloc] initWithFrame:CGRectMake(realWidth*0.04 + originX, centerY - 45.0*0.5 - 2.0, 45.0, 45.0)];
+//    self.oWavesImage.image = [UIImage imageNamed:@"radio_waves_strong"];
+//    [self addSubview:self.oWavesImage];
+
+    self.oWavesButton = [JSEditPostingButton buttonWithType: UIButtonTypeCustom];
+    [self.oWavesButton setFrame:CGRectMake(realWidth*0.04 + originX, centerY - 45.0*0.5 - 2.0, 45.0, 45.0)];
+    [self.oWavesButton addTarget:self action:@selector(actionBroadcast:) forControlEvents:UIControlEventTouchUpInside];
+    [self.oWavesButton setImage:[UIImage imageNamed:@"radio_waves_strong"] forState:UIControlStateNormal];
+    [self addSubview: self.oWavesButton];
+
     NSDictionary *text1Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Black" size:15],
                                      NSForegroundColorAttributeName: [UIColor whiteColor]};
     NSDictionary *text2Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:12],
@@ -86,6 +92,10 @@
 
 - (void)actionApplications:(id)sender {
     [self.parent delegateApplications:sender];
+}
+
+- (void)actionBroadcast:(id)sender {
+    [self.parent delegateBroadcast:sender];
 }
 
 -(void) postData: (PostingRecord *)currPosting {

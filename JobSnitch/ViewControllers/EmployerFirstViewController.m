@@ -464,6 +464,10 @@
     [super showIndustryPicker];
 }
 
+- (void)delegateBroadcast:(id)sender {
+    
+}
+
 #pragma mark - show applications
 -(void) delegateApplications:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
