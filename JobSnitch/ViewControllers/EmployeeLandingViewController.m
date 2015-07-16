@@ -54,6 +54,11 @@
 
 -(void) setupHeader {
     self.employeeHeaderView.oTopImage.image = [UIImage imageNamed:self.currentEmployee.imageName];
+    UIImage *avatarImage = [self getAvatarPhoto];
+    if (avatarImage) {
+        self.employeeHeaderView.oTopImage.image = avatarImage;
+    }
+
     self.employeeHeaderView.oNameLabel.text = self.currentEmployee.name;
 }
 

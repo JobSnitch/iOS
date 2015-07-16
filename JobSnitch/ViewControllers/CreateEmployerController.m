@@ -12,7 +12,7 @@
 #import "NewInfoPopupParent.h"
 #import "NewInfoPopupView.h"
 
-@interface CreateEmployerController () <UITableViewDelegate, UITableViewDataSource, NewInfoPopupParent, AddItemParent>
+@interface CreateEmployerController () <UITableViewDelegate, UITableViewDataSource, PhotoDelegate, NewInfoPopupParent, AddItemParent>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIView *oTopView;
 @property (weak, nonatomic) IBOutlet UIView *oReqBusiness;
@@ -82,8 +82,16 @@ const float kMagicHeight2 = 764.0;
     [self.oTopViewReal setFrame:topFrame];
     [self.oTopView addSubview:self.oTopViewReal];
     [self.oTopViewReal setupFields:self];
+    self.oTopViewReal.parent = self;
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UIImage *avatarImage = [super getAvatarPhoto];
+    if (avatarImage && self.oTopViewReal) {
+        [self.oTopViewReal.oPhotoButton setImage:avatarImage forState:UIControlStateNormal];
+    }
+}
 
 -(void) viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -310,6 +318,11 @@ const float kMagicHeight2 = 764.0;
     }
     [self.view setNeedsLayout];
     [self.view layoutIfNeeded];
+}
+
+#pragma mark - PhotoDelegate
+-(void) delegateTakePhoto {
+    [super takePhoto];
 }
 
 #pragma mark - other

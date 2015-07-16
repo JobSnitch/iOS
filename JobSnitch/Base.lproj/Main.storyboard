@@ -2330,11 +2330,11 @@
         <image name="white_dot_button" width="315" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QME-hA-SwO"/>
+        <segue reference="MXH-bY-i60"/>
         <segue reference="Gfn-zy-DHQ"/>
         <segue reference="dzo-Ft-dq7"/>
         <segue reference="gfU-vB-U1q"/>
-        <segue reference="MXH-bY-i60"/>
         <segue reference="omh-D5-lpg"/>
+        <segue reference="d4x-Ge-YO2"/>
     </inferredMetricsTieBreakers>
 </document>

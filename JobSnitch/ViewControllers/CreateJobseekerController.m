@@ -10,7 +10,7 @@
 #import "CreateTopView.h"
 #import "JSPickerView.h"
 
-@interface CreateJobseekerController () <UITableViewDelegate, UITableViewDataSource>
+@interface CreateJobseekerController () <UITableViewDelegate, UITableViewDataSource, PhotoDelegate>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIView *oTopView;
@@ -80,12 +80,18 @@ const float kMagicHeight1 = 1268.0;
     [self.oTopView addSubview:self.oTopViewReal];
     
     [self.oTopViewReal setupFields:self];
+    self.oTopViewReal.parent = self;
     // overwrite
     self.oTopViewReal.oPhoneField.returnKeyType = UIReturnKeyNext;
 }
 
 -(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self customizeSettings:self];
+    UIImage *avatarImage = [super getAvatarPhoto];
+    if (avatarImage && self.oTopViewReal) {
+        [self.oTopViewReal.oPhotoButton setImage:avatarImage forState:UIControlStateNormal];
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -381,6 +387,11 @@ const float kMagicHeight1 = 1268.0;
     }
     [self.view setNeedsLayout];
     [self.view layoutIfNeeded];
+}
+
+#pragma mark - PhotoDelegate
+-(void) delegateTakePhoto {
+    [super takePhoto];
 }
 
 #pragma mark - other

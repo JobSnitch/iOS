@@ -62,6 +62,10 @@
 
 -(void) setupHeader {
     self.oEmployerName.text = self.currentEmployer.name;
+    UIImage *avatarImage = [self getAvatarPhoto];
+    if (avatarImage) {
+        self.oSmallImage.image = avatarImage;
+    }
 }
 
 -(void) setupBusinessViewFor:(BusinessRecord *)currBusiness {

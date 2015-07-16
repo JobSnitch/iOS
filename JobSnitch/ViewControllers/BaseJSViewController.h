@@ -33,4 +33,8 @@
 
 -(BOOL) NSStringIsValidEmail:(NSString *)checkString;
 -(void) createWarningView:(NSString *)message;
+
+-(void) takePhoto;
+-(UIImage *) getAvatarPhoto;
+
 @end

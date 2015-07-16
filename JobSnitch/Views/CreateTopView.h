@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoDelegate.h"
 
 @interface CreateTopView : UIView
 @property (weak, nonatomic) IBOutlet UIButton *oPhotoButton;
@@ -14,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *oPasswordField;
 @property (weak, nonatomic) IBOutlet UITextField *oEmailField;
 @property (weak, nonatomic) IBOutlet UITextField *oPhoneField;
+
+@property (assign) id<PhotoDelegate> parent;         // the parent controller implements this
 
 -(void) setupFields:(id) sender;
 @end

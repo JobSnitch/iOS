@@ -9,8 +9,9 @@
 #import "BaseJSViewController.h"
 #import "JSCustomUnwindSegue.h"
 #import "JSPickerView.h"
+@import MobileCoreServices;
 
-@interface BaseJSViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface BaseJSViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) JSPickerView * jobtypePicker;
 @property (strong, nonatomic) JSPickerView * industryPicker;
 @property (nonatomic)       CGFloat screenWidth;
@@ -305,6 +306,71 @@
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
     }
+}
+
+#pragma mark - photos
+-(void) takePhoto {
+    [self startCameraControllerFromViewController: self usingDelegate: self];
+}
+
+// presents the UIImagePickerController for accepting a newly-captured photo
+- (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
+                                   usingDelegate: (id <UIImagePickerControllerDelegate,
+                                                   UINavigationControllerDelegate>) delegate {
+    
+    if ((delegate == nil) || (controller == nil))
+        return NO;
+    
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera] == YES) {
+        cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+    } else if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeSavedPhotosAlbum] == YES) {
+        cameraUI.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    } else {
+        cameraUI = nil;
+        return NO;
+    }
+    
+    // Displays a control that allows the user to choose movie capture
+    cameraUI.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+    
+    // Hides the controls for moving & scaling pictures, or for trimming movies.
+    cameraUI.allowsEditing = NO;
+    
+    cameraUI.delegate = delegate;
+    
+    [controller presentViewController:cameraUI animated:YES completion:nil];
+    return YES;
+}
+
+- (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
+    
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    
+    // Handle a movie capture
+    if (CFStringCompare ((__bridge_retained CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo) {
+        
+        UIImage *picture = [info objectForKey:UIImagePickerControllerOriginalImage];
+        
+        NSData *photoData = UIImageJPEGRepresentation(picture, 1.0);
+        
+        NSString *photoName = @"JSPhoto.JPG";
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDir = [paths objectAtIndex:0];
+        NSString *photoPath = [documentsDir stringByAppendingPathComponent:photoName];
+        
+        [photoData writeToFile:photoPath atomically:YES];        
+    }
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+-(UIImage *) getAvatarPhoto {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDir = [paths objectAtIndex:0];
+    NSString *photoName = @"JSPhoto.JPG";
+    NSString *photoPath = [documentsDir stringByAppendingPathComponent:photoName];
+    UIImage *theImage = [UIImage imageWithContentsOfFile:photoPath];
+    return theImage;
 }
 
 

@@ -147,6 +147,10 @@
 -(void) setupHeader {
     self.mainView.oTopImage.image = [UIImage imageNamed:self.currentEmployer.imageName];
     self.mainView.oNameLabel.text = self.currentEmployer.name;
+    UIImage *avatarImage = [self getAvatarPhoto];
+    if (avatarImage) {
+        self.mainView.oTopImage.image = avatarImage;
+    }
 }
 
 -(void) setupScrollView {

@@ -89,6 +89,10 @@ const float kMagicHeightS = 595.0;
 -(void) setupHeader {
     self.employeeHeaderView.oTopImage.image = [UIImage imageNamed:self.currentEmployee.imageName];
     self.employeeHeaderView.oNameLabel.text = self.currentEmployee.name;
+    UIImage *avatarImage = [self getAvatarPhoto];
+    if (avatarImage) {
+        self.employeeHeaderView.oTopImage.image = avatarImage;
+    }
 }
 
 #pragma mark - actions

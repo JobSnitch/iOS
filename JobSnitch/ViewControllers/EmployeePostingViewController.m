@@ -130,6 +130,10 @@
 
 -(void) setupHeader {
     self.oEmployeeName.text = self.currentEmployee.name;
+    UIImage *avatarImage = [self getAvatarPhoto];
+    if (avatarImage) {
+        self.oSmallImage.image = avatarImage;
+    }
 }
 
 -(void) setupCollection {

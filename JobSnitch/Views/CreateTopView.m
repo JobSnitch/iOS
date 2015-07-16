@@ -29,7 +29,7 @@
 }
 
 - (IBAction)actionPhoto:(id)sender {
-    NSLog(@"photo");
+    [self.parent delegateTakePhoto];
 }
 
 @end
