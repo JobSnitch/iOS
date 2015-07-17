@@ -11,4 +11,5 @@
 
 @interface HomeViewController : BaseJSViewController <HomeDelegate, UITextFieldDelegate>
 
+-(void) doWhenInternetIsPresent;
 @end

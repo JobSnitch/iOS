@@ -7,15 +7,19 @@
 //
 
 #import "AppDelegate.h"
+#import "HomeViewController.h"
+#import "JSSessionManager.h"
 
-@interface AppDelegate ()
-
+@interface AppDelegate () <UIAlertViewDelegate>
+@property (nonatomic) BOOL alertPresent;
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    _alertPresent = FALSE;
+    [[JSSessionManager sharedManager] monitorReachability];
     [self setupAppearance];
     return YES;
 }
@@ -45,6 +49,33 @@
 -(void)setupAppearance {
     [[UISlider appearance] setMaximumTrackTintColor:[UIColor redColor] ];           // if CGContextPath bug, comment this
     [[UISlider appearance] setMinimumTrackTintColor:[UIColor redColor] ];
+}
+
+#pragma mark - internet
+-(void) internetLost {
+    if (_alertPresent) return;            // don't want multiple
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert: no internet connection."
+                                                    message:@"Please turn on internet connection to get full app functionality."
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    _alertPresent = TRUE;
+    [alert show];
+    return;
+}
+
+-(void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    _alertPresent = FALSE;
+}
+
+-(void) internetReconnect {
+    if ([self.window.rootViewController isKindOfClass:[HomeViewController class]]) {
+        HomeViewController * rootController = (HomeViewController *) self.window.rootViewController;
+        if (rootController.isViewLoaded && rootController.view.window) {
+            // viewController is visible
+            [rootController doWhenInternetIsPresent];
+        }
+    }
 }
 
 @end

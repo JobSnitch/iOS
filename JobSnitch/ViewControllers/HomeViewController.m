@@ -427,6 +427,11 @@ const float kArrowHeight = 61.0;
     [self performSegueWithIdentifier:@"HomeToEmployee" sender:self];
 }
 
+#pragma mark - network
+-(void) doWhenInternetIsPresent {
+    
+}
+
 #pragma mark - other
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

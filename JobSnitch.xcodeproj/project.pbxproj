@@ -28,6 +28,7 @@
 		C87138CD1B4C096D009BD279 /* Lato-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C87138CA1B4C096D009BD279 /* Lato-Regular.otf */; };
 		C87138CE1B4C096D009BD279 /* Lato-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C87138CB1B4C096D009BD279 /* Lato-Bold.otf */; };
 		C87138CF1B4C096D009BD279 /* Lato-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = C87138CC1B4C096D009BD279 /* Lato-Black.otf */; };
+		C89293301B590F3F0027F8B6 /* JSSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C892932F1B590F3F0027F8B6 /* JSSessionManager.m */; };
 		C893BF2F1B4FAAA700217402 /* EmployerTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF2E1B4FAAA700217402 /* EmployerTabBarController.m */; };
 		C893BF321B4FB64900217402 /* EmployerFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF311B4FB64900217402 /* EmployerFirstViewController.m */; };
 		C893BF351B4FB66300217402 /* EmployerSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C893BF341B4FB66300217402 /* EmployerSecondViewController.m */; };
@@ -125,6 +126,8 @@
 		C87138CA1B4C096D009BD279 /* Lato-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.otf"; path = "Fonts/Lato-Regular.otf"; sourceTree = "<group>"; };
 		C87138CB1B4C096D009BD279 /* Lato-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.otf"; path = "Fonts/Lato-Bold.otf"; sourceTree = "<group>"; };
 		C87138CC1B4C096D009BD279 /* Lato-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.otf"; path = "Fonts/Lato-Black.otf"; sourceTree = "<group>"; };
+		C892932E1B590F3F0027F8B6 /* JSSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSSessionManager.h; sourceTree = "<group>"; };
+		C892932F1B590F3F0027F8B6 /* JSSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSSessionManager.m; sourceTree = "<group>"; };
 		C893BF2D1B4FAAA700217402 /* EmployerTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployerTabBarController.h; path = ViewControllers/EmployerTabBarController.h; sourceTree = "<group>"; };
 		C893BF2E1B4FAAA700217402 /* EmployerTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployerTabBarController.m; path = ViewControllers/EmployerTabBarController.m; sourceTree = "<group>"; };
 		C893BF301B4FB64900217402 /* EmployerFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployerFirstViewController.h; path = ViewControllers/EmployerFirstViewController.h; sourceTree = "<group>"; };
@@ -277,6 +280,15 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		C892932D1B590EF60027F8B6 /* 015 Network */ = {
+			isa = PBXGroup;
+			children = (
+				C892932E1B590F3F0027F8B6 /* JSSessionManager.h */,
+				C892932F1B590F3F0027F8B6 /* JSSessionManager.m */,
+			);
+			name = "015 Network";
+			sourceTree = "<group>";
+		};
 		C893BF391B4FB8F200217402 /* 08 DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +331,7 @@
 			children = (
 				C8A08BF01B4BD73000B2C703 /* 00 Config */,
 				C8A08BF81B4BDDB200B2C703 /* 01 Global */,
+				C892932D1B590EF60027F8B6 /* 015 Network */,
 				C8A08BEF1B4BD66B00B2C703 /* 02 ViewControllers */,
 				C8A08BFC1B4BEC4400B2C703 /* 03 Views */,
 				C8DA45E91B4D071B0041EB23 /* 04 Protocols */,
@@ -715,6 +728,7 @@
 				C893BF4F1B4FFA0E00217402 /* EmployerFirstView.m in Sources */,
 				C893BF2F1B4FAAA700217402 /* EmployerTabBarController.m in Sources */,
 				C8DA45E81B4D03CA0041EB23 /* CreateEmployerController.m in Sources */,
+				C89293301B590F3F0027F8B6 /* JSSessionManager.m in Sources */,
 				C893BF471B4FE05C00217402 /* PostingRecord.m in Sources */,
 				C800D3741B4E901700E81F69 /* ForgotPasswordController.m in Sources */,
 				C8D12AD01B4E561300DCFC83 /* BugReportViewController.m in Sources */,

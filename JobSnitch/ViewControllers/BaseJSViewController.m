@@ -9,6 +9,7 @@
 #import "BaseJSViewController.h"
 #import "JSCustomUnwindSegue.h"
 #import "JSPickerView.h"
+#import "JSSessionManager.h"
 @import MobileCoreServices;
 
 @interface BaseJSViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -74,11 +75,12 @@
     self.jobtypePicker.picker.dataSource = self;
     self.jobtypePicker.picker.delegate = self;
     
-    self.allJobTypes = @[
-                         @"Full-time",
-                         @"Freelance",
-                         @"Part-time",
-                         ];
+    [self downloadJobCategories];
+//    self.allJobTypes = @[
+//                         @"Full-time",
+//                         @"Freelance",
+//                         @"Part-time",
+//                         ];
 }
 
 - (void) setupIndustryPicker {
@@ -114,11 +116,12 @@
     self.jobtypePicker.picker.dataSource = self;
     self.jobtypePicker.picker.delegate = self;
     
-    self.allJobTypes = @[
-                         @"Full-time",
-                         @"Freelance",
-                         @"Part-time",
-                         ];
+    [self downloadJobCategories];
+//    self.allJobTypes = @[
+//                         @"Full-time",
+//                         @"Freelance",
+//                         @"Part-time",
+//                         ];
 }
 
 -(void) setupIndustryPickerOffset:(CGFloat) offset {
@@ -373,5 +376,25 @@
     return theImage;
 }
 
+#pragma mark - web services
+-(void) downloadJobCategories {
+    [[JSSessionManager sharedManager] getJobCategoriesWithCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                NSArray * resArray = [[JSSessionManager sharedManager] processJobCategoriesResults:results];
+                [self useJobCategories:resArray];
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetAllJobCategories"];
+        }
+    }];
+}
+
+-(void) useJobCategories:(NSArray *) jobArray {
+    if (jobArray && jobArray.count) {
+        self.allJobTypes = [jobArray valueForKey:@"EnglishName"];
+        [self.jobtypePicker.picker reloadAllComponents];
+    }
+}
 
 @end
