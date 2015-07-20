@@ -7,7 +7,10 @@
 //
 
 #import "BaseJSViewController.h"
+#import "EmployeeTabBarDelegate.h"
 
 @interface EmployeeOptionsViewController : BaseJSViewController
+
+@property (assign) id<EmployeeTabBarDelegate> parent;
 
 @end

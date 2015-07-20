@@ -194,6 +194,7 @@
 		C8B0DEFF1B539451009F6EC6 /* EmployerFirstParent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmployerFirstParent.h; sourceTree = "<group>"; };
 		C8BE60551B54012100527469 /* ApplicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationsViewController.h; path = ViewControllers/ApplicationsViewController.h; sourceTree = "<group>"; };
 		C8BE60561B54012100527469 /* ApplicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationsViewController.m; path = ViewControllers/ApplicationsViewController.m; sourceTree = "<group>"; };
+		C8C11AAA1B5D33F400C19E9A /* EmployeeTabBarDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmployeeTabBarDelegate.h; sourceTree = "<group>"; };
 		C8D12AC81B4E55A400DCFC83 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = ViewControllers/AboutViewController.h; sourceTree = "<group>"; };
 		C8D12AC91B4E55A400DCFC83 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = ViewControllers/AboutViewController.m; sourceTree = "<group>"; };
 		C8D12ACB1B4E55C100DCFC83 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactViewController.h; path = ViewControllers/ContactViewController.h; sourceTree = "<group>"; };
@@ -543,6 +544,7 @@
 				C8EC3C671B4EEABF0003F618 /* NewInfoPopupParent.h */,
 				C8B0DEFF1B539451009F6EC6 /* EmployerFirstParent.h */,
 				C81F40D11B57EA1600500F9A /* PhotoDelegate.h */,
+				C8C11AAA1B5D33F400C19E9A /* EmployeeTabBarDelegate.h */,
 			);
 			name = "04 Protocols";
 			sourceTree = "<group>";

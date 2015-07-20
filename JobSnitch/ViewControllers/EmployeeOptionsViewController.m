@@ -50,6 +50,7 @@
 
 #pragma mark - actions
 - (IBAction)actionToggle:(id)sender {
+    [self.parent parentReplaceFirst:self.checkValue];
 }
 
 - (IBAction)actionMap:(id)sender {

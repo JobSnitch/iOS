@@ -17,6 +17,7 @@
 @property (nonatomic)       CLLocationCoordinate2D coords;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation * myLocation;
+@property (nonatomic) int   countUpdates;
 
 @end
 
@@ -64,6 +65,7 @@
 
 #pragma mark - CLLocationManagerDelegate
 - (void) initLocation {
+    self.countUpdates = 0;
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
@@ -79,14 +81,13 @@
     NSLog(@"Failed to Get Your Location");
 }
 
-static int countUpdates = 0;
 - (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     self.myLocation = nil;
     if (locations && locations.count) {
         self.myLocation = [locations[0] copy];
         [self.locationManager stopUpdatingLocation];
-        if (!countUpdates) {
-            countUpdates = 1;
+        if (!self.countUpdates) {
+            self.countUpdates = 1;
             self.coords = self.myLocation.coordinate;
             [self setupShowMap];
         }

@@ -951,26 +951,11 @@
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCS-vW-FXL">
-                                        <rect key="frame" x="8" y="8" width="40" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="JzO-6a-hEp"/>
-                                            <constraint firstAttribute="height" constant="40" id="ZCG-PO-85i"/>
-                                        </constraints>
-                                        <state key="normal" image="back_arrow_red">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="actionBack:" destination="icd-1O-BJx" eventType="touchUpInside" id="Kne-Xa-ncQ"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Hw1-gE-Yaw" secondAttribute="trailing" constant="8" id="0et-Jh-rkb"/>
-                                    <constraint firstItem="fCS-vW-FXL" firstAttribute="leading" secondItem="8Db-sa-t21" secondAttribute="leading" constant="8" id="6nI-cj-cAS"/>
                                     <constraint firstAttribute="centerY" secondItem="wLX-al-Fn7" secondAttribute="centerY" id="76b-Lb-wQY"/>
-                                    <constraint firstItem="fCS-vW-FXL" firstAttribute="top" secondItem="8Db-sa-t21" secondAttribute="top" constant="8" id="9h1-o3-VxA"/>
                                     <constraint firstAttribute="trailing" secondItem="wLX-al-Fn7" secondAttribute="trailing" constant="140" id="Jcu-0d-ZGx"/>
                                     <constraint firstItem="Hw1-gE-Yaw" firstAttribute="top" secondItem="8Db-sa-t21" secondAttribute="top" constant="17" id="MZ2-PT-jhP"/>
                                     <constraint firstItem="Hw1-gE-Yaw" firstAttribute="leading" secondItem="wLX-al-Fn7" secondAttribute="trailing" constant="4" id="g1t-OO-4YM"/>
