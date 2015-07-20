@@ -79,15 +79,18 @@
 
 #pragma mark - HomeDelegate
 -(void) delegateShowAbout {
-    [self performSegueWithIdentifier:@"InfoToAbout" sender:self];
+    [self GoToViewController:@"AboutViewController"];
+//    [self performSegueWithIdentifier:@"InfoToAbout" sender:self];
 }
 
 -(void) delegateShowContact {
-    [self performSegueWithIdentifier:@"InfoToContact" sender:self];
+    [self GoToViewController:@"ContactViewController"];
+//    [self performSegueWithIdentifier:@"InfoToContact" sender:self];
 }
 
 -(void) delegateShowBugRep {
-    [self performSegueWithIdentifier:@"InfoToBugReport" sender:self];
+    [self GoToViewController:@"BugReportViewController"];
+//    [self performSegueWithIdentifier:@"InfoToBugReport" sender:self];
 }
 
 #pragma mark - other

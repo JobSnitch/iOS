@@ -40,4 +40,5 @@
 -(void) downloadJobCategories;
 -(void) useJobCategories:(NSArray *) jobArray;
 
+-(void)GoToViewController:(NSString *)viewControllerName;
 @end

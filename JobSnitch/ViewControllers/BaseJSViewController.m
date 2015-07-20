@@ -57,6 +57,12 @@
     return segue;
 }
 
+-(void)GoToViewController:(NSString *)viewControllerName{
+    UIStoryboard *reflectionStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *viewController = [reflectionStoryboard instantiateViewControllerWithIdentifier:viewControllerName];
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
 #pragma mark - pickers
 -(void) bringPickersToFront {
     if (self.jobtypePicker) {

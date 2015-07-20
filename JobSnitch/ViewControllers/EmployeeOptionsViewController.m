@@ -9,29 +9,94 @@
 #import "EmployeeOptionsViewController.h"
 
 @interface EmployeeOptionsViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *oToggleButton;
+@property (weak, nonatomic) IBOutlet UIImageView *oTopImage;
+@property (weak, nonatomic) IBOutlet UILabel *oNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *oBackImage;
+@property (weak, nonatomic) IBOutlet UIImageView *oCheckMap;
+@property (weak, nonatomic) IBOutlet UIImageView *oCheckList;
+@property (weak, nonatomic) IBOutlet UIImageView *oCheckSwipe;
 
+@property (nonatomic) int   checkValue;
 @end
 
 @implementation EmployeeOptionsViewController
-
+#pragma mark - init
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self setupEmployee];
+    [self setupView];
 }
 
+-(void) setupHeader {
+    self.oTopImage.image = [UIImage imageNamed:self.currentEmployee.imageName];
+    self.oNameLabel.text = self.currentEmployee.name;
+    UIImage *avatarImage = [self getAvatarPhoto];
+    if (avatarImage) {
+        self.oTopImage.image = avatarImage;
+    }
+}
+
+-(void) setupView {
+    [self setupHeader];
+    self.oBackImage.image = [UIImage imageNamed:@"gradient_red_back_sq"];
+    [self.oCheckMap setHidden:true];
+    [self.oCheckList setHidden:true];
+    [self.oCheckSwipe setHidden:true];
+    
+    [self actionMap:nil];                   // change when real data
+}
+
+#pragma mark - actions
+- (IBAction)actionToggle:(id)sender {
+}
+
+- (IBAction)actionMap:(id)sender {
+    self.checkValue = 0;
+    [self updateChecks];
+}
+
+- (IBAction)actionList:(id)sender {
+    self.checkValue = 1;
+    [self updateChecks];
+}
+
+- (IBAction)actionSwipe:(id)sender {
+    self.checkValue = 2;
+    [self updateChecks];
+}
+
+-(void)updateChecks {
+    switch (self.checkValue) {
+        case -1:
+            [self.oCheckMap setHidden:true];
+            [self.oCheckList setHidden:true];
+            [self.oCheckSwipe setHidden:true];
+            break;
+        case 0:
+            [self.oCheckMap setHidden:false];
+            [self.oCheckList setHidden:true];
+            [self.oCheckSwipe setHidden:true];
+            break;
+        case 1:
+            [self.oCheckMap setHidden:true];
+            [self.oCheckList setHidden:false];
+            [self.oCheckSwipe setHidden:true];
+            break;
+        case 2:
+            [self.oCheckMap setHidden:true];
+            [self.oCheckList setHidden:true];
+            [self.oCheckSwipe setHidden:false];
+            break;
+        default:
+            break;
+    }}
+
+#pragma mark - other
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
