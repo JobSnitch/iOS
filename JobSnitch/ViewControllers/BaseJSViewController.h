@@ -37,4 +37,7 @@
 -(void) takePhoto;
 -(UIImage *) getAvatarPhoto;
 
+-(void) downloadJobCategories;
+-(void) useJobCategories:(NSArray *) jobArray;
+
 @end

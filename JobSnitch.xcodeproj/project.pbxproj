@@ -19,6 +19,8 @@
 		C821333E1B564F2E00776DB2 /* PostingCollectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C821333D1B564F2E00776DB2 /* PostingCollectViewCell.xib */; };
 		C82F45751B54207A0071E985 /* ApplicationCollectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C82F45741B54207A0071E985 /* ApplicationCollectViewCell.m */; };
 		C82F45771B5420C10071E985 /* ApplicationCollectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C82F45761B5420C10071E985 /* ApplicationCollectViewCell.xib */; };
+		C830C4A91B5CD9A600E802B4 /* EmployerFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C830C4A81B5CD9A600E802B4 /* EmployerFilterViewController.m */; };
+		C830C4AC1B5CF96C00E802B4 /* JSDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C830C4AB1B5CF96C00E802B4 /* JSDatePicker.m */; };
 		C8400A961B4D1ABE00EBDE88 /* CreateTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8400A951B4D1ABE00EBDE88 /* CreateTopView.m */; };
 		C8400A9A1B4D1D5000EBDE88 /* CreateTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8400A991B4D1D5000EBDE88 /* CreateTopView.xib */; };
 		C843D2111B55740F00D3BF97 /* EmployeeRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C843D2101B55740F00D3BF97 /* EmployeeRecord.m */; };
@@ -113,6 +115,10 @@
 		C82F45731B54207A0071E985 /* ApplicationCollectViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationCollectViewCell.h; path = Views/ApplicationCollectViewCell.h; sourceTree = "<group>"; };
 		C82F45741B54207A0071E985 /* ApplicationCollectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationCollectViewCell.m; path = Views/ApplicationCollectViewCell.m; sourceTree = "<group>"; };
 		C82F45761B5420C10071E985 /* ApplicationCollectViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplicationCollectViewCell.xib; sourceTree = "<group>"; };
+		C830C4A71B5CD9A600E802B4 /* EmployerFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployerFilterViewController.h; path = ViewControllers/EmployerFilterViewController.h; sourceTree = "<group>"; };
+		C830C4A81B5CD9A600E802B4 /* EmployerFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployerFilterViewController.m; path = ViewControllers/EmployerFilterViewController.m; sourceTree = "<group>"; };
+		C830C4AA1B5CF96C00E802B4 /* JSDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDatePicker.h; path = Views/JSDatePicker.h; sourceTree = "<group>"; };
+		C830C4AB1B5CF96C00E802B4 /* JSDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDatePicker.m; path = Views/JSDatePicker.m; sourceTree = "<group>"; };
 		C8400A941B4D1ABE00EBDE88 /* CreateTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateTopView.h; path = Views/CreateTopView.h; sourceTree = "<group>"; };
 		C8400A951B4D1ABE00EBDE88 /* CreateTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateTopView.m; path = Views/CreateTopView.m; sourceTree = "<group>"; };
 		C8400A991B4D1D5000EBDE88 /* CreateTopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTopView.xib; sourceTree = "<group>"; };
@@ -415,6 +421,8 @@
 				C89EC1321B556D23008F3040 /* EmployeeSettingsViewController.m */,
 				C82133371B5644F500776DB2 /* EmployeePostingViewController.h */,
 				C82133381B5644F500776DB2 /* EmployeePostingViewController.m */,
+				C830C4A71B5CD9A600E802B4 /* EmployerFilterViewController.h */,
+				C830C4A81B5CD9A600E802B4 /* EmployerFilterViewController.m */,
 			);
 			name = "02 ViewControllers";
 			sourceTree = "<group>";
@@ -511,6 +519,8 @@
 				C8DEFD1E1B555514007C0CBD /* ContactPopupView.m */,
 				C821333B1B564E1F00776DB2 /* PostingCollectViewCell.h */,
 				C821333A1B564E1F00776DB2 /* PostingCollectViewCell.m */,
+				C830C4AA1B5CF96C00E802B4 /* JSDatePicker.h */,
+				C830C4AB1B5CF96C00E802B4 /* JSDatePicker.m */,
 			);
 			name = "03 Views";
 			sourceTree = "<group>";
@@ -713,11 +723,13 @@
 				C8DA45DC1B4D02890041EB23 /* JSCustomUnwindSegue.m in Sources */,
 				C89F1EBA1B4D620800692DAD /* AddItemView.m in Sources */,
 				C89EC1331B556D23008F3040 /* EmployeeSettingsViewController.m in Sources */,
+				C830C4A91B5CD9A600E802B4 /* EmployerFilterViewController.m in Sources */,
 				C89EC1241B55676D008F3040 /* EmployeeTabBarController.m in Sources */,
 				C893BF3F1B4FC16400217402 /* BusinessRecord.m in Sources */,
 				C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */,
 				C893BF351B4FB66300217402 /* EmployerSecondViewController.m in Sources */,
 				C8EC3C641B4EE6390003F618 /* NewInfoPopupView.m in Sources */,
+				C830C4AC1B5CF96C00E802B4 /* JSDatePicker.m in Sources */,
 				C82133391B5644F500776DB2 /* EmployeePostingViewController.m in Sources */,
 				C843D2141B55754400D3BF97 /* EmployeeFirstView.m in Sources */,
 				C8D5F3981B5164BD0078E3A8 /* PostingExpandedView.m in Sources */,

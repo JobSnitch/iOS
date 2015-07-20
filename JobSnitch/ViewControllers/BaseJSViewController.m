@@ -59,8 +59,12 @@
 
 #pragma mark - pickers
 -(void) bringPickersToFront {
-    [self.view bringSubviewToFront:self.jobtypePicker];
-    [self.view bringSubviewToFront:self.industryPicker];
+    if (self.jobtypePicker) {
+        [self.view bringSubviewToFront:self.jobtypePicker];
+    }
+    if (self.industryPicker) {
+        [self.view bringSubviewToFront:self.industryPicker];
+    }
 }
 
 - (void) setupJobtypePicker {
@@ -76,11 +80,6 @@
     self.jobtypePicker.picker.delegate = self;
     
     [self downloadJobCategories];
-//    self.allJobTypes = @[
-//                         @"Full-time",
-//                         @"Freelance",
-//                         @"Part-time",
-//                         ];
 }
 
 - (void) setupIndustryPicker {

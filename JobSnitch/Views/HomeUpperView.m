@@ -18,6 +18,14 @@
     self.oPasswordText.returnKeyType = UIReturnKeyDone;
     self.oPasswordText.delegate = sender;
     self.oPasswordText.tag = 901;
+
+    NSDictionary *text1Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:14],
+                                     NSForegroundColorAttributeName: [UIColor whiteColor]};
+    NSAttributedString *attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"youremail@mail.com" attributes:text1Attribute];
+    [self.oEmailText setAttributedPlaceholder:attributedPlaceholder];
+    attributedPlaceholder = nil;
+    attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"password" attributes:text1Attribute];
+    [self.oPasswordText setAttributedPlaceholder:attributedPlaceholder];
 }
 
 - (IBAction)actionForgot:(id)sender {
