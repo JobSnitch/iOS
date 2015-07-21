@@ -23,6 +23,7 @@
 -(void) createChildController {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.employerSettingsController = (CreateEmployerController *) [storyboard instantiateViewControllerWithIdentifier:@"CreateEmployerController"];
+    [self.employerSettingsController setupEmployer:self];
     [self addChildViewController:self.employerSettingsController];
     [self.employerSettingsController didMoveToParentViewController:self];
     self.employerSettingsController.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height -49);

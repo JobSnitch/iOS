@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserRecord.h"
 
-@interface EmployeeRecord : NSObject
-@property (nonatomic, strong) NSString * name;
-@property (nonatomic, strong) NSString * imageName;
+@interface EmployeeRecord : UserRecord
 @property (nonatomic, strong) NSArray * postings;
 
 @end

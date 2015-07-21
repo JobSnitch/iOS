@@ -2534,7 +2534,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1500"/>
                     <connections>
+                        <outlet property="oAfternoonSwitch" destination="dxY-0w-sib" id="bIW-Je-wR0"/>
                         <outlet property="oCreateButton" destination="w5C-hG-Eda" id="3vU-Ql-l65"/>
+                        <outlet property="oEveningSwitch" destination="gnC-8W-0V9" id="AN1-ou-hHp"/>
                         <outlet property="oHeightConstraint" destination="lUH-lX-xWW" id="kaW-iw-v0Z"/>
                         <outlet property="oIndustryButton" destination="es5-Pb-y7Y" id="MHF-Pe-Tgh"/>
                         <outlet property="oIndustryHeightConstraint" destination="fX7-d9-1MO" id="eaR-gt-U3Z"/>
@@ -2542,6 +2544,8 @@
                         <outlet property="oJobTypeButton" destination="rpl-DO-KXw" id="98v-9y-rvb"/>
                         <outlet property="oJobTypeHeightConstraint" destination="j86-RY-zT4" id="6xd-sK-vbb"/>
                         <outlet property="oJobTypeTable" destination="6zO-2G-l1K" id="R5g-cK-VmP"/>
+                        <outlet property="oMorningSwitch" destination="DKD-12-JPf" id="cLO-W6-pF1"/>
+                        <outlet property="oNightSwitch" destination="Vy1-kF-gbe" id="RpA-7N-9cZ"/>
                         <outlet property="oPostalField" destination="WgZ-2Q-cRI" id="bh5-Fc-ZXs"/>
                         <outlet property="oProxySlider" destination="a1L-eo-tYk" id="9cj-Mo-6ym"/>
                         <outlet property="oScrollView" destination="5KB-I5-5nc" id="Lk2-8A-g5w"/>

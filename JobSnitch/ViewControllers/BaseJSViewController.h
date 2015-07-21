@@ -37,8 +37,12 @@
 -(void) takePhoto;
 -(UIImage *) getAvatarPhoto;
 
+-(void)GoToViewController:(NSString *)viewControllerName;
+
 -(void) downloadJobCategories;
 -(void) useJobCategories:(NSArray *) jobArray;
 
--(void)GoToViewController:(NSString *)viewControllerName;
+-(void) downloadUserInfo:(NSString *) userID;
+-(void) setupFromUserInfo:(UserRecord *)currUser;
+
 @end

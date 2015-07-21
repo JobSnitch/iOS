@@ -17,4 +17,6 @@
 @property (assign) id<EmployerProfileContainerDelegate> delegate;     // the parent controller implements this
 
 -(void) customizeSettings;
+-(void) setupEmployer:(id) sender;
+
 @end

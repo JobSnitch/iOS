@@ -7,6 +7,7 @@
 //
 
 #import "AFHTTPSessionManager.h"
+#import "UserRecord.h"
 
 @interface JSSessionManager : AFHTTPSessionManager
 
@@ -15,10 +16,13 @@
 - (void) monitorReachability;
 
 - (NSURLSessionDataTask *)getJobCategoriesWithCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
+- (NSURLSessionDataTask *)getUserInfoForUser: (NSString *) user
+                              withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
 
 - (void) firstLevelError:(NSError *)error forService:(NSString *) service;
 - (BOOL) checkResult: (NSDictionary *)results;
 
 
 - (NSArray *) processJobCategoriesResults: (NSDictionary *)results;
+- (UserRecord *) processUserInfoResults: (NSDictionary *)results;
 @end

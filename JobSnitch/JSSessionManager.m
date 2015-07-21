@@ -89,6 +89,16 @@ static BOOL hasBeenDisconnected = FALSE;
     return [self getForService:service withParams:params withCompletion:completion];
 }
 
+- (NSURLSessionDataTask *)getUserInfoForUser: (NSString *) user
+                              withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    
+    NSDictionary *params = nil;
+    NSString *service = [NSString stringWithFormat:@"jobAccount.svc/UserAccount/GetSpecificUser/%@", user];
+    return [self getForService:service withParams:params withCompletion:completion];
+}
+
+
 #pragma mark - general calls
 - (NSURLSessionDataTask *) getForService: (NSString *)service
                               withParams:  (NSDictionary *)params
@@ -134,6 +144,46 @@ static BOOL hasBeenDisconnected = FALSE;
     NSArray *retArray = (NSArray *) results;
     return retArray;
 }
+
+- (UserRecord *) processUserInfoResults: (NSDictionary *)results {
+    UserRecord *retUser = nil;
+    if (results) {
+        retUser = [[UserRecord alloc] init];
+        retUser.Email = [results valueForKey:@"Email"];
+        retUser.FirstName = [results valueForKey:@"FirstName"];
+        retUser.Interests = [results valueForKey:@"Interests"];
+        retUser.LastName = [results valueForKey:@"LastName"];
+        retUser.PostalCode = [results valueForKey:@"PostalCode"];
+        retUser.UserId = [results valueForKey:@"UserId"];
+        NSDictionary *avail = [results valueForKey:@"AvailabilitySchedule"];
+        if (avail) {
+            retUser->availability.MondayAM = [[avail valueForKey:@"MondayAM"] boolValue];
+            retUser->availability.TuesdayAM = [[avail valueForKey:@"TuesdayAM"] boolValue];
+            retUser->availability.WednesdayAM = [[avail valueForKey:@"WednesdayAM"] boolValue];
+            retUser->availability.ThursdayAM = [[avail valueForKey:@"ThursdayAM"] boolValue];
+            retUser->availability.FridayAM = [[avail valueForKey:@"FridayAM"] boolValue];
+            retUser->availability.SaturdayAM = [[avail valueForKey:@"SaturdayAM"] boolValue];
+            retUser->availability.SundayAM = [[avail valueForKey:@"SundayAM"] boolValue];
+            retUser->availability.MondayEvening = [[avail valueForKey:@"MondayEvening"] boolValue];
+            retUser->availability.TuesdayEvening = [[avail valueForKey:@"TuesdayEvening"] boolValue];
+            retUser->availability.WednesdayEvening = [[avail valueForKey:@"WednesdayEvening"] boolValue];
+            retUser->availability.ThursdayEvening = [[avail valueForKey:@"ThursdayEvening"] boolValue];
+            retUser->availability.FridayEvening = [[avail valueForKey:@"FridayEvening"] boolValue];
+            retUser->availability.SaturdayEvening = [[avail valueForKey:@"SaturdayEvening"] boolValue];
+            retUser->availability.SundayEvening = [[avail valueForKey:@"SundayEvening"] boolValue];
+            retUser->availability.MondayPM = [[avail valueForKey:@"MondayPM"] boolValue];
+            retUser->availability.TuesdayPM = [[avail valueForKey:@"TuesdayPM"] boolValue];
+            retUser->availability.WednesdayPM = [[avail valueForKey:@"WednesdayPM"] boolValue];
+            retUser->availability.ThursdayPM = [[avail valueForKey:@"ThursdayPM"] boolValue];
+            retUser->availability.FridayPM = [[avail valueForKey:@"FridayPM"] boolValue];
+            retUser->availability.SaturdayPM = [[avail valueForKey:@"SaturdayPM"] boolValue];
+            retUser->availability.SundayPM = [[avail valueForKey:@"SundayPM"] boolValue];
+        }
+    }
+//    NSLog(@"results: %@", results);
+    return retUser;
+}
+
 
 @end
 

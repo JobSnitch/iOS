@@ -11,6 +11,7 @@
 #import "AddItemView.h"
 #import "NewInfoPopupParent.h"
 #import "NewInfoPopupView.h"
+#import "EmployerRecord.h"
 
 @interface CreateEmployerController () <UITableViewDelegate, UITableViewDataSource, PhotoDelegate, NewInfoPopupParent, AddItemParent>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oWidthConstraint;
@@ -33,6 +34,7 @@
 @property (nonatomic, strong)   NewInfoPopupView *infoPopupView;
 @property (nonatomic, strong)   NSString *infoText;
 @property (nonatomic)   PersonContext myContext;
+@property (nonatomic, strong)   EmployerRecord *currentEmployer;
 
 @end
 
@@ -43,6 +45,7 @@ const float kMagicHeight2 = 764.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _myContext = creationContext;
+    self.currentEmployer = [[EmployerRecord alloc] init];
     [self setupTables];
     [self setupCustomViews];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -125,6 +128,25 @@ const float kMagicHeight2 = 764.0;
     self.oTitleLabel.text = @"Employer Settings";
     [self.oCreateButton setTitle:@"SAVE" forState:UIControlStateNormal];
 }
+
+-(void) setupEmployer:(id) sender {
+    if (sender != self) {               // settings
+        [self downloadUserInfo:@"00f81794-1422-4510-8a52-ba0a92d2c4e5"];
+    }
+}
+
+-(void) setupFromUserInfo:(UserRecord *)currUser {
+    if (currUser.Email) {
+        self.oTopViewReal.oEmailField.text = currUser.Email;
+    }
+    if (currUser.FirstName || currUser.LastName) {                      // my interpretation
+        self.oTopViewReal.oUsernameField.text = [NSString stringWithFormat:@"%@ %@", currUser.FirstName, currUser.LastName];
+    }
+    
+    [self.view setNeedsDisplay];
+}
+
+
 
 #pragma mark - UITextFieldDelegate
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {

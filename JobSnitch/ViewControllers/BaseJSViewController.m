@@ -381,7 +381,7 @@
     return theImage;
 }
 
-#pragma mark - web services
+#pragma mark - GetAllJobCategories
 -(void) downloadJobCategories {
     [[JSSessionManager sharedManager] getJobCategoriesWithCompletion:^(NSDictionary *results, NSError *error) {
         if (results) {
@@ -401,5 +401,28 @@
         [self.jobtypePicker.picker reloadAllComponents];
     }
 }
+
+#pragma mark - GetSpecificUser
+-(void) downloadUserInfo:(NSString *) userID {
+    if (!userID || [userID isEqualToString:@""]) {
+        return;
+    }
+    [[JSSessionManager sharedManager] getUserInfoForUser:userID withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                UserRecord *currUser = [[JSSessionManager sharedManager] processUserInfoResults:results];
+                [self performSelectorOnMainThread:@selector(setupFromUserInfo:) withObject:currUser waitUntilDone:NO];
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetSpecificUser"];
+        }
+    }];
+}
+
+-(void) setupFromUserInfo:(UserRecord *)currUser {
+    
+}
+
+
 
 @end

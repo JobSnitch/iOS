@@ -26,6 +26,10 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oIndustryHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *oTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *oCreateButton;
+@property (weak, nonatomic) IBOutlet UISwitch *oMorningSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *oAfternoonSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *oEveningSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *oNightSwitch;
 
 @property (strong, nonatomic)   CreateTopView *oTopViewReal;
 @property (nonatomic, strong)   UILabel * sliderLabel;
@@ -44,6 +48,7 @@ const float kMagicHeight1 = 1268.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _myContext = creationContext;
+    self.currentEmployee = [[EmployeeRecord alloc] init];
     [self setupTables];
     [self setupCustomViews];
     [self setupSlider];
@@ -125,6 +130,30 @@ const float kMagicHeight1 = 1268.0;
         [super setupIndustryPickerOffset:49.0];
     }
 }
+
+-(void) setupEmployee:(id) sender {
+    if (sender != self) {               // settings
+        [self downloadUserInfo:@"00f81794-1422-4510-8a52-ba0a92d2c4e5"];
+    }
+}
+
+-(void) setupFromUserInfo:(UserRecord *)currUser {
+    if (currUser.PostalCode) {
+        self.oPostalField.text = currUser.PostalCode;
+    }
+    if (currUser.Email) {
+        self.oTopViewReal.oEmailField.text = currUser.Email;
+    }
+    if (currUser.FirstName || currUser.LastName) {                      // my interpretation
+        self.oTopViewReal.oUsernameField.text = [NSString stringWithFormat:@"%@ %@", currUser.FirstName, currUser.LastName];
+    }
+    self.oMorningSwitch.on = currUser->availability.MondayAM;
+    self.oAfternoonSwitch.on = currUser->availability.MondayPM;
+    self.oEveningSwitch.on = currUser->availability.MondayEvening;
+    
+    [self.view setNeedsDisplay];
+}
+
 
 // handle for UIKeyboardDidShowNotification
 - (void)keyboardDidShow:(NSNotification *)notification

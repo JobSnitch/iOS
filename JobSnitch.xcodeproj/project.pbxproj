@@ -62,6 +62,7 @@
 		C8A08BFF1B4BECD400B2C703 /* HomeCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A08BFE1B4BECD400B2C703 /* HomeCenterView.m */; };
 		C8A08C011B4BED5F00B2C703 /* HomeCenterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A08C001B4BED5F00B2C703 /* HomeCenterView.xib */; };
 		C8BE60571B54012100527469 /* ApplicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BE60561B54012100527469 /* ApplicationsViewController.m */; };
+		C8C1BA201B5E259D00D387F7 /* UserRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C1BA1F1B5E259D00D387F7 /* UserRecord.m */; };
 		C8D12ACA1B4E55A400DCFC83 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12AC91B4E55A400DCFC83 /* AboutViewController.m */; };
 		C8D12ACD1B4E55C100DCFC83 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12ACC1B4E55C100DCFC83 /* ContactViewController.m */; };
 		C8D12AD01B4E561300DCFC83 /* BugReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D12ACF1B4E561300DCFC83 /* BugReportViewController.m */; };
@@ -195,6 +196,8 @@
 		C8BE60551B54012100527469 /* ApplicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationsViewController.h; path = ViewControllers/ApplicationsViewController.h; sourceTree = "<group>"; };
 		C8BE60561B54012100527469 /* ApplicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationsViewController.m; path = ViewControllers/ApplicationsViewController.m; sourceTree = "<group>"; };
 		C8C11AAA1B5D33F400C19E9A /* EmployeeTabBarDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmployeeTabBarDelegate.h; sourceTree = "<group>"; };
+		C8C1BA1E1B5E259D00D387F7 /* UserRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserRecord.h; path = DataModel/UserRecord.h; sourceTree = "<group>"; };
+		C8C1BA1F1B5E259D00D387F7 /* UserRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserRecord.m; path = DataModel/UserRecord.m; sourceTree = "<group>"; };
 		C8D12AC81B4E55A400DCFC83 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = ViewControllers/AboutViewController.h; sourceTree = "<group>"; };
 		C8D12AC91B4E55A400DCFC83 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = ViewControllers/AboutViewController.m; sourceTree = "<group>"; };
 		C8D12ACB1B4E55C100DCFC83 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactViewController.h; path = ViewControllers/ContactViewController.h; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 				C86829731B54F28F00AFD004 /* ApplicationRecord.m */,
 				C843D20F1B55740F00D3BF97 /* EmployeeRecord.h */,
 				C843D2101B55740F00D3BF97 /* EmployeeRecord.m */,
+				C8C1BA1E1B5E259D00D387F7 /* UserRecord.h */,
+				C8C1BA1F1B5E259D00D387F7 /* UserRecord.m */,
 			);
 			name = "08 DataModel";
 			sourceTree = "<group>";
@@ -741,6 +746,7 @@
 				C81C34951B53C4C6005E16E5 /* JSAddPostingButton.m in Sources */,
 				C893BF4F1B4FFA0E00217402 /* EmployerFirstView.m in Sources */,
 				C893BF2F1B4FAAA700217402 /* EmployerTabBarController.m in Sources */,
+				C8C1BA201B5E259D00D387F7 /* UserRecord.m in Sources */,
 				C8DA45E81B4D03CA0041EB23 /* CreateEmployerController.m in Sources */,
 				C89293301B590F3F0027F8B6 /* JSSessionManager.m in Sources */,
 				C893BF471B4FE05C00217402 /* PostingRecord.m in Sources */,
