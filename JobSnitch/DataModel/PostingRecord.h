@@ -11,7 +11,8 @@
 @interface PostingRecord : NSObject
 @property (nonatomic, strong) NSString * title;
 @property (nonatomic, strong) NSString * descrption;
-@property (nonatomic, strong) NSString * type;                       // ?
+@property (nonatomic, strong) NSString * JobCategoryName;             // ?
+@property (nonatomic) int   JobCategoryId;
 @property (nonatomic, strong) NSString * industry;                   // ?
 @property (nonatomic) BOOL   morningShift;
 @property (nonatomic) BOOL   afternoonShift;
@@ -23,6 +24,8 @@
 @property (nonatomic) BOOL   wantsText;
 @property (nonatomic) BOOL   wantsAudio;
 @property (nonatomic) BOOL   wantsVideo;
+
+@property (nonatomic) BOOL   isActive;
 
 @property (nonatomic, weak) id ownerBusiness;
 

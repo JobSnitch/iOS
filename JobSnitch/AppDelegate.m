@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "HomeViewController.h"
 #import "JSSessionManager.h"
+#import "AFNetworkActivityLogger.h"
 
 @interface AppDelegate () <UIAlertViewDelegate>
 @property (nonatomic) BOOL alertPresent;
@@ -20,6 +21,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     _alertPresent = FALSE;
     [[JSSessionManager sharedManager] monitorReachability];
+    [AFNetworkActivityLogger sharedLogger].level = AFLoggerLevelDebug;
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
     [self setupAppearance];
     return YES;
 }

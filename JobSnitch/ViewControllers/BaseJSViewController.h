@@ -18,6 +18,7 @@
 // for Employee
 @property (nonatomic, strong)   EmployeeRecord *currentEmployee;
 @property (nonatomic, strong)   EmployeeFirstView *employeeHeaderView;
+@property (nonatomic, strong)   NSArray *jobCategories;
 
 -(void) initBackground;
 -(void) setupJobtypePicker;

@@ -51,8 +51,8 @@
         NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:self.currPosting.descrption attributes:text2Attribute];
         [self.oDescriptionText setAttributedText:attributedText];
     }
-    if (self.currPosting.type) {
-        NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:self.currPosting.type attributes:text1Attribute];
+    if (self.currPosting.JobCategoryName) {
+        NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:self.currPosting.JobCategoryName attributes:text1Attribute];
         [self.oJTypeLabel setAttributedText:attributedText];
     }
     if (self.currPosting.industry) {

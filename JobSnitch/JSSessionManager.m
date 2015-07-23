@@ -98,12 +98,52 @@ static BOOL hasBeenDisconnected = FALSE;
     return [self getForService:service withParams:params withCompletion:completion];
 }
 
+- (NSURLSessionDataTask *)postNewPostingWithParam: (NSString *) param
+                                   withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    NSDictionary *params = @{
+                             @"JobPosting": [param stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                             };
+    NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/NewJobPosting"];
+//    NSDictionary *params = nil;
+//    NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/NewJobPosting?JobPosting=%@", param];
+    return [self postForService:service withParams:params withCompletion:completion];
+}
+
+
 
 #pragma mark - general calls
 - (NSURLSessionDataTask *) getForService: (NSString *)service
                               withParams:  (NSDictionary *)params
                           withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
     NSURLSessionDataTask *task = [self GET:service parameters:params
+                                   success:^(NSURLSessionDataTask *task, id responseObject) {
+                                       
+                                       NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)task.response;
+                                       if (httpResponse.statusCode == 200) {
+                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                               completion(responseObject, nil);
+                                           });
+                                       } else {
+                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                               completion(nil, nil);
+                                           });
+                                       }
+                                       
+                                   } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                       NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+                                       NSLog(@"%@", response);                                                     // for development
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           completion(nil, error);
+                                       });
+                                   }];
+    return task;
+}
+
+- (NSURLSessionDataTask *) postForService: (NSString *)service
+                              withParams:  (NSDictionary *)params
+                          withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    NSURLSessionDataTask *task = [self POST:service parameters:params
                                    success:^(NSURLSessionDataTask *task, id responseObject) {
                                        
                                        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)task.response;
@@ -182,6 +222,13 @@ static BOOL hasBeenDisconnected = FALSE;
     }
 //    NSLog(@"results: %@", results);
     return retUser;
+}
+
+- (BOOL) processNewPostingResults: (NSDictionary *)results {
+    BOOL ret = TRUE;
+//    NSLog(@"results:%@", results);
+    ret = [[results valueForKey:@"CreateNewJobPostingResult"] boolValue];
+    return ret;
 }
 
 

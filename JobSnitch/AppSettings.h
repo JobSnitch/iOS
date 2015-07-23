@@ -17,6 +17,8 @@ typedef enum : NSUInteger {
     settingContext
 } PersonContext;
 
-#define baseJobSnitchURL  @"http://jsdevcloud2.cloudapp.net/Service/"
+#define baseJobSnitchURL    @"http://jsdevcloud2.cloudapp.net/Service/"
+
+#define testUserID          @"00f81794-1422-4510-8a52-ba0a92d2c4e5"
 
 #endif

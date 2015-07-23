@@ -397,6 +397,7 @@
 
 -(void) useJobCategories:(NSArray *) jobArray {
     if (jobArray && jobArray.count) {
+        self.jobCategories = [jobArray copy];
         self.allJobTypes = [jobArray valueForKey:@"EnglishName"];
         [self.jobtypePicker.picker reloadAllComponents];
     }

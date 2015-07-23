@@ -18,6 +18,8 @@
 - (NSURLSessionDataTask *)getJobCategoriesWithCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
 - (NSURLSessionDataTask *)getUserInfoForUser: (NSString *) user
                               withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
+- (NSURLSessionDataTask *)postNewPostingWithParam: (NSString *) param
+                              withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
 
 - (void) firstLevelError:(NSError *)error forService:(NSString *) service;
 - (BOOL) checkResult: (NSDictionary *)results;
@@ -25,4 +27,5 @@
 
 - (NSArray *) processJobCategoriesResults: (NSDictionary *)results;
 - (UserRecord *) processUserInfoResults: (NSDictionary *)results;
+- (BOOL) processNewPostingResults: (NSDictionary *)results;
 @end

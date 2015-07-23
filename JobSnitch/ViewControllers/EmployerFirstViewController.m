@@ -18,6 +18,7 @@
 #import "PostingExpandedView.h"
 #import "JSAddPostingButton.h"
 #import "ApplicationsViewController.h"
+#import "JSSessionManager.h"
 
 @interface EmployerFirstViewController () <UITextFieldDelegate, UITextViewDelegate, EmployerFirstParent,
                                                 EmployerContainerDelegate>
@@ -31,6 +32,7 @@
 @property (nonatomic, strong)   PostingExpandedView *postingView;
 @property (weak, nonatomic)     PostingRestrictedView *suprview;
 @property (nonatomic, strong)   ApplicationsViewController *applController;
+@property (nonatomic, strong)   PostingRecord *toPostPosting;
 
 @end
 
@@ -329,23 +331,25 @@
         [self raiseBelowViews:startY];
         [self.oScrollView setContentSize:CGSizeMake(self.oScrollView.bounds.size.width, self.scrollViewHeight)];
     } else {
-        [self savePosting];
+        [self postPosting];
         [self removePostingView];
         self.subviews = nil;
         self.mainView = nil;
-        [self setupView];
     }
 }
 
+-(void) postPosting {
+    self.toPostPosting = nil;
+    self.toPostPosting = [[PostingRecord alloc] init];
+    [self setupFromFields:self.toPostPosting];
+    [self doPostNewPosting];
+}
+
 -(void) savePosting{
-    BusinessRecord * currBusiness = ((PostingAddView *)self.postingView).currBusiness;
+    BusinessRecord * currBusiness = self.toPostPosting.ownerBusiness;
     NSMutableArray *postings = [currBusiness.postings  mutableCopy];
     currBusiness.postings = nil;
-    PostingRecord *currPosting = nil;
-    currPosting = [[PostingRecord alloc] init];
-    [self setupFromFields:currPosting];
-    [postings addObject:currPosting];
-    
+    [postings addObject:self.toPostPosting];
     currBusiness.postings = postings;
 }
 
@@ -377,14 +381,13 @@
 -(void) setupFromFields:(PostingRecord *) currPosting {
     currPosting.title = self.postingView.oJTitleText.text;
     currPosting.descrption = self.postingView.oDescriptionText.text;
-//    currPosting.noApplications = 0;
-//    currPosting.noShortlisted = 0;
     currPosting.morningShift = self.postingView.oMorningSwitch.on;
     currPosting.afternoonShift = self.postingView.oAfternoonSwitch.on;
     currPosting.eveningShift = self.postingView.oEveningSwitch.on;
     currPosting.nightShift = self.postingView.oNightSwitch.on;
-    currPosting.type = self.postingView.oJTypeLabel.text;
+    currPosting.JobCategoryName = self.postingView.oJTypeLabel.text;
     currPosting.industry = self.postingView.oIndustryLabel.text;
+    currPosting.ownerBusiness = ((PostingAddView *)self.postingView).currBusiness;
 }
 
 -(void) removePostingView {
@@ -509,6 +512,68 @@
         self.applController.currPosting = currPosting;
     }
 }
+
+#pragma mark - new posting
+-(void) doPostNewPosting {
+    NSString *paramValue = [self formPostingParam];
+//    NSLog(@"paramValue: %@", paramValue);
+    [self uploadNewPosting:paramValue];
+}
+
+-(NSString *) formPostingParam {
+    NSString *paramValue = nil;
+    NSString *jobCateg = @"";
+    if (self.toPostPosting.JobCategoryName && ![self.toPostPosting.JobCategoryName isEqualToString:@""]) {
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@" EnglishName MATCHES %@", self.toPostPosting.JobCategoryName];
+        NSArray * matches = [self.jobCategories filteredArrayUsingPredicate:predicate];
+        NSInteger catId = [[((NSDictionary *) matches[0]) valueForKey:@"JobCategoryId"] integerValue];
+        jobCateg = [NSString stringWithFormat:@"JobCategory:{JobCategoryId:%ld,EnglishName:\"%@\"},",
+                    (long)catId, self.toPostPosting.JobCategoryName];
+    }
+    NSString *jobLoc = @"";
+    if (self.toPostPosting.ownerBusiness ) {
+        BusinessRecord *currB = self.toPostPosting.ownerBusiness;
+        if (currB.address) {
+            jobLoc = currB.address;
+        }
+    }
+    NSString *morning = (self.toPostPosting.morningShift ? @"true" : @"false");
+    NSString *aftrnoon = (self.toPostPosting.afternoonShift ? @"true" : @"false");
+    NSString *evening = (self.toPostPosting.eveningShift ? @"true" : @"false");
+    
+    paramValue = [NSString stringWithFormat:@"{JobPostingId:%d,%@TitleEnglish:\"%@\","
+                  "DescriptionEnglish:\"%@\",CompanyId:%@,JobLocation: \"%@\","
+                  "Active:true,AvailabilitySchedule{SundayAM:%@,SundayPM:%@,SundayEvening:%@,MondayAM:%@,MondayPM:%@,MondayEvening:%@,"
+                  "TuesdayAM:%@,TuesdayPM:%@,TuesdayEvening:%@,WednesdayAM:%@,WednesdayPM:%@,WednesdayEvening:%@,ThursdayAM:%@,"
+                  "ThursdayPM:%@,ThursdayEvening:%@,FridayAM:%@,FridayPM:%@,FridayEvening:%@,SaturdayAM:%@,SaturdayPM:%@,SaturdayEvening:%@}}",
+                  0, jobCateg, self.toPostPosting.title, self.toPostPosting.descrption, testUserID, jobLoc,
+                  morning, aftrnoon, evening,
+                  morning, aftrnoon, evening,
+                  morning, aftrnoon, evening,
+                  morning, aftrnoon, evening,
+                  morning, aftrnoon, evening,
+                  morning, aftrnoon, evening,
+                  morning, aftrnoon, evening
+                  ];
+    return paramValue;
+}
+
+-(void) uploadNewPosting:(NSString *) paramValue {
+    [[JSSessionManager sharedManager] postNewPostingWithParam:paramValue withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                BOOL success = [[JSSessionManager sharedManager] processNewPostingResults:results];
+                if (success) {
+                    [self savePosting];
+                }
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"NewJobPosting"];
+        }
+        [self performSelectorOnMainThread:@selector(setupView) withObject:nil waitUntilDone:NO];
+    }];
+}
+
 
 #pragma mark - other
 
