@@ -19,12 +19,14 @@
 #import "JSAddPostingButton.h"
 #import "ApplicationsViewController.h"
 #import "JSSessionManager.h"
+#import "CompanyRecord.h"
 
 @interface EmployerFirstViewController () <UITextFieldDelegate, UITextViewDelegate, EmployerFirstParent,
                                                 EmployerContainerDelegate>
 
 @property (weak, nonatomic)     UIScrollView *oScrollView;
 @property (nonatomic, strong)   EmployerRecord *currentEmployer;
+@property (nonatomic, strong)   CompanyRecord *currentCompany;
 @property (nonatomic, strong)   NSMutableArray *subviews;
 @property (nonatomic) CGFloat   scrollViewHeight;
 @property (nonatomic) CGFloat   rowHeight;
@@ -33,6 +35,7 @@
 @property (weak, nonatomic)     PostingRestrictedView *suprview;
 @property (nonatomic, strong)   ApplicationsViewController *applController;
 @property (nonatomic, strong)   PostingRecord *toPostPosting;
+@property (nonatomic, strong)   NSMutableArray *postings;
 
 @end
 
@@ -68,7 +71,11 @@
     self.currentEmployer = [[EmployerRecord alloc] init];
     self.currentEmployer.name = @"Mc_HRManager";
     self.currentEmployer.imageName = @"small_add_photo.png";
-    
+    // TEST FOR NOW
+    [self getPostingsByCompany:@"1"];
+//    [self getPostingsByUser:testUserID];
+    [self getCompanyProfile:@"1"];
+
     [self setupBusinesses];
 }
 
@@ -574,6 +581,55 @@
     }];
 }
 
+#pragma mark - all postings
+- (void) getPostingsByCompany:(NSString *) compId {
+    if (!compId || [compId isEqualToString:@""]) {
+        return;
+    }
+    
+    [[JSSessionManager sharedManager] getPostingsForCompany:compId withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                self.postings = [[JSSessionManager sharedManager] processAllPostingsComResults:results];
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetAllPostingsForCompany"];
+        }
+    }];
+}
+
+- (void) getPostingsByUser:(NSString *) userId {
+    if (!userId || [userId isEqualToString:@""]) {
+        return;
+    }
+    
+    [[JSSessionManager sharedManager] getPostingsForUser:userId withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                self.postings = [[JSSessionManager sharedManager] processAllPostingsResults:results];
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetAllJobPosting"];
+        }
+    }];
+}
+
+#pragma mark - company
+- (void) getCompanyProfile:(NSString *) compId {
+    if (!compId || [compId isEqualToString:@""]) {
+        return;
+    }
+    
+    [[JSSessionManager sharedManager] getCompanyForId: compId withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                self.currentCompany = [[JSSessionManager sharedManager] processCompanyIdResults:results];
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetCompanyProfile"];
+        }
+    }];
+}
 
 #pragma mark - other
 

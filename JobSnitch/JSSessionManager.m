@@ -98,6 +98,79 @@ static BOOL hasBeenDisconnected = FALSE;
     return [self getForService:service withParams:params withCompletion:completion];
 }
 
+- (NSURLSessionDataTask *)getPostingsForUser: (NSString *) user
+                              withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    
+    NSDictionary *params = nil;
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobCategory/GetAllJobPosting/%@", user];
+    return [self getForService:service withParams:params withCompletion:completion];
+}
+
+- (NSURLSessionDataTask *)getPostingWithId: (NSString *) postingId
+                            withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion; {
+    if (![self preLaunch]) return nil;
+    
+    NSDictionary *params = nil;
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/GetJobPosting?JobPostingId=%@", postingId];
+    return [self getForService:service withParams:params withCompletion:completion];
+}
+
+- (NSURLSessionDataTask *)getApplicationsForJob: (NSString *) postingId
+                                 withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    
+    NSDictionary *params = nil;
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/GetApplicationsForJob?JobPostingId=%@", postingId];
+    return [self getForService:service withParams:params withCompletion:completion];
+}
+
+- (NSURLSessionDataTask *)getApplicationWithId: (NSString *) applId
+                                withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    
+    NSDictionary *params = nil;
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/GetApplicationDetails?JobApplicationId=%@", applId];
+    return [self getForService:service withParams:params withCompletion:completion];
+}
+
+- (NSURLSessionDataTask *)deletePostingWithId: (NSString *) postingId
+                               withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    
+    NSDictionary *params = nil;
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/DeleteJobPosting?jobPostingId=%@", postingId];
+    return [self getForService:service withParams:params withCompletion:completion];
+}
+
+- (NSURLSessionDataTask *)getPostingsForCompany: (NSString *) companyId
+                                 withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    
+    NSDictionary *params = nil;
+    NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/GetAllPostingsForCompany/%@", companyId];
+    return [self getForService:service withParams:params withCompletion:completion];
+}
+
+- (NSURLSessionDataTask *)getCompanyForUser: (NSString *) user
+                             withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    
+    NSDictionary *params = nil;
+    NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/GetCompanyForUser/%@", user];
+    return [self getForService:service withParams:params withCompletion:completion];
+}
+
+- (NSURLSessionDataTask *)getCompanyForId: (NSString *) companyId
+                           withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    
+    NSDictionary *params = nil;
+    NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/GetCompanyProfile/%@", companyId];
+    return [self getForService:service withParams:params withCompletion:completion];
+}
+
+
 - (NSURLSessionDataTask *)postNewPostingWithParam: (NSString *) param
                                    withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
     if (![self preLaunch]) return nil;
@@ -105,11 +178,50 @@ static BOOL hasBeenDisconnected = FALSE;
                              @"JobPosting": [param stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
                              };
     NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/NewJobPosting"];
-//    NSDictionary *params = nil;
-//    NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/NewJobPosting?JobPosting=%@", param];
+    //    NSDictionary *params = nil;
+    //    NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/NewJobPosting?JobPosting=%@", param];
     return [self postForService:service withParams:params withCompletion:completion];
 }
 
+- (NSURLSessionDataTask *)updatePostingWithParam: (NSString *) param
+                                  withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    NSDictionary *params = @{
+                             @"JobPosting": [param stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                             };
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/UpdateJobPosting"];
+    return [self postForService:service withParams:params withCompletion:completion];
+}
+
+- (NSURLSessionDataTask *)postNewApplicationWithParam: (NSString *) param
+                                       withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    NSDictionary *params = @{
+                             @"jobApplication": [param stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                             };
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/SubmitJobApplication"];
+    return [self postForService:service withParams:params withCompletion:completion];
+}
+
+- (NSURLSessionDataTask *)updateApplicationWithParam: (NSString *) param
+                                      withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    NSDictionary *params = @{
+                             @"jobApplication": [param stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                             };
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/UpdateApplicationStatus"];
+    return [self postForService:service withParams:params withCompletion:completion];
+}
+
+- (NSURLSessionDataTask *)postNewUserAccountWithParam: (NSString *) param
+                                       withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    NSDictionary *params = @{
+                             @"AccountInformation": [param stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                             };
+    NSString *service = [NSString stringWithFormat:@"jobAccount.svc/UserAccount/CreateUserAccountInfoEntry"];
+    return [self postForService:service withParams:params withCompletion:completion];
+}
 
 
 #pragma mark - general calls
@@ -229,6 +341,139 @@ static BOOL hasBeenDisconnected = FALSE;
 //    NSLog(@"results:%@", results);
     ret = [[results valueForKey:@"CreateNewJobPostingResult"] boolValue];
     return ret;
+}
+- (NSMutableArray *) processAllPostingsResults: (NSDictionary *)results {
+    NSMutableArray *retArray = nil;
+    //    NSLog(@"AllPostings: %@", results);
+    if (results) {
+        retArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *posting in results) {
+            PostingRecord *currPost = [[PostingRecord alloc] init];
+            currPost.isActive = [[posting valueForKey:@"Active"] boolValue];
+            NSDictionary *avail = [posting valueForKey:@"AvailabilitySchedule"];
+            if (avail) {
+                currPost.morningShift = [[avail valueForKey:@"MondayAM"] boolValue];
+                currPost.afternoonShift = [[avail valueForKey:@"MondayPM"] boolValue];
+                currPost.eveningShift = [[avail valueForKey:@"MondayEvening"] boolValue];
+            }
+            currPost.CompanyId = [[posting valueForKey:@"CompanyId"] integerValue];
+            currPost.descrption = [posting valueForKey:@"DescriptionEnglish"];
+            NSDictionary *categ = [posting valueForKey:@"JobCategory"];
+            if (categ) {
+                currPost.JobCategoryId = [[categ valueForKey:@"JobCategoryId"] integerValue];
+                currPost.JobCategoryName = [categ valueForKey:@"EnglishName"];
+            }
+            currPost.JobLocation = [posting valueForKey:@"JobLocation"];
+            currPost.JobPostingId = [[posting valueForKey:@"JobPostingId"] integerValue];
+            currPost.title = [posting valueForKey:@"TitleEnglish"];
+            
+            [retArray addObject:currPost];
+        }
+    }
+    return retArray;
+}
+
+- (PostingRecord *) processPostingWithId: (NSDictionary *)results {
+    PostingRecord * resPosting = nil;
+    NSLog(@"posting: %@", results);
+    return resPosting;
+}
+
+- (NSArray *) processApplicationsResults: (NSDictionary *)results {
+    NSArray *retArray = nil;
+    NSLog(@"AllApplications: %@", results);
+    return retArray;
+}
+
+- (ApplicationRecord *) processApplicationWithId: (NSDictionary *)results {
+    ApplicationRecord * resAppl = nil;
+    NSLog(@"Application: %@", results);
+    return resAppl;
+}
+
+- (BOOL) processUpdatePostingResults: (NSDictionary *)results {
+    BOOL ret = TRUE;
+    NSLog(@"results:%@", results);
+    return ret;
+}
+
+- (BOOL) processDeletePosting: (NSDictionary *)results {
+    BOOL ret = TRUE;
+    NSLog(@"results:%@", results);
+    return ret;
+}
+
+- (BOOL) processNewApplicationResults: (NSDictionary *)results {
+    BOOL ret = TRUE;
+    NSLog(@"results:%@", results);
+    return ret;
+}
+
+- (BOOL) processUpdateApplicationResults: (NSDictionary *)results {
+    BOOL ret = TRUE;
+    NSLog(@"results:%@", results);
+    return ret;
+}
+
+- (BOOL) processNewUserAccountResults: (NSDictionary *)results {
+    BOOL ret = TRUE;
+    NSLog(@"results:%@", results);
+    return ret;
+}
+
+- (NSMutableArray *) processAllPostingsComResults: (NSDictionary *)results {
+    NSMutableArray *retArray = nil;
+//    NSLog(@"AllPostings: %@", results);
+    if (results) {
+        retArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *posting in results) {
+            PostingRecord *currPost = [[PostingRecord alloc] init];
+            currPost.isActive = [[posting valueForKey:@"Active"] boolValue];
+            NSDictionary *avail = [posting valueForKey:@"AvailabilitySchedule"];
+            if (avail) {
+                currPost.morningShift = [[avail valueForKey:@"MondayAM"] boolValue];
+                currPost.afternoonShift = [[avail valueForKey:@"MondayPM"] boolValue];
+                currPost.eveningShift = [[avail valueForKey:@"MondayEvening"] boolValue];
+            }
+            currPost.CompanyId = [[posting valueForKey:@"CompanyId"] integerValue];
+            currPost.descrption = [posting valueForKey:@"DescriptionEnglish"];
+            NSDictionary *categ = [posting valueForKey:@"JobCategory"];
+            if (categ) {
+                currPost.JobCategoryId = [[categ valueForKey:@"JobCategoryId"] integerValue];
+                currPost.JobCategoryName = [categ valueForKey:@"EnglishName"];
+            }
+            currPost.JobLocation = [posting valueForKey:@"JobLocation"];
+            currPost.JobPostingId = [[posting valueForKey:@"JobPostingId"] integerValue];
+            currPost.title = [posting valueForKey:@"TitleEnglish"];
+            
+            [retArray addObject:currPost];
+        }
+    }
+    return retArray;
+}
+
+- (CompanyRecord *) processCompanyUserResults: (NSDictionary *)results {
+    CompanyRecord * resCompany = nil;
+    if (results) {
+        resCompany = [[CompanyRecord alloc] init];
+        resCompany.CompanyId = [[results valueForKey:@"CompanyId"] integerValue];
+        resCompany.City = [results valueForKey:@"City"];
+        resCompany.NameEnglish = [results valueForKey:@"NameEnglish"];
+        resCompany.Province = [results valueForKey:@"Province"];
+    }
+    return resCompany;
+}
+
+- (CompanyRecord *) processCompanyIdResults: (NSDictionary *)results {
+    CompanyRecord *resCompany = nil;
+    if (results) {
+        resCompany = [[CompanyRecord alloc] init];
+        resCompany.CompanyId = [[results valueForKey:@"CompanyId"] integerValue];
+        resCompany.City = [results valueForKey:@"City"];
+        resCompany.NameEnglish = [results valueForKey:@"NameEnglish"];
+        resCompany.Province = [results valueForKey:@"Province"];
+    }
+    return resCompany;
 }
 
 

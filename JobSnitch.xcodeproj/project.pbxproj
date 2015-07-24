@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A222E7798D92FC3B2B90EEFF /* libPods-JobSnitch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB24BD97DAD9A6E0D7A60D5 /* libPods-JobSnitch.a */; };
 		C800D3741B4E901700E81F69 /* ForgotPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = C800D3731B4E901700E81F69 /* ForgotPasswordController.m */; };
+		C807B6631B6240BA0013BD9A /* CompanyRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C807B6621B6240BA0013BD9A /* CompanyRecord.m */; };
 		C81C34951B53C4C6005E16E5 /* JSAddPostingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C81C34941B53C4C6005E16E5 /* JSAddPostingButton.m */; };
 		C81C34981B53CE3B005E16E5 /* PostingAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = C81C34971B53CE3B005E16E5 /* PostingAddView.m */; };
 		C81C349B1B53D558005E16E5 /* JSEditPostingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C81C349A1B53D558005E16E5 /* JSEditPostingButton.m */; };
@@ -99,6 +100,8 @@
 		C6CB1054507C5A22254DEFC7 /* Pods-JobSnitch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobSnitch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JobSnitch/Pods-JobSnitch.debug.xcconfig"; sourceTree = "<group>"; };
 		C800D3721B4E901700E81F69 /* ForgotPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgotPasswordController.h; path = ViewControllers/ForgotPasswordController.h; sourceTree = "<group>"; };
 		C800D3731B4E901700E81F69 /* ForgotPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgotPasswordController.m; path = ViewControllers/ForgotPasswordController.m; sourceTree = "<group>"; };
+		C807B6611B6240BA0013BD9A /* CompanyRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompanyRecord.h; path = DataModel/CompanyRecord.h; sourceTree = "<group>"; };
+		C807B6621B6240BA0013BD9A /* CompanyRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompanyRecord.m; path = DataModel/CompanyRecord.m; sourceTree = "<group>"; };
 		C81C34931B53C4C6005E16E5 /* JSAddPostingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSAddPostingButton.h; path = Views/JSAddPostingButton.h; sourceTree = "<group>"; };
 		C81C34941B53C4C6005E16E5 /* JSAddPostingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSAddPostingButton.m; path = Views/JSAddPostingButton.m; sourceTree = "<group>"; };
 		C81C34961B53CE3B005E16E5 /* PostingAddView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostingAddView.h; path = Views/PostingAddView.h; sourceTree = "<group>"; };
@@ -314,6 +317,8 @@
 				C843D2101B55740F00D3BF97 /* EmployeeRecord.m */,
 				C8C1BA1E1B5E259D00D387F7 /* UserRecord.h */,
 				C8C1BA1F1B5E259D00D387F7 /* UserRecord.m */,
+				C807B6611B6240BA0013BD9A /* CompanyRecord.h */,
+				C807B6621B6240BA0013BD9A /* CompanyRecord.m */,
 			);
 			name = "08 DataModel";
 			sourceTree = "<group>";
@@ -720,6 +725,7 @@
 				C893BF3C1B4FB98F00217402 /* EmployerRecord.m in Sources */,
 				C8DA45E51B4D03910041EB23 /* CreateJobseekerController.m in Sources */,
 				C86829741B54F28F00AFD004 /* ApplicationRecord.m in Sources */,
+				C807B6631B6240BA0013BD9A /* CompanyRecord.m in Sources */,
 				C893BF421B4FC6C500217402 /* BusinessRestrictedView.m in Sources */,
 				C81C34981B53CE3B005E16E5 /* PostingAddView.m in Sources */,
 				C8DEFD1F1B555514007C0CBD /* ContactPopupView.m in Sources */,
