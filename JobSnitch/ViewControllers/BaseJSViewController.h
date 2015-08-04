@@ -46,4 +46,5 @@
 -(void) downloadUserInfo:(NSString *) userID;
 -(void) setupFromUserInfo:(UserRecord *)currUser;
 
+-(void) deleteFileAtPath: (NSString *) filePath;
 @end

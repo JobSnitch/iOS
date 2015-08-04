@@ -23,13 +23,16 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - DLSFTPClient (1.0.5)
 
 DEPENDENCIES:
   - AFNetworkActivityLogger (~> 2.0)
   - AFNetworking (~> 2.5)
+  - DLSFTPClient (~> 1.0)
 
 SPEC CHECKSUMS:
   AFNetworkActivityLogger: 121486778117d53b3ab1c61d264b88081d0c3eee
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  DLSFTPClient: 83221f2149920cd10e2d956806833c9e561c4fff
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.0

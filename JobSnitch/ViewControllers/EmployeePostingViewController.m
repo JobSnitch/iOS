@@ -14,6 +14,8 @@
 #import "TextApplPopupView.h"
 #import "ContactPopupView.h"
 
+#import "DLSFTPConnection.h"
+
 @import MobileCoreServices;
 @import AVFoundation;
 
@@ -28,10 +30,11 @@
 @property (nonatomic, strong)   NSMutableArray *postings;
 @property (nonatomic)   int     currentIndex;
 @property (nonatomic, strong)   NSMutableArray *businesses;
+
 @property (strong, nonatomic)   NSString *movPath;
 @property (strong, nonatomic)   NSString *mp4Path;
 @property (strong, nonatomic)   AVAssetExportSession *exportSession;
-
+@property (strong, nonatomic)   DLSFTPConnection *connection;
 @end
 
 @implementation EmployeePostingViewController
@@ -361,6 +364,7 @@ static bool isRecording = false;
     }
 }
 
+#pragma mark - export and upload
 -(void) exportToMp4 {
     self.exportSession = nil;
     NSURL * mediaURL = [NSURL fileURLWithPath:self.movPath];
@@ -371,6 +375,7 @@ static bool isRecording = false;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDir = [paths objectAtIndex:0];
     self.mp4Path = [documentsDir stringByAppendingPathComponent:videoName];
+    [self deleteFileAtPath:self.mp4Path];
 
     self.exportSession.outputFileType = AVFileTypeMPEG4;
     self.exportSession.outputURL = [NSURL fileURLWithPath:self.mp4Path];
@@ -396,8 +401,43 @@ static bool isRecording = false;
 }
 
 -(void) uploadVideo {
-    NSLog(@"success");
+    [self connectToServer];
+    [self deleteFileAtPath:self.movPath];
     self.exportSession = nil;
+}
+
+-(void) connectToServer {
+    __weak EmployeePostingViewController *weakSelf = self;
+    
+    // make a connection object and attempt to connect
+    DLSFTPConnection *connection = [[DLSFTPConnection alloc] initWithHostname:sftpHost
+                                                                         port:[sftpPort integerValue]
+                                                                     username:sftpUsername
+                                                                     password:sftpPass];
+    self.connection = connection;
+    DLSFTPClientSuccessBlock successBlock = ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // login successful
+            NSLog(@"success");
+        });
+    };
+    
+    DLSFTPClientFailureBlock failureBlock = ^(NSError *error){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.connection = nil;
+            // login failure
+            NSString *title = [NSString stringWithFormat:@"%@ Error: %ld", error.domain, (long)error.code];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                                message:[error localizedDescription]
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        });
+    };
+    
+    [connection connectWithSuccessBlock:successBlock
+                           failureBlock:failureBlock];
 }
 
 #pragma mark - other

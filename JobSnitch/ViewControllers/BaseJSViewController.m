@@ -424,6 +424,14 @@
     
 }
 
+-(void) deleteFileAtPath: (NSString *) filePath {
+    NSError* error = nil;
+    NSFileManager * fm = [NSFileManager defaultManager];
+    BOOL result = [fm removeItemAtPath:filePath error:&error];
+    if(!result) {
+        NSLog(@"temp file remove error: %@", error);
+    }
 
+}
 
 @end

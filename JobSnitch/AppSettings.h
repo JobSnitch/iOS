@@ -21,4 +21,10 @@ typedef enum : NSUInteger {
 
 #define testUserID          @"00f81794-1422-4510-8a52-ba0a92d2c4e5"
 
+// configure to real SFTP server
+#define sftpHost        @"10.0.1.15"
+#define sftpPort        @"22"
+#define sftpUsername    @"andreidev"
+#define sftpPass        @"D3v3lopMac"
+
 #endif
