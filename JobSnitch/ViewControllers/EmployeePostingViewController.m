@@ -28,6 +28,9 @@
 @property (nonatomic, strong)   NSMutableArray *postings;
 @property (nonatomic)   int     currentIndex;
 @property (nonatomic, strong)   NSMutableArray *businesses;
+@property (strong, nonatomic)   NSString *movPath;
+@property (strong, nonatomic)   NSString *mp4Path;
+@property (strong, nonatomic)   AVAssetExportSession *exportSession;
 
 @end
 
@@ -350,10 +353,51 @@ static bool isRecording = false;
         NSString *videoName = @"JSMovie.MOV";
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDir = [paths objectAtIndex:0];
-        NSString *videoPath = [documentsDir stringByAppendingPathComponent:videoName];
+        self.movPath = [documentsDir stringByAppendingPathComponent:videoName];
         
-        [videoData writeToFile:videoPath atomically:YES];
+        [videoData writeToFile:self.movPath atomically:YES];
+        
+        [self exportToMp4];
     }
+}
+
+-(void) exportToMp4 {
+    self.exportSession = nil;
+    NSURL * mediaURL = [NSURL fileURLWithPath:self.movPath];
+    AVAsset *videoAsset = [AVAsset assetWithURL:mediaURL];
+    self.exportSession = [[AVAssetExportSession alloc] initWithAsset:videoAsset presetName:AVAssetExportPresetPassthrough];
+    
+    NSString *videoName = @"JSMovie.mp4";
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDir = [paths objectAtIndex:0];
+    self.mp4Path = [documentsDir stringByAppendingPathComponent:videoName];
+
+    self.exportSession.outputFileType = AVFileTypeMPEG4;
+    self.exportSession.outputURL = [NSURL fileURLWithPath:self.mp4Path];
+    self.exportSession.shouldOptimizeForNetworkUse = YES;
+    
+    [self.exportSession exportAsynchronouslyWithCompletionHandler:^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            AVAssetExportSessionStatus status = self.exportSession.status;
+            if (status == AVAssetExportSessionStatusCompleted) {
+                [self uploadVideo];
+            } else {
+                UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                       message:@"Export to mp4 failed!"
+                                                                      delegate:nil cancelButtonTitle:@"OK"
+                                                             otherButtonTitles:nil];
+                [warningAlert show];
+                return;
+            }
+        });
+    }];
+
+}
+
+-(void) uploadVideo {
+    NSLog(@"success");
+    self.exportSession = nil;
 }
 
 #pragma mark - other

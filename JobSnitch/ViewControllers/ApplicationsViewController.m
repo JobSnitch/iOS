@@ -234,7 +234,8 @@
 }
 
 -(void) delegateVideo {
-    [self playVideo:@"JSMovie.MOV"];
+//    [self playVideo:@"JSMovie.MOV"];
+    [self playVideo:@"JSMovie.mp4"];
 }
 
 -(void) delegateDelete{
