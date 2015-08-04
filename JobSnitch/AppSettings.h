@@ -26,5 +26,6 @@ typedef enum : NSUInteger {
 #define sftpPort        @"22"
 #define sftpUsername    @"andreidev"
 #define sftpPass        @"D3v3lopMac"
+#define sftpRemoteBase  @"/Users/andreidev/Desktop"
 
 #endif

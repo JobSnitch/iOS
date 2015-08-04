@@ -15,6 +15,8 @@
 #import "ContactPopupView.h"
 
 #import "DLSFTPConnection.h"
+#import "DLSFTPRequest.h"
+#import "DLSFTPUploadRequest.h"
 
 @import MobileCoreServices;
 @import AVFoundation;
@@ -35,6 +37,7 @@
 @property (strong, nonatomic)   NSString *mp4Path;
 @property (strong, nonatomic)   AVAssetExportSession *exportSession;
 @property (strong, nonatomic)   DLSFTPConnection *connection;
+@property (nonatomic, strong)   DLSFTPRequest *request;
 @end
 
 @implementation EmployeePostingViewController
@@ -410,15 +413,16 @@ static bool isRecording = false;
     __weak EmployeePostingViewController *weakSelf = self;
     
     // make a connection object and attempt to connect
-    DLSFTPConnection *connection = [[DLSFTPConnection alloc] initWithHostname:sftpHost
-                                                                         port:[sftpPort integerValue]
-                                                                     username:sftpUsername
-                                                                     password:sftpPass];
-    self.connection = connection;
+    self.connection = [[DLSFTPConnection alloc] initWithHostname:sftpHost
+                                                            port:[sftpPort integerValue]
+                                                        username:sftpUsername
+                                                        password:sftpPass];
+//    self.connection = connection;
     DLSFTPClientSuccessBlock successBlock = ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             // login successful
-            NSLog(@"success");
+            NSLog(@"success connect");
+            [self uploadAndDisconnect];
         });
     };
     
@@ -436,8 +440,47 @@ static bool isRecording = false;
         });
     };
     
-    [connection connectWithSuccessBlock:successBlock
+    [self.connection connectWithSuccessBlock:successBlock
                            failureBlock:failureBlock];
+}
+
+-(void) uploadAndDisconnect {
+    self.request = nil;
+    __weak EmployeePostingViewController *weakSelf = self;
+    __block UIBackgroundTaskIdentifier taskIdentifier = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [weakSelf.request cancel];
+    }];
+    
+    DLSFTPClientFileTransferSuccessBlock successBlock = ^(DLSFTPFile *file, NSDate *startTime, NSDate *finishTime) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[UIApplication sharedApplication] endBackgroundTask:taskIdentifier];
+            NSLog(@"success upload");
+            [self.connection disconnect];
+        });
+    };
+    
+    DLSFTPClientFailureBlock failureBlock = ^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *errorString = [NSString stringWithFormat:@"Error %ld", (long)error.code];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:errorString
+                                                                message:error.localizedDescription
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+            [alertView show];
+            [[UIApplication sharedApplication] endBackgroundTask:taskIdentifier];
+            [self.connection disconnect];
+        });
+    };
+    
+    NSString *localFilename = [self.mp4Path lastPathComponent];
+    NSString *remotePath = [sftpRemoteBase stringByAppendingPathComponent:localFilename];
+    self.request = [[DLSFTPUploadRequest alloc] initWithRemotePath:remotePath
+                                                         localPath:self.mp4Path
+                                                      successBlock:successBlock
+                                                      failureBlock:failureBlock
+                                                     progressBlock:nil];
+    [self.connection submitRequest:self.request];
 }
 
 #pragma mark - other
