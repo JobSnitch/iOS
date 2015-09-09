@@ -394,6 +394,11 @@ const float kArrowHeight = 61.0;
 }
 
 -(void) processLoginEmployer {
+//    // how to perform Login?
+    NSString *userName = self.lowerView.oEmailText.text;
+    NSString *userPass = self.lowerView.oPasswordText.text;
+    userName = testUserName;
+    userPass = testUserPass;
     [self performSegueWithIdentifier:@"HomeToEmployer" sender:self];
 }
 
@@ -424,6 +429,11 @@ const float kArrowHeight = 61.0;
 }
 
 -(void) processLoginEmployee {
+//    // how to perform Login?
+    NSString *userName = self.upperView.oEmailText.text;
+    NSString *userPass = self.upperView.oPasswordText.text;
+    userName = testUserName;
+    userPass = testUserPass;
     [self performSegueWithIdentifier:@"HomeToEmployee" sender:self];
 }
 

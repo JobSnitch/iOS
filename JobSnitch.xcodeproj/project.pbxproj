@@ -160,6 +160,7 @@
 		C893BF4D1B4FFA0E00217402 /* EmployerFirstView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployerFirstView.h; path = Views/EmployerFirstView.h; sourceTree = "<group>"; };
 		C893BF4E1B4FFA0E00217402 /* EmployerFirstView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployerFirstView.m; path = Views/EmployerFirstView.m; sourceTree = "<group>"; };
 		C893BF501B4FFA4800217402 /* EmployerFirstView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmployerFirstView.xib; sourceTree = "<group>"; };
+		C8996F7D1BA0314300EF1550 /* globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = globals.h; sourceTree = "<group>"; };
 		C89EC1221B55676D008F3040 /* EmployeeTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployeeTabBarController.h; path = ViewControllers/EmployeeTabBarController.h; sourceTree = "<group>"; };
 		C89EC1231B55676D008F3040 /* EmployeeTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmployeeTabBarController.m; path = ViewControllers/EmployeeTabBarController.m; sourceTree = "<group>"; };
 		C89EC1251B556C83008F3040 /* EmployeeLandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmployeeLandingViewController.h; path = ViewControllers/EmployeeLandingViewController.h; sourceTree = "<group>"; };
@@ -483,6 +484,7 @@
 			children = (
 				C8A08BCD1B4BD5DC00B2C703 /* AppDelegate.h */,
 				C8A08BCE1B4BD5DC00B2C703 /* AppDelegate.m */,
+				C8996F7D1BA0314300EF1550 /* globals.h */,
 			);
 			name = "01 Global";
 			sourceTree = "<group>";

@@ -26,7 +26,15 @@
     [super viewDidLoad];
     
     [self setupEmployee];
+
     [self setupView];
+}
+
+-(void) setupEmployee {
+    [super setupEmployee];
+    if ([self.currentEmployee.name isEqualToString:@"jobseeker"]) {
+        [self downloadUserInfo:testUserID2];
+    }
 }
 
 -(void) setupHeader {
@@ -92,7 +100,19 @@
             break;
         default:
             break;
-    }}
+    }
+}
+
+#pragma mark - UserInfo callback
+-(void) setupFromUserInfo:(UserRecord *)currUser {
+    if (currUser.FirstName) {                      // my interpretation
+        self.currentEmployee.name = currUser.FirstName;
+        ((AppDelegate *)[UIApplication sharedApplication].delegate).currUserNick = currUser.FirstName;
+        self.oNameLabel.text = self.currentEmployee.name;
+    }
+    
+    [self.view setNeedsDisplay];
+}
 
 #pragma mark - other
 - (void)didReceiveMemoryWarning {

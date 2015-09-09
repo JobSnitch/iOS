@@ -271,7 +271,11 @@
 #pragma mark - Employee Data
 -(void) setupEmployee {
     self.currentEmployee = [[EmployeeRecord alloc] init];
-    self.currentEmployee.name = @"joe_blow";
+    if (!((AppDelegate *)[UIApplication sharedApplication].delegate).currUserNick) {
+        self.currentEmployee.name = @"jobseeker";
+    } else {
+        self.currentEmployee.name = ((AppDelegate *)[UIApplication sharedApplication].delegate).currUserNick;
+    }
     self.currentEmployee.imageName = @"small_add_photo.png";
     
 }

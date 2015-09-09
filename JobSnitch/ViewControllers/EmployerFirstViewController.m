@@ -553,7 +553,7 @@
                   "Active:true,AvailabilitySchedule{SundayAM:%@,SundayPM:%@,SundayEvening:%@,MondayAM:%@,MondayPM:%@,MondayEvening:%@,"
                   "TuesdayAM:%@,TuesdayPM:%@,TuesdayEvening:%@,WednesdayAM:%@,WednesdayPM:%@,WednesdayEvening:%@,ThursdayAM:%@,"
                   "ThursdayPM:%@,ThursdayEvening:%@,FridayAM:%@,FridayPM:%@,FridayEvening:%@,SaturdayAM:%@,SaturdayPM:%@,SaturdayEvening:%@}}",
-                  0, jobCateg, self.toPostPosting.title, self.toPostPosting.descrption, testUserID, jobLoc,
+                  0, jobCateg, self.toPostPosting.title, self.toPostPosting.descrption, testUserID2, jobLoc,
                   morning, aftrnoon, evening,
                   morning, aftrnoon, evening,
                   morning, aftrnoon, evening,

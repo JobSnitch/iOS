@@ -70,6 +70,13 @@ const float kMagicHeightS = 595.0;
     [self.view layoutIfNeeded];
 }
 
+-(void) setupEmployee {
+    [super setupEmployee];
+    if ([self.currentEmployee.name isEqualToString:@"jobseeker"]) {
+        [self downloadUserInfo:testUserID2];
+    }
+}
+
 -(void) setupTables {
     self.oJobTypeTable.delegate = self;
     self.oJobTypeTable.dataSource = self;
@@ -240,6 +247,17 @@ const float kMagicHeightS = 595.0;
     }
     [self.view setNeedsLayout];
     [self.view layoutIfNeeded];
+}
+
+#pragma mark - UserInfo callback
+-(void) setupFromUserInfo:(UserRecord *)currUser {
+    if (currUser.FirstName) {                      // my interpretation
+        self.currentEmployee.name = currUser.FirstName;
+        ((AppDelegate *)[UIApplication sharedApplication].delegate).currUserNick = currUser.FirstName;
+        self.employeeHeaderView.oNameLabel.text = self.currentEmployee.name;
+    }
+    
+    [self.view setNeedsDisplay];
 }
 
 

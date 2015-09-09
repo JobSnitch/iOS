@@ -131,7 +131,7 @@ const float kMagicHeight2 = 764.0;
 
 -(void) setupEmployer:(id) sender {
     if (sender != self) {               // settings
-        [self downloadUserInfo:testUserID];
+        [self downloadUserInfo:testUserID2];
     }
 }
 

@@ -38,6 +38,13 @@
     [self.view layoutIfNeeded];
 }
 
+-(void) setupEmployee {
+    [super setupEmployee];
+    if ([self.currentEmployee.name isEqualToString:@"jobseeker"]) {
+        [self downloadUserInfo:testUserID2];
+    }
+}
+
 #pragma mark - interface
 -(void) setupEmployeeView {
     [super setupEmployeeView];
@@ -59,7 +66,6 @@
     if (avatarImage) {
         self.employeeHeaderView.oTopImage.image = avatarImage;
     }
-
     self.employeeHeaderView.oNameLabel.text = self.currentEmployee.name;
 }
 
@@ -111,6 +117,17 @@
         return pinView;
     }
     return nil;
+}
+
+#pragma mark - UserInfo callback
+-(void) setupFromUserInfo:(UserRecord *)currUser {
+    if (currUser.FirstName) {                      // my interpretation
+        self.currentEmployee.name = currUser.FirstName;
+        ((AppDelegate *)[UIApplication sharedApplication].delegate).currUserNick = currUser.FirstName;
+        self.employeeHeaderView.oNameLabel.text = self.currentEmployee.name;
+    }
+    
+    [self.view setNeedsDisplay];
 }
 
 #pragma mark - other
