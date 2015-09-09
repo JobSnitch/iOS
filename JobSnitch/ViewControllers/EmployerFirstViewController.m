@@ -72,8 +72,6 @@
         [self downloadUserInfo:testUserID2];
     }
     [self getCompanyProfileForUser:testUserID2];
-    // TEST FOR NOW
-//    [self getCompanyProfileForID:@"1"];
     
 }
 
@@ -86,44 +84,6 @@
         [self getCompanyInfo];
     }
     
-}
-
-#pragma mark - get companies info
--(void) getCompanyInfo {
-    self.currentEmployer.businesses = nil;
-    self.currentEmployer.businesses = [[NSMutableArray alloc] init];
-    NSSet *companyIDs = [NSSet setWithArray:[self.postings valueForKey:@"CompanyId"]];
-    for (NSNumber * cid in companyIDs) {
-        [self getCompanyProfile:[cid stringValue]];
-        break;                  // only one
-    }
-}
-
-- (void) getCompanyProfile:(NSString *) compId {
-    if (!compId || [compId isEqualToString:@""]) {
-        return;
-    }
-    
-    [[JSSessionManager sharedManager] getCompanyForId: compId withCompletion:^(NSDictionary *results, NSError *error) {
-        if (results) {
-            if ([[JSSessionManager sharedManager] checkResult:results]) {
-                CompanyRecord *currentCompany = [[JSSessionManager sharedManager] processCompanyIdResults:results];
-                [self setupCompany:currentCompany];
-            }
-        } else {
-            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetCompanyProfile"];
-        }
-    }];
-}
-
--(void) setupCompany: (CompanyRecord *) currentCompany{
-    if (currentCompany) {
-        currentCompany.imageName = @"mcdonalds.png";
-        [self.currentEmployer.businesses addObject:currentCompany];
-        currentCompany.postings = self.postings;
-    }
-    [self setupApplicationsForJobs];
-    [self setupScrollView];     // only one
 }
 
 #pragma mark - applications
@@ -679,21 +639,21 @@
 }
 
 #pragma mark - company
-- (void) getCompanyProfileForID:(NSString *) compId {
-    if (!compId || [compId isEqualToString:@""]) {
-        return;
-    }
-    
-    [[JSSessionManager sharedManager] getCompanyForId: compId withCompletion:^(NSDictionary *results, NSError *error) {
-        if (results) {
-            if ([[JSSessionManager sharedManager] checkResult:results]) {
-                self.currentCompany = [[JSSessionManager sharedManager] processCompanyIdResults:results];
-            }
-        } else {
-            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetCompanyProfile"];
-        }
-    }];
-}
+//- (void) getCompanyProfileForID:(NSString *) compId {
+//    if (!compId || [compId isEqualToString:@""]) {
+//        return;
+//    }
+//    
+//    [[JSSessionManager sharedManager] getCompanyForId: compId withCompletion:^(NSDictionary *results, NSError *error) {
+//        if (results) {
+//            if ([[JSSessionManager sharedManager] checkResult:results]) {
+//                self.currentCompany = [[JSSessionManager sharedManager] processCompanyIdResults:results];
+//            }
+//        } else {
+//            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetCompanyProfile"];
+//        }
+//    }];
+//}
 
 -(void) getCompanyProfileForUser:(NSString *) userID {
     if (!userID || [userID isEqualToString:@""]) {
@@ -710,6 +670,44 @@
             [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetCompanyForUser"];
         }
     }];
+}
+
+#pragma mark - get companies info
+-(void) getCompanyInfo {
+    self.currentEmployer.businesses = nil;
+    self.currentEmployer.businesses = [[NSMutableArray alloc] init];
+    NSSet *companyIDs = [NSSet setWithArray:[self.postings valueForKey:@"CompanyId"]];
+    for (NSNumber * cid in companyIDs) {
+        [self getCompanyProfile:[cid stringValue]];
+        break;                  // only one
+    }
+}
+
+- (void) getCompanyProfile:(NSString *) compId {
+    if (!compId || [compId isEqualToString:@""]) {
+        return;
+    }
+    
+    [[JSSessionManager sharedManager] getCompanyForId: compId withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                CompanyRecord *currentCompany = [[JSSessionManager sharedManager] processCompanyIdResults:results];
+                [self setupCompany:currentCompany];
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetCompanyProfile"];
+        }
+    }];
+}
+
+-(void) setupCompany: (CompanyRecord *) currentCompany{
+    if (currentCompany) {
+        currentCompany.imageName = @"mcdonalds.png";
+        [self.currentEmployer.businesses addObject:currentCompany];
+        currentCompany.postings = self.postings;
+    }
+    [self setupApplicationsForJobs];
+    [self setupScrollView];     // only one
 }
 
 #pragma mark - UserInfo callback
