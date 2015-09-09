@@ -26,7 +26,7 @@
 @property (nonatomic) BOOL   wantsVideo;
 
 @property (nonatomic) BOOL   isActive;
-@property (nonatomic) NSInteger   CompanyId;
+@property (nonatomic) NSString *  CompanyId;
 @property (nonatomic) NSInteger   JobPostingId;
 @property (nonatomic, strong) NSString * JobLocation;
 

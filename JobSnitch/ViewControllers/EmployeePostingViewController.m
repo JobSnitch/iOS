@@ -11,8 +11,10 @@
 #import "PostingCollectViewCell.h"
 #import "PostingRecord.h"
 #import "BusinessRecord.h"
+#import "CompanyRecord.h"
 #import "TextApplPopupView.h"
 #import "ContactPopupView.h"
+#import "JSSessionManager.h"
 
 #import "DLSFTPConnection.h"
 #import "DLSFTPRequest.h"
@@ -32,6 +34,7 @@
 @property (nonatomic, strong)   NSMutableArray *postings;
 @property (nonatomic)   int     currentIndex;
 @property (nonatomic, strong)   NSMutableArray *businesses;
+@property (nonatomic, strong)   NSSet *companyIDs;
 
 @property (strong, nonatomic)   NSString *movPath;
 @property (strong, nonatomic)   NSString *mp4Path;
@@ -61,86 +64,86 @@
 #pragma mark - data
 -(void) prepareData {
     [self setupEmployee];
-
-    self.postings = [[NSMutableArray alloc] init];
-    [self setupBusinesses];
+    [self getPostingsByUser:testUserID2];
+//    self.postings = [[NSMutableArray alloc] init];
+//    [self setupBusinessesFake];
 }
 
--(void) setupBusinesses {
-    self.businesses = [[NSMutableArray alloc] init];
-    
-    BusinessRecord *currBusiness = nil;
-    currBusiness = [[BusinessRecord alloc] init];
-    currBusiness.name = @"McDonald's 1";
-    currBusiness.address = @"1692 Rue Mont Royal, Montreal QC H2J 1Z5";
-    currBusiness.imageName = @"mcdonalds.png";
-    [self setupPostingsFor:currBusiness];
-    [self.businesses addObject:currBusiness];
-    
-    currBusiness = nil;
-    currBusiness = [[BusinessRecord alloc] init];
-    currBusiness.name = @"McDonald's 2";
-    currBusiness.address = @"2530 Rue Masson, Montreal QC H1Y 1V8";
-    currBusiness.imageName = @"mcdonalds.png";
-    [self setupPostingsFor:currBusiness];
-    [self.businesses addObject:currBusiness];
-    
-}
-
--(void) setupPostingsFor:(BusinessRecord *)currBusiness {
-    if ([currBusiness.name isEqualToString:@"McDonald's 1"]) {
-        NSMutableArray *postings = [[NSMutableArray alloc] init];
-        
-        PostingRecord *currPosting = nil;
-        currPosting = [[PostingRecord alloc] init];
-        currPosting.title = @"CS Rep";
-        currPosting.descrption = @"Take orders, .....";
-        currPosting.noApplications = 23;
-        currPosting.noShortlisted = 5;
-        currPosting.morningShift = TRUE;
-        currPosting.nightShift = TRUE;
-        currPosting.wantsText = TRUE;
-        currPosting.wantsAudio = FALSE;
-        currPosting.wantsVideo = FALSE;
-        currPosting.ownerBusiness = currBusiness;
-        [postings addObject:currPosting];
-        [self.postings addObject:currPosting];
-        
-        currPosting = nil;
-        currPosting = [[PostingRecord alloc] init];
-        currPosting.title = @"Manager";
-        currPosting.descrption = @"Payroll, Training .....";
-        currPosting.noApplications = 0;
-        currPosting.noShortlisted = 0;
-        currPosting.eveningShift = TRUE;
-        currPosting.nightShift = TRUE;
-        currPosting.wantsText = FALSE;
-        currPosting.wantsAudio = TRUE;
-        currPosting.wantsVideo = FALSE;
-        currPosting.ownerBusiness = currBusiness;
-        [postings addObject:currPosting];
-        [self.postings addObject:currPosting];
-        currBusiness.postings = postings;
-    }
-    if ([currBusiness.name isEqualToString:@"McDonald's 2"]) {
-        NSMutableArray *postings = [[NSMutableArray alloc] init];
-        
-        PostingRecord *currPosting = nil;
-        currPosting = [[PostingRecord alloc] init];
-        currPosting.title = @"Asst. Manager";
-        currPosting.descrption = @"Scheduling, .....";
-        currPosting.noApplications = 4;
-        currPosting.noShortlisted = 0;
-        currPosting.afternoonShift = TRUE;
-        currPosting.wantsText = FALSE;
-        currPosting.wantsAudio = FALSE;
-        currPosting.wantsVideo = TRUE;
-        currPosting.ownerBusiness = currBusiness;
-        [postings addObject:currPosting];
-        [self.postings addObject:currPosting];
-        currBusiness.postings = postings;
-    }
-}
+//-(void) setupBusinessesFake {
+//    self.businesses = [[NSMutableArray alloc] init];
+//    
+//    BusinessRecord *currBusiness = nil;
+//    currBusiness = [[BusinessRecord alloc] init];
+//    currBusiness.name = @"McDonald's 1";
+//    currBusiness.address = @"1692 Rue Mont Royal, Montreal QC H2J 1Z5";
+//    currBusiness.imageName = @"mcdonalds.png";
+//    [self setupPostingsFor:currBusiness];
+//    [self.businesses addObject:currBusiness];
+//    
+//    currBusiness = nil;
+//    currBusiness = [[BusinessRecord alloc] init];
+//    currBusiness.name = @"McDonald's 2";
+//    currBusiness.address = @"2530 Rue Masson, Montreal QC H1Y 1V8";
+//    currBusiness.imageName = @"mcdonalds.png";
+//    [self setupPostingsFor:currBusiness];
+//    [self.businesses addObject:currBusiness];
+//    
+//}
+//
+//-(void) setupPostingsFor:(BusinessRecord *)currBusiness {
+//    if ([currBusiness.name isEqualToString:@"McDonald's 1"]) {
+//        NSMutableArray *postings = [[NSMutableArray alloc] init];
+//        
+//        PostingRecord *currPosting = nil;
+//        currPosting = [[PostingRecord alloc] init];
+//        currPosting.title = @"CS Rep";
+//        currPosting.descrption = @"Take orders, .....";
+//        currPosting.noApplications = 23;
+//        currPosting.noShortlisted = 5;
+//        currPosting.morningShift = TRUE;
+//        currPosting.nightShift = TRUE;
+//        currPosting.wantsText = TRUE;
+//        currPosting.wantsAudio = FALSE;
+//        currPosting.wantsVideo = FALSE;
+//        currPosting.ownerBusiness = currBusiness;
+//        [postings addObject:currPosting];
+//        [self.postings addObject:currPosting];
+//        
+//        currPosting = nil;
+//        currPosting = [[PostingRecord alloc] init];
+//        currPosting.title = @"Manager";
+//        currPosting.descrption = @"Payroll, Training .....";
+//        currPosting.noApplications = 0;
+//        currPosting.noShortlisted = 0;
+//        currPosting.eveningShift = TRUE;
+//        currPosting.nightShift = TRUE;
+//        currPosting.wantsText = FALSE;
+//        currPosting.wantsAudio = TRUE;
+//        currPosting.wantsVideo = FALSE;
+//        currPosting.ownerBusiness = currBusiness;
+//        [postings addObject:currPosting];
+//        [self.postings addObject:currPosting];
+//        currBusiness.postings = postings;
+//    }
+//    if ([currBusiness.name isEqualToString:@"McDonald's 2"]) {
+//        NSMutableArray *postings = [[NSMutableArray alloc] init];
+//        
+//        PostingRecord *currPosting = nil;
+//        currPosting = [[PostingRecord alloc] init];
+//        currPosting.title = @"Asst. Manager";
+//        currPosting.descrption = @"Scheduling, .....";
+//        currPosting.noApplications = 4;
+//        currPosting.noShortlisted = 0;
+//        currPosting.afternoonShift = TRUE;
+//        currPosting.wantsText = FALSE;
+//        currPosting.wantsAudio = FALSE;
+//        currPosting.wantsVideo = TRUE;
+//        currPosting.ownerBusiness = currBusiness;
+//        [postings addObject:currPosting];
+//        [self.postings addObject:currPosting];
+//        currBusiness.postings = postings;
+//    }
+//}
 
 #pragma mark - interface
 
@@ -202,12 +205,17 @@
         cell.oNameLabel.text = currPost.title;
         cell.oDescriptionLabel.text = currPost.descrption;
         cell.oCurrentLabel.text = [NSString stringWithFormat:@"%ld/%lu", (long)indexPath.row+1, (unsigned long)self.postings.count];
-        cell.oTextButton.enabled = currPost.wantsText;
-        cell.oAudioButton.enabled = currPost.wantsAudio;
-        cell.oCameraButton.enabled = currPost.wantsVideo;
-        BusinessRecord *currBusiness = (BusinessRecord *)currPost.ownerBusiness;
-        cell.oBusinessLabel.text = currBusiness.name;
-        cell.oAddressLabel.text = currBusiness.address;
+        // FOR TEST
+//        cell.oTextButton.enabled = currPost.wantsText;
+//        cell.oAudioButton.enabled = currPost.wantsAudio;
+//        cell.oCameraButton.enabled = currPost.wantsVideo;
+        cell.oTextButton.enabled = random()%2;
+        cell.oAudioButton.enabled = random()%2;
+        cell.oCameraButton.enabled = random()%2;
+//        BusinessRecord *currBusiness = (BusinessRecord *)currPost.ownerBusiness;
+        CompanyRecord *currBusiness = [self getBusiness:currPost.CompanyId];
+        cell.oBusinessLabel.text = [NSString stringWithFormat:@"%@ %@ %@", currBusiness.NameEnglish, currBusiness.City, currBusiness.Province];
+        cell.oAddressLabel.text = currPost.JobLocation;
         cell.oPhotoImage.image = [UIImage imageNamed:currBusiness.imageName];
     }
     
@@ -481,6 +489,66 @@ static bool isRecording = false;
                                                       failureBlock:failureBlock
                                                      progressBlock:nil];
     [self.connection submitRequest:self.request];
+}
+
+#pragma mark - GetAllJobPosting
+- (void) getPostingsByUser:(NSString *) userId {
+    if (!userId || [userId isEqualToString:@""]) {
+        return;
+    }
+    
+    [[JSSessionManager sharedManager] getPostingsForUser:userId withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                self.postings = [[JSSessionManager sharedManager] processAllPostingsResults:results];
+                if (self.postings && self.postings.count) {
+                    [self getCompaniesInfo];
+                }
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetAllJobPosting"];
+        }
+    }];
+}
+
+#pragma mark - get companies info
+-(void) getCompaniesInfo {
+    self.businesses = nil;
+    self.businesses = [[NSMutableArray alloc] init];
+    self.companyIDs = [NSSet setWithArray:[self.postings valueForKey:@"CompanyId"]];
+    for (NSNumber * cid in self.companyIDs) {
+        [self getCompanyProfile:[cid stringValue]];
+    }
+}
+
+- (void) getCompanyProfile:(NSString *) compId {
+    if (!compId || [compId isEqualToString:@""]) {
+        return;
+    }
+    
+    [[JSSessionManager sharedManager] getCompanyForId: compId withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                CompanyRecord *currentCompany = [[JSSessionManager sharedManager] processCompanyIdResults:results];
+                [self.businesses addObject:currentCompany];
+                currentCompany.imageName = @"mcdonalds.png";
+                [self.oCollectionView reloadData];
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetCompanyProfile"];
+        }
+    }];
+}
+
+-(CompanyRecord *) getBusiness: (NSString *) compId {
+    NSInteger companyid = [compId integerValue];
+    for (CompanyRecord *currentCompany in self.businesses) {
+        NSInteger cid = currentCompany.CompanyId;
+        if (cid == companyid) {
+            return currentCompany;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - other

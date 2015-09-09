@@ -73,7 +73,6 @@
     self.currentEmployer.imageName = @"small_add_photo.png";
     // TEST FOR NOW
     [self getPostingsByCompany:@"1"];
-//    [self getPostingsByUser:testUserID];
     [self getCompanyProfile:@"1"];
 
     [self setupBusinesses];
@@ -594,22 +593,6 @@
             }
         } else {
             [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetAllPostingsForCompany"];
-        }
-    }];
-}
-
-- (void) getPostingsByUser:(NSString *) userId {
-    if (!userId || [userId isEqualToString:@""]) {
-        return;
-    }
-    
-    [[JSSessionManager sharedManager] getPostingsForUser:userId withCompletion:^(NSDictionary *results, NSError *error) {
-        if (results) {
-            if ([[JSSessionManager sharedManager] checkResult:results]) {
-                self.postings = [[JSSessionManager sharedManager] processAllPostingsResults:results];
-            }
-        } else {
-            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetAllJobPosting"];
         }
     }];
 }

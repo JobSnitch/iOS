@@ -103,7 +103,7 @@ static BOOL hasBeenDisconnected = FALSE;
     if (![self preLaunch]) return nil;
     
     NSDictionary *params = nil;
-    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobCategory/GetAllJobPosting/%@", user];
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/GetAllJobPosting/%@", user];
     return [self getForService:service withParams:params withCompletion:completion];
 }
 
@@ -344,7 +344,7 @@ static BOOL hasBeenDisconnected = FALSE;
 }
 - (NSMutableArray *) processAllPostingsResults: (NSDictionary *)results {
     NSMutableArray *retArray = nil;
-    //    NSLog(@"AllPostings: %@", results);
+    NSLog(@"AllPostings: %@", results);
     if (results) {
         retArray = [[NSMutableArray alloc] init];
         for (NSDictionary *posting in results) {
@@ -356,7 +356,8 @@ static BOOL hasBeenDisconnected = FALSE;
                 currPost.afternoonShift = [[avail valueForKey:@"MondayPM"] boolValue];
                 currPost.eveningShift = [[avail valueForKey:@"MondayEvening"] boolValue];
             }
-            currPost.CompanyId = [[posting valueForKey:@"CompanyId"] integerValue];
+//            currPost.CompanyId = [[posting valueForKey:@"CompanyId"] integerValue];
+            currPost.CompanyId = [posting valueForKey:@"CompanyId"] ;
             currPost.descrption = [posting valueForKey:@"DescriptionEnglish"];
             NSDictionary *categ = [posting valueForKey:@"JobCategory"];
             if (categ) {
@@ -435,7 +436,8 @@ static BOOL hasBeenDisconnected = FALSE;
                 currPost.afternoonShift = [[avail valueForKey:@"MondayPM"] boolValue];
                 currPost.eveningShift = [[avail valueForKey:@"MondayEvening"] boolValue];
             }
-            currPost.CompanyId = [[posting valueForKey:@"CompanyId"] integerValue];
+//            currPost.CompanyId = [[posting valueForKey:@"CompanyId"] integerValue];
+            currPost.CompanyId = [posting valueForKey:@"CompanyId"];
             currPost.descrption = [posting valueForKey:@"DescriptionEnglish"];
             NSDictionary *categ = [posting valueForKey:@"JobCategory"];
             if (categ) {

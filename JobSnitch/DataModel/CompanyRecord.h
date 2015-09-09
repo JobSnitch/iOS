@@ -13,5 +13,7 @@
 @property (nonatomic, strong) NSString * NameEnglish;
 @property (nonatomic, strong) NSString * City;
 @property (nonatomic, strong) NSString * Province;
+@property (nonatomic, strong) NSString * imageName;
+@property (nonatomic, strong) NSArray * postings;
 
 @end
