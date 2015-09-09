@@ -12,7 +12,7 @@
 @property (nonatomic, strong) NSString * title;
 @property (nonatomic, strong) NSString * descrption;
 @property (nonatomic, strong) NSString * JobCategoryName;             // ?
-@property (nonatomic) NSInteger   JobCategoryId;
+@property (nonatomic)       NSInteger   JobCategoryId;
 @property (nonatomic, strong) NSString * industry;                   // ?
 @property (nonatomic) BOOL   morningShift;
 @property (nonatomic) BOOL   afternoonShift;
@@ -26,9 +26,10 @@
 @property (nonatomic) BOOL   wantsVideo;
 
 @property (nonatomic) BOOL   isActive;
-@property (nonatomic) NSString *  CompanyId;
 @property (nonatomic) NSInteger   JobPostingId;
+@property (nonatomic, strong) NSString *  CompanyId;
 @property (nonatomic, strong) NSString * JobLocation;
+@property (nonatomic, strong) NSArray *applications;
 
 @property (nonatomic, weak) id ownerBusiness;
 

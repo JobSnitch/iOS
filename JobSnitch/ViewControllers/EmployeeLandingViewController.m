@@ -76,7 +76,6 @@
     }
     [self.locationManager startUpdatingLocation];
     
-//    [self lookupByAddress:@"75 mont-luc, gatineau"];
     [self getPostingsByUser:testUserID2];
 }
 

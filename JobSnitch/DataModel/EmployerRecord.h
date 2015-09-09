@@ -10,6 +10,6 @@
 #import "UserRecord.h"
 
 @interface EmployerRecord : UserRecord
-@property (nonatomic, strong) NSArray * businesses;
+@property (nonatomic, strong) NSMutableArray * businesses;
 
 @end

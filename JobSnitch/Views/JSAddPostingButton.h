@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BusinessRecord.h"
+
+@class CompanyRecord;
 
 @interface JSAddPostingButton : UIButton
-@property (weak, nonatomic) BusinessRecord *currBusiness;
+@property (weak, nonatomic) CompanyRecord *currBusiness;
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "EmployeeRecord.h"
+#import "EmployerRecord.h"
 #import "EmployeeFirstView.h"
 
 @interface BaseJSViewController : UIViewController
@@ -20,6 +21,9 @@
 @property (nonatomic, strong)   EmployeeFirstView *employeeHeaderView;
 @property (nonatomic, strong)   NSArray *jobCategories;
 
+// for Employer
+@property (nonatomic, strong)   EmployerRecord *currentEmployer;
+
 -(void) initBackground;
 -(void) setupJobtypePicker;
 -(void) setupIndustryPicker;
@@ -29,6 +33,7 @@
 -(void) showJobtypePicker;
 -(void) showIndustryPicker;
 
+-(void) setupEmployer;
 -(void) setupEmployee;
 -(void) setupEmployeeView;
 

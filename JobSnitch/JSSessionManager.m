@@ -121,7 +121,7 @@ static BOOL hasBeenDisconnected = FALSE;
     if (![self preLaunch]) return nil;
     
     NSDictionary *params = nil;
-    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/GetApplicationsForJob?JobPostingId=%@", postingId];
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/GetApplicationsForJob/%@", postingId];
     return [self getForService:service withParams:params withCompletion:completion];
 }
 
@@ -381,8 +381,34 @@ static BOOL hasBeenDisconnected = FALSE;
 }
 
 - (NSArray *) processApplicationsResults: (NSDictionary *)results {
-    NSArray *retArray = nil;
-    NSLog(@"AllApplications: %@", results);
+    NSMutableArray *retArray = nil;
+//    NSLog(@"AllApplications: %@", results);
+    if (results) {
+        retArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *appl in results) {
+            ApplicationRecord *currAppl = [[ApplicationRecord alloc] init];
+            NSDictionary *account = [appl valueForKey:@"Account"];
+            if (account) {
+                NSDictionary *avail = [account valueForKey:@"AvailabilitySchedule"];
+                if (avail) {
+                    currAppl.morningShift = [[avail valueForKey:@"MondayAM"] boolValue];
+                    currAppl.afternoonShift = [[avail valueForKey:@"MondayPM"] boolValue];
+                    currAppl.eveningShift = [[avail valueForKey:@"MondayEvening"] boolValue];
+                }
+                currAppl.email = [account valueForKey:@"Email"];
+                currAppl.FirstName = [account valueForKey:@"FirstName"];
+                currAppl.LastName = [account valueForKey:@"LastName"];
+            }
+            currAppl.ApplicationId = [appl valueForKey:@"ApplicationId"] ;
+            currAppl.ApplicationStatus = [appl valueForKey:@"ApplicationStatus"];
+            currAppl.JobPostingId = [appl valueForKey:@"JobPostingId"] ;
+            currAppl.textResource = [appl valueForKey:@"Message"];
+            currAppl.UserId = [appl valueForKey:@"UserId"] ;
+            currAppl.VideoIncluded = [[appl valueForKey:@"VideoIncluded"] boolValue];
+
+            [retArray addObject:currAppl];
+        }
+    }
     return retArray;
 }
 
