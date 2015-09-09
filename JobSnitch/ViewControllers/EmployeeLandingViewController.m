@@ -8,6 +8,7 @@
 
 #import "EmployeeLandingViewController.h"
 #import "EmployeeFirstView.h"
+#import "JSSessionManager.h"
 
 @import MapKit;
 
@@ -55,11 +56,6 @@
     self.oMapView.delegate = self;
 }
 
--(void) setupShowMap {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance ( self.coords, 10000, 10000);
-    [self.oMapView setRegion:region animated:NO];
-}
-
 -(void) setupHeader {
     self.employeeHeaderView.oTopImage.image = [UIImage imageNamed:self.currentEmployee.imageName];
     UIImage *avatarImage = [self getAvatarPhoto];
@@ -79,6 +75,9 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     [self.locationManager startUpdatingLocation];
+    
+//    [self lookupByAddress:@"75 mont-luc, gatineau"];
+    [self getPostingsByUser:testUserID2];
 }
 
 // Failed to get current location
@@ -100,6 +99,12 @@
     }
 }
 
+-(void) setupShowMap {
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance ( self.coords, 10000, 10000);
+    [self.oMapView setRegion:region animated:NO];
+}
+
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
@@ -116,8 +121,68 @@
         }
         return pinView;
     }
+    if ([annotation isKindOfClass:[MKPlacemark class]]) {
+        MKAnnotationView *pinView = (MKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinPlaceView"];
+        if (!pinView)
+        {
+            // If an existing pin view was not available, create one.
+            pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinPlaceView"];
+            pinView.canShowCallout = YES;
+            pinView.image = [UIImage imageNamed:@"pin_type2"];
+            pinView.centerOffset = CGPointMake(32, -32);
+        } else {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
     return nil;
 }
+
+-(void) placeAnnotationsForPostings:(NSArray *)postings {
+    if (postings && postings.count) {
+        NSArray *addresses = [postings valueForKeyPath:@"JobLocation"];
+        for (NSString *addr in addresses) {
+            [self lookupByAddress:addr];
+        }
+    }
+}
+
+-(void) lookupByAddress:(NSString *) address {
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:address
+                 completionHandler:^(NSArray* placemarks, NSError* error){
+                     if (error) {
+                         NSLog(@"%@", error);
+                     } else if (placemarks && placemarks.count > 0) {
+                         CLPlacemark *topResult = [placemarks firstObject];
+                         MKPlacemark *placemark = [[MKPlacemark alloc] initWithPlacemark:topResult];
+//                         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(placemark.coordinate, 10000, 10000);
+//                         [self.oMapView setRegion:region animated:YES];
+                         [self.oMapView addAnnotation:placemark];
+                     }
+                 }
+     ];
+}
+
+#pragma mark - GetAllJobPosting
+- (void) getPostingsByUser:(NSString *) userId {
+    if (!userId || [userId isEqualToString:@""]) {
+        return;
+    }
+    
+    [[JSSessionManager sharedManager] getPostingsForUser:userId withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                NSArray *postings = [[JSSessionManager sharedManager] processAllPostingsResults:results];
+                [self placeAnnotationsForPostings:postings];
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetAllJobPosting"];
+        }
+    }];
+}
+
 
 #pragma mark - UserInfo callback
 -(void) setupFromUserInfo:(UserRecord *)currUser {

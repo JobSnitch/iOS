@@ -10,7 +10,7 @@
 #import "BusinessRestrictedView.h"
 #import "PostingCollectViewCell.h"
 #import "PostingRecord.h"
-#import "BusinessRecord.h"
+//#import "BusinessRecord.h"
 #import "CompanyRecord.h"
 #import "TextApplPopupView.h"
 #import "ContactPopupView.h"

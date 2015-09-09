@@ -17,7 +17,7 @@
 @end
 
 @interface EmployeePostingViewController : BaseJSViewController <UICollectionViewDataSource, UICollectionViewDelegate>
-@property (nonatomic, weak)   BusinessRecord *currBusiness;
+//@property (nonatomic, weak)   BusinessRecord *currBusiness;
 @property (nonatomic, weak)   PostingRecord *currPosting;
 
 @property (assign) id<EmployeeContainerDelegate> delegate;    
