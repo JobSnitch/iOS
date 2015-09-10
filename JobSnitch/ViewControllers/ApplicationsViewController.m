@@ -293,8 +293,9 @@
     NSString *telNo;
     NSUInteger i = self.currentIndex;
     ApplicationRecord *appl = self.applications[i];
-    {
+    if (appl.phoneNumber) {
         telNo = appl.phoneNumber;
+    } else {
         telNo = @"0701-010101";
     }
     NSString *phoneNumber = [@"tel://" stringByAppendingString:telNo];
@@ -314,8 +315,9 @@
     NSUInteger i = self.currentIndex;
     ApplicationRecord *appl = self.applications[i];
     NSArray *toRecipients;
-    {
+    if (appl.phoneNumber) {
         toRecipients = [NSArray arrayWithObject:appl.phoneNumber];
+    } else {
         toRecipients = [NSArray arrayWithObject:@"0701-010101"];
     }
     
@@ -336,8 +338,9 @@
     NSString *emailTitle = [NSString stringWithFormat:@"%@ %@", @"contact request JobSnitch at %@", emailDate];
     // To address
     NSArray *toRecipients;
-    {
+    if (appl.email && ![appl.email isEqual:[NSNull null]] && ![appl.email isEqualToString:@""] ) {
         toRecipients = [NSArray arrayWithObject:appl.email];
+    } else {
         toRecipients = [NSArray arrayWithObject:@"youremail@mail.com"];
     }
     
