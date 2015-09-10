@@ -32,5 +32,6 @@
 @property (nonatomic, strong) NSArray *applications;
 
 @property (nonatomic, weak) id ownerBusiness;
+@property (nonatomic, weak) id corespView;
 
 @end

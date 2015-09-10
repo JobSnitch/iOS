@@ -91,6 +91,7 @@
     for (PostingRecord *currPosting in self.postings) {
         NSString *postId = [[NSNumber numberWithInteger:currPosting.JobPostingId] stringValue];
         [self getApplicationsForPosting:postId];
+        usleep(100000);
     }
 }
 
@@ -102,7 +103,8 @@
     [[JSSessionManager sharedManager] getApplicationsForJob:postId withCompletion:^(NSDictionary *results, NSError *error) {
         if (results) {
             if ([[JSSessionManager sharedManager] checkResult:results]) {
-                [[JSSessionManager sharedManager] processApplicationsResults:results];
+                NSArray *applications = [[JSSessionManager sharedManager] processApplicationsResults:results];
+                [self setApplications:applications forPost:postId];
             }
         } else {
             [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetApplicationsForJob"];
@@ -110,69 +112,27 @@
     }];
 }
 
-//-(void) setupBusinesses {
-//    NSMutableArray *businesses = [[NSMutableArray alloc] init];
-//    
-//    BusinessRecord *currBusiness = nil;
-//    currBusiness = [[BusinessRecord alloc] init];
-//    currBusiness.name = @"McDonald's 1";
-//    currBusiness.address = @"1692 Rue Mont Royal, Montreal QC H2J 1Z5";
-//    currBusiness.imageName = @"mcdonalds.png";
-//    [self setupPostingsFor:currBusiness];
-//    [businesses addObject:currBusiness];
-//    
-//    currBusiness = nil;
-//    currBusiness = [[BusinessRecord alloc] init];
-//    currBusiness.name = @"McDonald's 2";
-//    currBusiness.address = @"2530 Rue Masson, Montreal QC H1Y 1V8";
-//    currBusiness.imageName = @"mcdonalds.png";
-//    [self setupPostingsFor:currBusiness];
-//    [businesses addObject:currBusiness];
-//    
-//    self.currentEmployer.businesses = businesses;
-//}
-//
-//-(void) setupPostingsFor:(BusinessRecord *)currBusiness {
-//    if ([currBusiness.name isEqualToString:@"McDonald's 1"]) {
-//        NSMutableArray *postings = [[NSMutableArray alloc] init];
-//        
-//        PostingRecord *currPosting = nil;
-//        currPosting = [[PostingRecord alloc] init];
-//        currPosting.title = @"CS Rep";
-//        currPosting.descrption = @"Take orders, .....";
-//        currPosting.noApplications = 23;
-//        currPosting.noShortlisted = 5;
-//        currPosting.morningShift = TRUE;
-//        currPosting.nightShift = TRUE;
-//        [postings addObject:currPosting];
-//        
-//        currPosting = nil;
-//        currPosting = [[PostingRecord alloc] init];
-//        currPosting.title = @"Manager";
-//        currPosting.descrption = @"Payroll, Training .....";
-//        currPosting.noApplications = 0;
-//        currPosting.noShortlisted = 0;
-//        currPosting.eveningShift = TRUE;
-//        currPosting.nightShift = TRUE;
-//        [postings addObject:currPosting];
-//        
-//        currBusiness.postings = postings;
-//    }
-//    if ([currBusiness.name isEqualToString:@"McDonald's 2"]) {
-//        NSMutableArray *postings = [[NSMutableArray alloc] init];
-//        
-//        PostingRecord *currPosting = nil;
-//        currPosting = [[PostingRecord alloc] init];
-//        currPosting.title = @"Asst. Manager";
-//        currPosting.descrption = @"Scheduling, .....";
-//        currPosting.noApplications = 4;
-//        currPosting.noShortlisted = 0;
-//        currPosting.afternoonShift = TRUE;
-//        [postings addObject:currPosting];
-//        
-//        currBusiness.postings = postings;
-//    }
-//}
+-(void) setApplications:(NSArray *)applications forPost:(NSString *) postId {
+    if (applications) {
+        for (PostingRecord *currPosting in self.postings) {
+            NSString *postingid = [[NSNumber numberWithInteger:currPosting.JobPostingId] stringValue];
+            if (postingid && [postingid isEqualToString:postId]) {
+                currPosting.applications = [NSArray arrayWithArray:applications];
+                currPosting.noApplications = (int)applications.count;
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ApplicationStatus IN %@", @[@"Approved"]];
+                NSArray *filteredArray = [currPosting.applications filteredArrayUsingPredicate:predicate];
+                if (filteredArray) {
+                    currPosting.noShortlisted = (int)filteredArray.count;
+                }
+                if ((currPosting.corespView != nil) && ([currPosting.corespView respondsToSelector:@selector(postData:)])) {
+                    [currPosting.corespView postData:currPosting];
+                    [currPosting.corespView setNeedsDisplay];
+                }
+            }
+        }
+    }
+}
+
 
 #pragma mark - interface
 -(void) setupView {
@@ -181,7 +141,6 @@
     [self.view addSubview:self.mainView];
     
     [self setupHeader];
-//    [self setupScrollView];
 }
 
 -(void) setupHeader {
@@ -235,6 +194,7 @@
                                  self.view.bounds.size.width, self.rowHeight);
     PostingRestrictedView *currView = [[PostingRestrictedView alloc] initWithFrame:topFrame];
     [currView postData:currPosting];
+    currPosting.corespView = currView;
     currView.parent = self;
     [self.oScrollView addSubview:currView];
     [self.subviews addObject:currView];
@@ -507,7 +467,7 @@
 }
 
 - (void)delegateBroadcast:(id)sender {
-    
+    // ?
 }
 
 #pragma mark - show applications
