@@ -16,7 +16,7 @@ typedef enum : NSUInteger {
 
 @interface ApplicationRecord : NSObject
 
-@property (nonatomic, strong) NSString * ApplicationId;
+@property (nonatomic, strong) NSNumber * ApplicationId;
 @property (nonatomic, strong) NSString * ApplicationStatus;
 @property (nonatomic, strong) NSString * JobPostingId;
 @property (nonatomic, strong) NSString * UserId;
@@ -34,5 +34,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) BOOL   eveningShift;
 @property (nonatomic) BOOL   nightShift;
 @property (nonatomic) BOOL   VideoIncluded;
+
+-(void) deepCopy:(ApplicationRecord *) source;
 
 @end

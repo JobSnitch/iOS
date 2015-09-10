@@ -332,10 +332,10 @@ const float kMagicHeight1 = 1268.0;
 {
     self.myLocation = nil;
     self.myLocation = [newLocation copy];
-    NSLog(@"%f, %f, %f, %@", self.myLocation.coordinate.longitude,
-          self.myLocation.coordinate.latitude,
-          self.myLocation.altitude,
-          self.myLocation.description);
+//    NSLog(@"%f, %f, %f, %@", self.myLocation.coordinate.longitude,
+//          self.myLocation.coordinate.latitude,
+//          self.myLocation.altitude,
+//          self.myLocation.description);
     [self.locationManager stopUpdatingLocation];
     
 }

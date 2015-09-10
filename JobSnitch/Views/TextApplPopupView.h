@@ -10,6 +10,6 @@
 
 @interface TextApplPopupView : UIView
 @property (weak, nonatomic) IBOutlet UIWebView *oWebView;
-
+@property (nonatomic, strong)   NSString *message;
 -(void) setupContent;
 @end

@@ -25,8 +25,10 @@
                               withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
 - (NSURLSessionDataTask *)getPostingWithId: (NSString *) postingId
                             withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
+- (NSURLSessionDataTask *)userHasAlreadyAppliedForJob: (NSString *) postingId
+                                       withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
 - (NSURLSessionDataTask *)getApplicationsForJob: (NSString *) postingId
-                              withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
+                                 withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
 - (NSURLSessionDataTask *)getApplicationWithId: (NSString *) applId
                             withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
 - (NSURLSessionDataTask *)updatePostingWithParam: (NSString *) param
@@ -58,6 +60,7 @@
 - (BOOL) processNewPostingResults: (NSDictionary *)results;
 - (NSMutableArray *) processAllPostingsResults: (NSDictionary *)results;
 - (PostingRecord *) processPostingWithId: (NSDictionary *)results;
+- (BOOL) processAlreadyAppliedForJob: (NSDictionary *)results;
 - (NSArray *) processApplicationsResults: (NSDictionary *)results;
 - (ApplicationRecord *) processApplicationWithId: (NSDictionary *)results;
 - (BOOL) processUpdatePostingResults: (NSDictionary *)results;

@@ -71,6 +71,7 @@
     if ([self.currentEmployer.name isEqualToString:@"employer"]) {
         [self downloadUserInfo:testUserID2];
     }
+    usleep(100000);
     [self getCompanyProfileForUser:testUserID2];
     
 }
@@ -370,14 +371,14 @@
     for (BusinessRecord *currBusiness in self.currentEmployer.businesses) {
         for (PostingRecord *aPosting in currBusiness.postings) {
             if (aPosting == currPosting) {
-                [self setupFromFields:currPosting];
+                [self changeFromFields:currPosting];
                 break;
             }
         }
     }
 }
 
--(void) setupFromFields:(PostingRecord *) currPosting {
+-(void) changeFromFields:(PostingRecord *) currPosting {
     currPosting.title = self.postingView.oJTitleText.text;
     currPosting.descrption = self.postingView.oDescriptionText.text;
     currPosting.morningShift = self.postingView.oMorningSwitch.on;
@@ -386,6 +387,10 @@
     currPosting.nightShift = self.postingView.oNightSwitch.on;
     currPosting.JobCategoryName = self.postingView.oJTypeLabel.text;
     currPosting.industry = self.postingView.oIndustryLabel.text;
+}
+
+-(void) setupFromFields:(PostingRecord *) currPosting {
+    [self changeFromFields:currPosting];
     currPosting.ownerBusiness = ((PostingAddView *)self.postingView).currBusiness;
 }
 
@@ -496,8 +501,8 @@
 -(void)prepareChildWithSender:(id)sender{
     self.suprview = (PostingRestrictedView *)(((UIView *)sender).superview);
     PostingRecord * currPosting = ((JSEditPostingButton *) sender).currPosting;
-    BusinessRecord *currBusiness = nil;
-    for (BusinessRecord *aBusiness in self.currentEmployer.businesses) {
+    CompanyRecord *currBusiness = nil;
+    for (CompanyRecord *aBusiness in self.currentEmployer.businesses) {
         for (PostingRecord *aPosting in aBusiness.postings) {
             if (aPosting == currPosting) {
                 currBusiness = aBusiness;
@@ -506,7 +511,7 @@
         }
     }
     if (currBusiness && currPosting) {
-        self.applController.currentEmployer = self.currentEmployer;
+        self.applController.currEmployer = self.currentEmployer;
         self.applController.currBusiness = currBusiness;
         self.applController.currPosting = currPosting;
     }

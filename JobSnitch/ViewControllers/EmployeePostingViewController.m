@@ -10,7 +10,6 @@
 #import "BusinessRestrictedView.h"
 #import "PostingCollectViewCell.h"
 #import "PostingRecord.h"
-//#import "BusinessRecord.h"
 #import "CompanyRecord.h"
 #import "TextApplPopupView.h"
 #import "ContactPopupView.h"
@@ -65,85 +64,7 @@
 -(void) prepareData {
     [self setupEmployee];
     [self getPostingsByUser:testUserID2];
-//    self.postings = [[NSMutableArray alloc] init];
-//    [self setupBusinessesFake];
 }
-
-//-(void) setupBusinessesFake {
-//    self.businesses = [[NSMutableArray alloc] init];
-//    
-//    BusinessRecord *currBusiness = nil;
-//    currBusiness = [[BusinessRecord alloc] init];
-//    currBusiness.name = @"McDonald's 1";
-//    currBusiness.address = @"1692 Rue Mont Royal, Montreal QC H2J 1Z5";
-//    currBusiness.imageName = @"mcdonalds.png";
-//    [self setupPostingsFor:currBusiness];
-//    [self.businesses addObject:currBusiness];
-//    
-//    currBusiness = nil;
-//    currBusiness = [[BusinessRecord alloc] init];
-//    currBusiness.name = @"McDonald's 2";
-//    currBusiness.address = @"2530 Rue Masson, Montreal QC H1Y 1V8";
-//    currBusiness.imageName = @"mcdonalds.png";
-//    [self setupPostingsFor:currBusiness];
-//    [self.businesses addObject:currBusiness];
-//    
-//}
-//
-//-(void) setupPostingsFor:(BusinessRecord *)currBusiness {
-//    if ([currBusiness.name isEqualToString:@"McDonald's 1"]) {
-//        NSMutableArray *postings = [[NSMutableArray alloc] init];
-//        
-//        PostingRecord *currPosting = nil;
-//        currPosting = [[PostingRecord alloc] init];
-//        currPosting.title = @"CS Rep";
-//        currPosting.descrption = @"Take orders, .....";
-//        currPosting.noApplications = 23;
-//        currPosting.noShortlisted = 5;
-//        currPosting.morningShift = TRUE;
-//        currPosting.nightShift = TRUE;
-//        currPosting.wantsText = TRUE;
-//        currPosting.wantsAudio = FALSE;
-//        currPosting.wantsVideo = FALSE;
-//        currPosting.ownerBusiness = currBusiness;
-//        [postings addObject:currPosting];
-//        [self.postings addObject:currPosting];
-//        
-//        currPosting = nil;
-//        currPosting = [[PostingRecord alloc] init];
-//        currPosting.title = @"Manager";
-//        currPosting.descrption = @"Payroll, Training .....";
-//        currPosting.noApplications = 0;
-//        currPosting.noShortlisted = 0;
-//        currPosting.eveningShift = TRUE;
-//        currPosting.nightShift = TRUE;
-//        currPosting.wantsText = FALSE;
-//        currPosting.wantsAudio = TRUE;
-//        currPosting.wantsVideo = FALSE;
-//        currPosting.ownerBusiness = currBusiness;
-//        [postings addObject:currPosting];
-//        [self.postings addObject:currPosting];
-//        currBusiness.postings = postings;
-//    }
-//    if ([currBusiness.name isEqualToString:@"McDonald's 2"]) {
-//        NSMutableArray *postings = [[NSMutableArray alloc] init];
-//        
-//        PostingRecord *currPosting = nil;
-//        currPosting = [[PostingRecord alloc] init];
-//        currPosting.title = @"Asst. Manager";
-//        currPosting.descrption = @"Scheduling, .....";
-//        currPosting.noApplications = 4;
-//        currPosting.noShortlisted = 0;
-//        currPosting.afternoonShift = TRUE;
-//        currPosting.wantsText = FALSE;
-//        currPosting.wantsAudio = FALSE;
-//        currPosting.wantsVideo = TRUE;
-//        currPosting.ownerBusiness = currBusiness;
-//        [postings addObject:currPosting];
-//        [self.postings addObject:currPosting];
-//        currBusiness.postings = postings;
-//    }
-//}
 
 #pragma mark - interface
 
@@ -212,7 +133,6 @@
         cell.oTextButton.enabled = random()%2;
         cell.oAudioButton.enabled = random()%2;
         cell.oCameraButton.enabled = random()%2;
-//        BusinessRecord *currBusiness = (BusinessRecord *)currPost.ownerBusiness;
         CompanyRecord *currBusiness = [self getBusiness:currPost.CompanyId];
         cell.oBusinessLabel.text = [NSString stringWithFormat:@"%@ %@ %@", currBusiness.NameEnglish, currBusiness.City, currBusiness.Province];
         cell.oAddressLabel.text = currPost.JobLocation;

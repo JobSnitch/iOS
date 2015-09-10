@@ -34,7 +34,7 @@
 @property (nonatomic, strong)   NewInfoPopupView *infoPopupView;
 @property (nonatomic, strong)   NSString *infoText;
 @property (nonatomic)   PersonContext myContext;
-@property (nonatomic, strong)   EmployerRecord *currentEmployer;
+@property (nonatomic, strong)   EmployerRecord *currEmployer;
 
 @end
 
@@ -45,7 +45,7 @@ const float kMagicHeight2 = 764.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _myContext = creationContext;
-    self.currentEmployer = [[EmployerRecord alloc] init];
+    self.currEmployer = [[EmployerRecord alloc] init];
     [self setupTables];
     [self setupCustomViews];
     [[NSNotificationCenter defaultCenter] addObserver:self

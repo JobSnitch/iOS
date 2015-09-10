@@ -39,7 +39,7 @@
                                      NSForegroundColorAttributeName: [UIColor whiteColor]};
     NSDictionary *text2Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:12],
                                      NSForegroundColorAttributeName: [UIColor whiteColor]};
-    if (self.currPosting.title) {
+    if (self.currPosting.title && ![self.currPosting.title isEqual:[NSNull null]]) {
         NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:self.currPosting.title attributes:text1Attribute];
         [self.oJTitleText setAttributedText:attributedText];
     } else {
@@ -47,15 +47,15 @@
         [self.oJTitleText setAttributedPlaceholder:attributedPlaceholder];
     }
     
-    if (self.currPosting.descrption) {
+    if (self.currPosting.descrption && ![self.currPosting.descrption isEqual:[NSNull null]]) {
         NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:self.currPosting.descrption attributes:text2Attribute];
         [self.oDescriptionText setAttributedText:attributedText];
     }
-    if (self.currPosting.JobCategoryName) {
+    if (self.currPosting.JobCategoryName && ![self.currPosting.JobCategoryName isEqual:[NSNull null]]) {
         NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:self.currPosting.JobCategoryName attributes:text1Attribute];
         [self.oJTypeLabel setAttributedText:attributedText];
     }
-    if (self.currPosting.industry) {
+    if (self.currPosting.industry && ![self.currPosting.industry isEqual:[NSNull null]]) {
         NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:self.currPosting.industry attributes:text1Attribute];
         [self.oIndustryLabel setAttributedText:attributedText];
     }

@@ -116,6 +116,15 @@ static BOOL hasBeenDisconnected = FALSE;
     return [self getForService:service withParams:params withCompletion:completion];
 }
 
+- (NSURLSessionDataTask *)userHasAlreadyAppliedForJob: (NSString *) postingId
+                                 withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
+    if (![self preLaunch]) return nil;
+    
+    NSDictionary *params = nil;
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/UserHasAlreadyAppliedForJob/%@", postingId];
+    return [self getForService:service withParams:params withCompletion:completion];
+}
+
 - (NSURLSessionDataTask *)getApplicationsForJob: (NSString *) postingId
                                  withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
     if (![self preLaunch]) return nil;
@@ -130,7 +139,7 @@ static BOOL hasBeenDisconnected = FALSE;
     if (![self preLaunch]) return nil;
     
     NSDictionary *params = nil;
-    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/GetApplicationDetails?JobApplicationId=%@", applId];
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/GetApplicationDetails/%@", applId];
     return [self getForService:service withParams:params withCompletion:completion];
 }
 
@@ -344,7 +353,7 @@ static BOOL hasBeenDisconnected = FALSE;
 }
 - (NSMutableArray *) processAllPostingsResults: (NSDictionary *)results {
     NSMutableArray *retArray = nil;
-    NSLog(@"AllPostings: %@", results);
+//    NSLog(@"AllPostings: %@", results);
     if (results) {
         retArray = [[NSMutableArray alloc] init];
         for (NSDictionary *posting in results) {
@@ -380,6 +389,12 @@ static BOOL hasBeenDisconnected = FALSE;
     return resPosting;
 }
 
+- (BOOL) processAlreadyAppliedForJob: (NSDictionary *)results {
+    BOOL ret = FALSE;
+    NSLog(@"AlreadyApplied:%@", results);
+    return ret;
+}
+
 - (NSArray *) processApplicationsResults: (NSDictionary *)results {
     NSMutableArray *retArray = nil;
 //    NSLog(@"AllApplications: %@", results);
@@ -413,9 +428,30 @@ static BOOL hasBeenDisconnected = FALSE;
 }
 
 - (ApplicationRecord *) processApplicationWithId: (NSDictionary *)results {
-    ApplicationRecord * resAppl = nil;
+    ApplicationRecord * currAppl = nil;
     NSLog(@"Application: %@", results);
-    return resAppl;
+    if (results) {
+        currAppl = [[ApplicationRecord alloc] init];
+        NSDictionary *account = [results valueForKey:@"Account"];
+        if (account) {
+            NSDictionary *avail = [account valueForKey:@"AvailabilitySchedule"];
+            if (avail) {
+                currAppl.morningShift = [[avail valueForKey:@"MondayAM"] boolValue];
+                currAppl.afternoonShift = [[avail valueForKey:@"MondayPM"] boolValue];
+                currAppl.eveningShift = [[avail valueForKey:@"MondayEvening"] boolValue];
+            }
+            currAppl.email = [account valueForKey:@"Email"];
+            currAppl.FirstName = [account valueForKey:@"FirstName"];
+            currAppl.LastName = [account valueForKey:@"LastName"];
+        }
+        currAppl.ApplicationId = [results valueForKey:@"ApplicationId"] ;
+        currAppl.ApplicationStatus = [results valueForKey:@"ApplicationStatus"];
+        currAppl.JobPostingId = [results valueForKey:@"JobPostingId"] ;
+        currAppl.textResource = [results valueForKey:@"Message"];
+        currAppl.UserId = [results valueForKey:@"UserId"] ;
+        currAppl.VideoIncluded = [[results valueForKey:@"VideoIncluded"] boolValue];
+    }
+    return currAppl;
 }
 
 - (BOOL) processUpdatePostingResults: (NSDictionary *)results {

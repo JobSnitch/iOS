@@ -8,7 +8,7 @@
 
 #import "BaseJSViewController.h"
 #import "EmployerRecord.h"
-#import "BusinessRecord.h"
+#import "CompanyRecord.h"
 #import "PostingRecord.h"
 
 @protocol EmployerContainerDelegate <NSObject>
@@ -17,8 +17,8 @@
 @end
 
 @interface ApplicationsViewController : BaseJSViewController <UICollectionViewDataSource, UICollectionViewDelegate>
-@property (nonatomic, weak)   EmployerRecord *currentEmployer;
-@property (nonatomic, weak)   BusinessRecord *currBusiness;
+@property (nonatomic, weak)   EmployerRecord *currEmployer;
+@property (nonatomic, weak)   CompanyRecord *currBusiness;
 @property (nonatomic, weak)   PostingRecord *currPosting;
 
 @property (assign) id<EmployerContainerDelegate> delegate;     // the parent controller implements this

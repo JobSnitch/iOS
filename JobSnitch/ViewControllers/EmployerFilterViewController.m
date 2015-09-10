@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *oBackImage;
 @property (weak, nonatomic) IBOutlet UIButton *oFilterButton;
 
-@property (nonatomic, strong)   EmployerRecord *currentEmployer;
+//@property (nonatomic, strong)   EmployerRecord *currentEmployer;
 
 @property (strong, nonatomic) JSPickerView * jobPicker;
 @property (strong, nonatomic) JSPickerView * businessPicker;
@@ -66,12 +66,22 @@
 
 #pragma mark - Data
 -(void) setupEmployer {
-    self.currentEmployer = [[EmployerRecord alloc] init];
-    self.currentEmployer.name = @"Mc_HRManager";
-    self.currentEmployer.imageName = @"small_add_photo.png";
+    [super setupEmployer];
+    if ([self.currentEmployer.name isEqualToString:@"employer"]) {
+        [self downloadUserInfo:testUserID2];
+    }
     
     [self setupBusinesses];
 }
+
+//-(void) setupEmployer {
+//    [super setupEmployer];
+//    if ([self.currentEmployer.name isEqualToString:@"employer"]) {
+//        [self downloadUserInfo:testUserID2];
+//    }
+//    usleep(100000);
+//    [self getCompanyProfileForUser:testUserID2];
+//}
 
 -(void) setupBusinesses {
     NSMutableArray *businesses = [[NSMutableArray alloc] init];
@@ -213,7 +223,7 @@
 
 -(void) setupHeader {
     self.oTopImage.image = [UIImage imageNamed:self.currentEmployer.imageName];
-    self.oNameLabel.text = self.currentEmployer.name;
+//    self.oNameLabel.text = self.currentEmployer.name;
     UIImage *avatarImage = [self getAvatarPhoto];
     if (avatarImage) {
         self.oTopImage.image = avatarImage;
@@ -424,6 +434,17 @@
                      } completion:^(BOOL finished) {
                          pickerView.hidden = true;
                      }];
+}
+
+#pragma mark - UserInfo callback
+-(void) setupFromUserInfo:(UserRecord *)currUser {
+    if (currUser.FirstName) {                      // my interpretation
+        self.currentEmployer.name = currUser.FirstName;
+        ((AppDelegate *)[UIApplication sharedApplication].delegate).currUserNick = currUser.FirstName;
+        self.oNameLabel.text = self.currentEmployer.name;
+    }
+    
+    [self.view setNeedsDisplay];
 }
 
 #pragma mark - other
