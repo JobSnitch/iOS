@@ -25,7 +25,6 @@
                                                 EmployerContainerDelegate>
 
 @property (weak, nonatomic)     UIScrollView *oScrollView;
-@property (nonatomic, strong)   CompanyRecord *currentCompany;
 @property (nonatomic, strong)   NSMutableArray *subviews;
 @property (nonatomic) CGFloat   scrollViewHeight;
 @property (nonatomic) CGFloat   rowHeight;
@@ -76,7 +75,8 @@
     
 }
 
--(void) setupDataAndViews {
+-(void) setupDataAndViews: (NSArray *) postings {
+    self.postings = [postings mutableCopy];
     [self setupBusinesses];
 }
 
@@ -575,65 +575,6 @@
             [[JSSessionManager sharedManager] firstLevelError:error forService:@"NewJobPosting"];
         }
         [self performSelectorOnMainThread:@selector(setupView) withObject:nil waitUntilDone:NO];
-    }];
-}
-
-#pragma mark - all postings
--(void) getComPostings {
-    if (self.currentCompany) {
-        NSString *cid = [[NSNumber numberWithInteger: self.currentCompany.CompanyId] stringValue];
-        [self getPostingsByCompany:cid];
-    }
-}
-
-- (void) getPostingsByCompany:(NSString *) compId {
-    if (!compId || [compId isEqualToString:@""]) {
-        return;
-    }
-    
-    [[JSSessionManager sharedManager] getPostingsForCompany:compId withCompletion:^(NSDictionary *results, NSError *error) {
-        if (results) {
-            if ([[JSSessionManager sharedManager] checkResult:results]) {
-                self.postings = [[JSSessionManager sharedManager] processAllPostingsComResults:results];
-                [self setupDataAndViews];
-            }
-        } else {
-            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetAllPostingsForCompany"];
-        }
-    }];
-}
-
-#pragma mark - company
-//- (void) getCompanyProfileForID:(NSString *) compId {
-//    if (!compId || [compId isEqualToString:@""]) {
-//        return;
-//    }
-//    
-//    [[JSSessionManager sharedManager] getCompanyForId: compId withCompletion:^(NSDictionary *results, NSError *error) {
-//        if (results) {
-//            if ([[JSSessionManager sharedManager] checkResult:results]) {
-//                self.currentCompany = [[JSSessionManager sharedManager] processCompanyIdResults:results];
-//            }
-//        } else {
-//            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetCompanyProfile"];
-//        }
-//    }];
-//}
-
--(void) getCompanyProfileForUser:(NSString *) userID {
-    if (!userID || [userID isEqualToString:@""]) {
-        return;
-    }
-    
-    [[JSSessionManager sharedManager] getCompanyForUser:userID withCompletion:^(NSDictionary *results, NSError *error) {
-        if (results) {
-            if ([[JSSessionManager sharedManager] checkResult:results]) {
-                self.currentCompany = [[JSSessionManager sharedManager] processCompanyUserResults:results];
-                [self getComPostings];
-            }
-        } else {
-            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetCompanyForUser"];
-        }
     }];
 }
 

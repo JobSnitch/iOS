@@ -9,6 +9,7 @@
 #import "EmployeeLandingViewController.h"
 #import "EmployeeFirstView.h"
 #import "JSSessionManager.h"
+#import "EmployeeRecord.h"
 
 @import MapKit;
 

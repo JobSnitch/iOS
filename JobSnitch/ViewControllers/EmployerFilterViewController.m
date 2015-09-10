@@ -12,6 +12,7 @@
 #import "PostingRecord.h"
 #import "JSPickerView.h"
 #import "JSDatePicker.h"
+#import "CompanyRecord.h"
 
 @interface EmployerFilterViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *oNameLabel;
@@ -34,6 +35,7 @@
 @property (nonatomic)       CGFloat screenWidth;
 @property (nonatomic)       CGFloat screenHeight;
 @property (strong, nonatomic) JSDatePicker *datePicker;
+@property (nonatomic, strong)   NSMutableArray *postings;
 
 @end
 
@@ -71,79 +73,30 @@
         [self downloadUserInfo:testUserID2];
     }
     
+    usleep(100000);
+    [self getCompanyProfileForUser:testUserID2];
+
+//    [self setupBusinesses];
+}
+
+-(void) setupDataAndViews: (NSArray *) postings {
+    self.postings = [postings mutableCopy];
     [self setupBusinesses];
 }
 
-//-(void) setupEmployer {
-//    [super setupEmployer];
-//    if ([self.currentEmployer.name isEqualToString:@"employer"]) {
-//        [self downloadUserInfo:testUserID2];
-//    }
-//    usleep(100000);
-//    [self getCompanyProfileForUser:testUserID2];
-//}
-
 -(void) setupBusinesses {
-    NSMutableArray *businesses = [[NSMutableArray alloc] init];
-    
-    BusinessRecord *currBusiness = nil;
-    currBusiness = [[BusinessRecord alloc] init];
-    currBusiness.name = @"McDonald's 1";
-    currBusiness.address = @"1692 Rue Mont Royal, Montreal QC H2J 1Z5";
-    currBusiness.imageName = @"mcdonalds.png";
-    [self setupPostingsFor:currBusiness];
-    [businesses addObject:currBusiness];
-    
-    currBusiness = nil;
-    currBusiness = [[BusinessRecord alloc] init];
-    currBusiness.name = @"McDonald's 2";
-    currBusiness.address = @"2530 Rue Masson, Montreal QC H1Y 1V8";
-    currBusiness.imageName = @"mcdonalds.png";
-    [self setupPostingsFor:currBusiness];
-    [businesses addObject:currBusiness];
-    
-    self.currentEmployer.businesses = businesses;
-}
-
--(void) setupPostingsFor:(BusinessRecord *)currBusiness {
-    if ([currBusiness.name isEqualToString:@"McDonald's 1"]) {
-        NSMutableArray *postings = [[NSMutableArray alloc] init];
-        
-        PostingRecord *currPosting = nil;
-        currPosting = [[PostingRecord alloc] init];
-        currPosting.title = @"CS Rep";
-        currPosting.descrption = @"Take orders, .....";
-        currPosting.noApplications = 23;
-        currPosting.noShortlisted = 5;
-        currPosting.morningShift = TRUE;
-        currPosting.nightShift = TRUE;
-        [postings addObject:currPosting];
-        
-        currPosting = nil;
-        currPosting = [[PostingRecord alloc] init];
-        currPosting.title = @"Manager";
-        currPosting.descrption = @"Payroll, Training .....";
-        currPosting.noApplications = 0;
-        currPosting.noShortlisted = 0;
-        currPosting.eveningShift = TRUE;
-        currPosting.nightShift = TRUE;
-        [postings addObject:currPosting];
-        
-        currBusiness.postings = postings;
+    NSMutableSet *locations = [NSMutableSet setWithArray:[self.postings valueForKey:@"JobLocation"]];
+//    NSLog(@"loca %@", locations);
+    if (locations && [locations containsObject:[NSNull null]]) {
+        [locations removeObject:[NSNull null]];
     }
-    if ([currBusiness.name isEqualToString:@"McDonald's 2"]) {
-        NSMutableArray *postings = [[NSMutableArray alloc] init];
-        
-        PostingRecord *currPosting = nil;
-        currPosting = [[PostingRecord alloc] init];
-        currPosting.title = @"Asst. Manager";
-        currPosting.descrption = @"Scheduling, .....";
-        currPosting.noApplications = 4;
-        currPosting.noShortlisted = 0;
-        currPosting.afternoonShift = TRUE;
-        [postings addObject:currPosting];
-        
-        currBusiness.postings = postings;
+    if (locations && (locations.count == 0)) {
+        NSString *addr = [NSString stringWithFormat:@"%@ %@", self.currentCompany.City, self.currentCompany.Province];
+        [locations addObject:addr];
+    }
+    if (locations) {
+        self.businessArray = [locations allObjects];
+        [self.businessPicker.picker reloadAllComponents];
     }
 }
 
@@ -162,7 +115,7 @@
     [self.businessPicker addTargetForDoneButton:self action:@selector(businessDone)];
     [self.businessPicker addTargetForCancelButton:self action:@selector(businessCancel)];
     
-    self.businessArray = [self.currentEmployer.businesses valueForKey:@"name"];
+//    self.businessArray = [self.currentEmployer.businesses valueForKey:@"name"];
 }
 
 -(void) setupRecentPicker {
@@ -223,7 +176,7 @@
 
 -(void) setupHeader {
     self.oTopImage.image = [UIImage imageNamed:self.currentEmployer.imageName];
-//    self.oNameLabel.text = self.currentEmployer.name;
+    self.oNameLabel.text = self.currentEmployer.name;
     UIImage *avatarImage = [self getAvatarPhoto];
     if (avatarImage) {
         self.oTopImage.image = avatarImage;

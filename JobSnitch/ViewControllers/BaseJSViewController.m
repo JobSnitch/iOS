@@ -10,6 +10,9 @@
 #import "JSCustomUnwindSegue.h"
 #import "JSPickerView.h"
 #import "JSSessionManager.h"
+#import "EmployeeRecord.h"
+#import "EmployerRecord.h"
+
 @import MobileCoreServices;
 
 @interface BaseJSViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -438,6 +441,70 @@
 -(void) setupFromUserInfo:(UserRecord *)currUser {
     
 }
+
+#pragma mark - company
+// used?
+- (void) getCompanyProfileForID:(NSString *) compId {
+    if (!compId || [compId isEqualToString:@""]) {
+        return;
+    }
+
+    [[JSSessionManager sharedManager] getCompanyForId: compId withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                self.currentCompany = [[JSSessionManager sharedManager] processCompanyIdResults:results];
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetCompanyProfile"];
+        }
+    }];
+}
+
+-(void) getCompanyProfileForUser:(NSString *) userID {
+    if (!userID || [userID isEqualToString:@""]) {
+        return;
+    }
+    
+    [[JSSessionManager sharedManager] getCompanyForUser:userID withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                self.currentCompany = [[JSSessionManager sharedManager] processCompanyUserResults:results];
+                [self getComPostings];
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetCompanyForUser"];
+        }
+    }];
+}
+
+#pragma mark - all postings
+-(void) getComPostings {
+    if (self.currentCompany) {
+        NSString *cid = [[NSNumber numberWithInteger: self.currentCompany.CompanyId] stringValue];
+        [self getPostingsByCompany:cid];
+    }
+}
+
+- (void) getPostingsByCompany:(NSString *) compId {
+    if (!compId || [compId isEqualToString:@""]) {
+        return;
+    }
+    
+    [[JSSessionManager sharedManager] getPostingsForCompany:compId withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                NSArray *postings = [[JSSessionManager sharedManager] processAllPostingsComResults:results];
+                [self setupDataAndViews:postings];
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"GetAllPostingsForCompany"];
+        }
+    }];
+}
+
+-(void) setupDataAndViews: (NSArray *) postings {
+}
+
 
 -(void) deleteFileAtPath: (NSString *) filePath {
     NSError* error = nil;

@@ -7,6 +7,7 @@
 //
 
 #import "EmployeeOptionsViewController.h"
+#import "EmployeeRecord.h"
 
 @interface EmployeeOptionsViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *oToggleButton;

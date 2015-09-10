@@ -9,6 +9,7 @@
 #import "CreateJobseekerController.h"
 #import "CreateTopView.h"
 #import "JSPickerView.h"
+#import "EmployeeRecord.h"
 
 @interface CreateJobseekerController () <UITableViewDelegate, UITableViewDataSource, PhotoDelegate>
 

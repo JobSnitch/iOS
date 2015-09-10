@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EmployeeRecord.h"
-#import "EmployerRecord.h"
 #import "EmployeeFirstView.h"
+
+@class UserRecord;
+@class EmployeeRecord;
+@class EmployerRecord;
+@class CompanyRecord;
 
 @interface BaseJSViewController : UIViewController
 @property (nonatomic, strong) UIImageView *backgroundGradient;
@@ -23,6 +26,7 @@
 
 // for Employer
 @property (nonatomic, strong)   EmployerRecord *currentEmployer;
+@property (nonatomic, strong)   CompanyRecord *currentCompany;
 
 -(void) initBackground;
 -(void) setupJobtypePicker;
@@ -52,4 +56,7 @@
 -(void) setupFromUserInfo:(UserRecord *)currUser;
 
 -(void) deleteFileAtPath: (NSString *) filePath;
+
+-(void) getCompanyProfileForUser:(NSString *) userID;
+-(void) setupDataAndViews: (NSArray *) postings;
 @end
