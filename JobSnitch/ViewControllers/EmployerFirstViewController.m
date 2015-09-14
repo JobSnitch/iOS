@@ -318,8 +318,6 @@
     if ([self.postingView isKindOfClass:[PostingEditView class]]) {
         [self deleteExistingPosting];
         [self removePostingView];
-//        [self findAndDelete:((PostingEditView *)self.postingView).currPosting];
-//        [self refreshView];
     } else {
         CGFloat startY = self.postingView.frame.origin.y;
         [self removePostingView];
@@ -330,8 +328,9 @@
 
 -(void) delegateHasSaved:(id)sender {
     if ([self.postingView isKindOfClass:[PostingEditView class]]) {
-        [self findandReplace:((PostingEditView *)self.postingView).currPosting];
-        [self.suprview postData:((PostingEditView *)self.postingView).currPosting];
+        [self updateExistingPosting];
+//        [self updatePostingswithPosting:((PostingEditView *)self.postingView).currPosting];
+        
         CGFloat startY = self.postingView.frame.origin.y;
         [self removePostingView];
         [self raiseBelowViews:startY];
@@ -342,6 +341,11 @@
         self.subviews = nil;
         self.mainView = nil;
     }
+}
+
+-(void) updatePostingswithPosting:(PostingRecord *) currPosting {
+    [self findandReplace:currPosting];
+    [self.suprview postData:currPosting];
 }
 
 -(void) postPosting {
@@ -525,27 +529,11 @@
 
 #pragma mark - new posting
 -(void) doPostNewPosting {
-    NSDictionary *paramValue = [self formPostingParam];
+    NSDictionary *paramValue = [self formNewPostingParam];
     [self uploadNewPosting:paramValue];
 }
 
 //-(NSString *) formPostingParam {
-//    NSString *paramValue = nil;
-//    NSString *jobCateg = @"";
-//    if (self.toPostPosting.JobCategoryName && ![self.toPostPosting.JobCategoryName isEqualToString:@""]) {
-//        NSPredicate * predicate = [NSPredicate predicateWithFormat:@" EnglishName MATCHES %@", self.toPostPosting.JobCategoryName];
-//        NSArray * matches = [self.jobCategories filteredArrayUsingPredicate:predicate];
-//        NSInteger catId = [[((NSDictionary *) matches[0]) valueForKey:@"JobCategoryId"] integerValue];
-//        jobCateg = [NSString stringWithFormat:@"JobCategory:{JobCategoryId:%ld,EnglishName:\"%@\"},",
-//                    (long)catId, self.toPostPosting.JobCategoryName];
-//    }
-//    NSString *jobLoc = @"";
-//    if (self.toPostPosting.ownerBusiness ) {
-//        BusinessRecord *currB = self.toPostPosting.ownerBusiness;
-//        if (currB.address) {
-//            jobLoc = currB.address;
-//        }
-//    }
 //    NSString *morning = (self.toPostPosting.morningShift ? @"true" : @"false");
 //    NSString *aftrnoon = (self.toPostPosting.afternoonShift ? @"true" : @"false");
 //    NSString *evening = (self.toPostPosting.eveningShift ? @"true" : @"false");
@@ -567,34 +555,38 @@
 //    return paramValue;
 //}
 
--(NSDictionary *) formPostingParam {
-    NSDictionary *params = nil;
+-(NSMutableDictionary *) createNewPostDict:(PostingRecord *) existingPost {
+    NSMutableDictionary *newPost = nil;
     NSString *jobCateg = @"";
     NSInteger catId = 0;
-    if (self.toPostPosting.JobCategoryName && ![self.toPostPosting.JobCategoryName isEqualToString:@""]) {
-        NSPredicate * predicate = [NSPredicate predicateWithFormat:@" EnglishName MATCHES %@", self.toPostPosting.JobCategoryName];
+    
+    if (existingPost == nil) {          // new posting context
+        existingPost = self.toPostPosting;
+    }
+    
+    if (existingPost.JobCategoryName && ![existingPost.JobCategoryName isEqualToString:@""]) {
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@" EnglishName MATCHES %@", existingPost.JobCategoryName];
         NSArray * matches = [self.jobCategories filteredArrayUsingPredicate:predicate];
         catId = [[((NSDictionary *) matches[0]) valueForKey:@"JobCategoryId"] integerValue];
         jobCateg = [NSString stringWithFormat:@"JobCategory:{JobCategoryId:%ld,EnglishName:\"%@\"},",
-                    (long)catId, self.toPostPosting.JobCategoryName];
+                    (long)catId, existingPost.JobCategoryName];
     }
     NSString *jobLoc = @"";
-    if (self.toPostPosting.ownerBusiness ) {
-        CompanyRecord *currB = self.toPostPosting.ownerBusiness;
+    if (existingPost.ownerBusiness ) {
+        CompanyRecord *currB = existingPost.ownerBusiness;
         if (currB.City || currB.Province) {
             jobLoc = [NSString stringWithFormat:@"%@ %@", currB.City, currB.Province];
         }
     }
-//    NSString *morning = (self.toPostPosting.morningShift ? @"true" : @"false");
-//    NSString *aftrnoon = (self.toPostPosting.afternoonShift ? @"true" : @"false");
-//    NSString *evening = (self.toPostPosting.eveningShift ? @"true" : @"false");
+    
     NSDictionary * catgDict = nil;
     if (catId) {
         catgDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:catId], @"JobCategoryId", nil];
     }
-    NSMutableDictionary *newPost = [NSMutableDictionary dictionaryWithObjectsAndKeys: self.toPostPosting.title, @"TitleEnglish",
-                             self.toPostPosting.descrption, @"DescriptionEnglish",
-                             nil];
+    
+    newPost = [NSMutableDictionary dictionaryWithObjectsAndKeys: existingPost.title, @"TitleEnglish",
+                                    existingPost.descrption, @"DescriptionEnglish",
+                                    nil];
     if (jobLoc) {
         [newPost setObject:jobLoc forKey:@"JobLocation"];
     }
@@ -602,6 +594,13 @@
     if (catgDict) {
         [newPost setObject:catgDict forKey:@"JobCategory"];
     }
+    return newPost;
+}
+
+-(NSDictionary *) formNewPostingParam {
+    NSDictionary *params = nil;
+    
+    NSMutableDictionary *newPost = [self createNewPostDict:nil];
 
     params = [NSDictionary dictionaryWithObjectsAndKeys: newPost, @"jobPosting", nil];
 
@@ -619,6 +618,54 @@
             }
         } else {
             [[JSSessionManager sharedManager] firstLevelError:error forService:@"NewJobPosting"];
+        }
+        [self performSelectorOnMainThread:@selector(refreshView) withObject:nil waitUntilDone:NO];
+    }];
+}
+
+#pragma mark - update posting
+-(void) updateExistingPosting {
+    NSDictionary *paramValue = [self formUpdatePostingParam];
+    [self uploadEditedPosting:paramValue];
+}
+
+-(NSDictionary *) formUpdatePostingParam {
+    NSDictionary *params = nil;
+    
+    PostingRecord *currPosting = ((PostingEditView *)self.postingView).currPosting;
+    if (!currPosting) {
+        return nil;
+    }
+   NSMutableDictionary *newPost = [self createNewPostDict:currPosting];
+    
+//  update specific
+    [newPost setObject:@"true" forKey:@"Active"];
+    
+    NSInteger pid = currPosting.JobPostingId;
+    NSString *postId = [[NSNumber numberWithInteger:pid] stringValue];
+    if (!postId || [postId isEqualToString:@""]) {
+        return nil;
+    }
+
+    [newPost setObject:postId forKey:@"JobPostingId"];
+    
+    params = [NSDictionary dictionaryWithObjectsAndKeys: newPost, @"jobPosting", nil];
+    
+    return params;
+}
+
+-(void) uploadEditedPosting:(NSDictionary *) paramValue {
+    PostingRecord *currPosting = ((PostingEditView *)self.postingView).currPosting;
+    [[JSSessionManager sharedManager] updatePostingWithParam:paramValue withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                BOOL success = [[JSSessionManager sharedManager] processUpdatePostingResults:results];
+                if (success) {
+                    [self updatePostingswithPosting:currPosting];
+                }
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"UpdateJobPosting"];
         }
         [self performSelectorOnMainThread:@selector(refreshView) withObject:nil waitUntilDone:NO];
     }];

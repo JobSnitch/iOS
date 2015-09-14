@@ -106,8 +106,18 @@
     NSDictionary *text3Attribute = @{NSFontAttributeName: [UIFont fontWithName:@"Lato-Bold" size:15],
                                      NSForegroundColorAttributeName: [UIColor whiteColor]};
     
-    [self.oTitleLabel setAttributedText:[[NSAttributedString alloc] initWithString:currPosting.title attributes:text1Attribute]];
-    [self.oDescrLabel setAttributedText:[[NSAttributedString alloc] initWithString:currPosting.descrption attributes:text2Attribute]];
+    if (currPosting.title && ![currPosting.title isEqual:[NSNull null]]) {
+        [self.oTitleLabel setAttributedText:[[NSAttributedString alloc] initWithString:currPosting.title attributes:text1Attribute]];
+    } else {
+        [self.oTitleLabel setAttributedText:[[NSAttributedString alloc] initWithString:@"Job Title" attributes:text1Attribute]];
+    }
+    
+    if (currPosting.descrption && ![currPosting.descrption isEqual:[NSNull null]]) {
+        [self.oDescrLabel setAttributedText:[[NSAttributedString alloc] initWithString:currPosting.descrption attributes:text2Attribute]];
+    } else {
+        [self.oDescrLabel setAttributedText:[[NSAttributedString alloc] initWithString:@"Job Description" attributes:text2Attribute]];
+    }
+    
     [self.oShortLabel setAttributedText:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", currPosting.noShortlisted]
                                                                         attributes:text3Attribute]];
     [self.oApplicLabel setAttributedText:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", currPosting.noApplications]

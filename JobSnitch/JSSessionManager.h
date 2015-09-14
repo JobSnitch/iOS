@@ -31,7 +31,7 @@
                                  withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
 - (NSURLSessionDataTask *)getApplicationWithId: (NSString *) applId
                             withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
-- (NSURLSessionDataTask *)updatePostingWithParam: (NSString *) param
+- (NSURLSessionDataTask *)updatePostingWithParam: (NSDictionary *) params
                                    withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
 - (NSURLSessionDataTask *)deletePostingWithId: (NSString *) postingId
                             withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
