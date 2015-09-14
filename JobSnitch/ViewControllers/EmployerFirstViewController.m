@@ -168,6 +168,15 @@
     [self.oScrollView setContentSize:CGSizeMake(self.oScrollView.bounds.size.width, self.scrollViewHeight)];
 }
 
+-(void) refreshView {
+    if (self.mainView) {
+        [self.mainView removeFromSuperview];
+        self.mainView = nil;
+    }
+    [self setupView];
+    [self setupScrollView];
+}
+
 -(void) setupBusinessViewFor:(CompanyRecord *)currBusiness {
      CGRect topFrame = CGRectMake(0, self.scrollViewHeight,
                                  self.oScrollView.bounds.size.width, 48.0);
@@ -519,50 +528,91 @@
 
 #pragma mark - new posting
 -(void) doPostNewPosting {
-    NSString *paramValue = [self formPostingParam];
+    NSDictionary *paramValue = [self formPostingParam];
 //    NSLog(@"paramValue: %@", paramValue);
     [self uploadNewPosting:paramValue];
 }
 
--(NSString *) formPostingParam {
-    NSString *paramValue = nil;
+//-(NSString *) formPostingParam {
+//    NSString *paramValue = nil;
+//    NSString *jobCateg = @"";
+//    if (self.toPostPosting.JobCategoryName && ![self.toPostPosting.JobCategoryName isEqualToString:@""]) {
+//        NSPredicate * predicate = [NSPredicate predicateWithFormat:@" EnglishName MATCHES %@", self.toPostPosting.JobCategoryName];
+//        NSArray * matches = [self.jobCategories filteredArrayUsingPredicate:predicate];
+//        NSInteger catId = [[((NSDictionary *) matches[0]) valueForKey:@"JobCategoryId"] integerValue];
+//        jobCateg = [NSString stringWithFormat:@"JobCategory:{JobCategoryId:%ld,EnglishName:\"%@\"},",
+//                    (long)catId, self.toPostPosting.JobCategoryName];
+//    }
+//    NSString *jobLoc = @"";
+//    if (self.toPostPosting.ownerBusiness ) {
+//        BusinessRecord *currB = self.toPostPosting.ownerBusiness;
+//        if (currB.address) {
+//            jobLoc = currB.address;
+//        }
+//    }
+//    NSString *morning = (self.toPostPosting.morningShift ? @"true" : @"false");
+//    NSString *aftrnoon = (self.toPostPosting.afternoonShift ? @"true" : @"false");
+//    NSString *evening = (self.toPostPosting.eveningShift ? @"true" : @"false");
+//    
+//    paramValue = [NSString stringWithFormat:@"{JobPostingId:%d,%@TitleEnglish:\"%@\","
+//                  "DescriptionEnglish:\"%@\",CompanyId:%@,JobLocation: \"%@\","
+//                  "Active:true,AvailabilitySchedule{SundayAM:%@,SundayPM:%@,SundayEvening:%@,MondayAM:%@,MondayPM:%@,MondayEvening:%@,"
+//                  "TuesdayAM:%@,TuesdayPM:%@,TuesdayEvening:%@,WednesdayAM:%@,WednesdayPM:%@,WednesdayEvening:%@,ThursdayAM:%@,"
+//                  "ThursdayPM:%@,ThursdayEvening:%@,FridayAM:%@,FridayPM:%@,FridayEvening:%@,SaturdayAM:%@,SaturdayPM:%@,SaturdayEvening:%@}}",
+//                  0, jobCateg, self.toPostPosting.title, self.toPostPosting.descrption, testUserID2, jobLoc,
+//                  morning, aftrnoon, evening,
+//                  morning, aftrnoon, evening,
+//                  morning, aftrnoon, evening,
+//                  morning, aftrnoon, evening,
+//                  morning, aftrnoon, evening,
+//                  morning, aftrnoon, evening,
+//                  morning, aftrnoon, evening
+//                  ];
+//    return paramValue;
+//}
+
+-(NSDictionary *) formPostingParam {
+    NSDictionary *params = nil;
     NSString *jobCateg = @"";
+    NSInteger catId = 0;
     if (self.toPostPosting.JobCategoryName && ![self.toPostPosting.JobCategoryName isEqualToString:@""]) {
         NSPredicate * predicate = [NSPredicate predicateWithFormat:@" EnglishName MATCHES %@", self.toPostPosting.JobCategoryName];
         NSArray * matches = [self.jobCategories filteredArrayUsingPredicate:predicate];
-        NSInteger catId = [[((NSDictionary *) matches[0]) valueForKey:@"JobCategoryId"] integerValue];
+        catId = [[((NSDictionary *) matches[0]) valueForKey:@"JobCategoryId"] integerValue];
         jobCateg = [NSString stringWithFormat:@"JobCategory:{JobCategoryId:%ld,EnglishName:\"%@\"},",
                     (long)catId, self.toPostPosting.JobCategoryName];
     }
     NSString *jobLoc = @"";
     if (self.toPostPosting.ownerBusiness ) {
-        BusinessRecord *currB = self.toPostPosting.ownerBusiness;
-        if (currB.address) {
-            jobLoc = currB.address;
+        CompanyRecord *currB = self.toPostPosting.ownerBusiness;
+        if (currB.City || currB.Province) {
+            jobLoc = [NSString stringWithFormat:@"%@ %@", currB.City, currB.Province];
         }
     }
-    NSString *morning = (self.toPostPosting.morningShift ? @"true" : @"false");
-    NSString *aftrnoon = (self.toPostPosting.afternoonShift ? @"true" : @"false");
-    NSString *evening = (self.toPostPosting.eveningShift ? @"true" : @"false");
-    
-    paramValue = [NSString stringWithFormat:@"{JobPostingId:%d,%@TitleEnglish:\"%@\","
-                  "DescriptionEnglish:\"%@\",CompanyId:%@,JobLocation: \"%@\","
-                  "Active:true,AvailabilitySchedule{SundayAM:%@,SundayPM:%@,SundayEvening:%@,MondayAM:%@,MondayPM:%@,MondayEvening:%@,"
-                  "TuesdayAM:%@,TuesdayPM:%@,TuesdayEvening:%@,WednesdayAM:%@,WednesdayPM:%@,WednesdayEvening:%@,ThursdayAM:%@,"
-                  "ThursdayPM:%@,ThursdayEvening:%@,FridayAM:%@,FridayPM:%@,FridayEvening:%@,SaturdayAM:%@,SaturdayPM:%@,SaturdayEvening:%@}}",
-                  0, jobCateg, self.toPostPosting.title, self.toPostPosting.descrption, testUserID2, jobLoc,
-                  morning, aftrnoon, evening,
-                  morning, aftrnoon, evening,
-                  morning, aftrnoon, evening,
-                  morning, aftrnoon, evening,
-                  morning, aftrnoon, evening,
-                  morning, aftrnoon, evening,
-                  morning, aftrnoon, evening
-                  ];
-    return paramValue;
+//    NSString *morning = (self.toPostPosting.morningShift ? @"true" : @"false");
+//    NSString *aftrnoon = (self.toPostPosting.afternoonShift ? @"true" : @"false");
+//    NSString *evening = (self.toPostPosting.eveningShift ? @"true" : @"false");
+    NSDictionary * catgDict = nil;
+    if (catId) {
+        catgDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:catId], @"JobCategoryId", nil];
+    }
+    NSMutableDictionary *newPost = [NSMutableDictionary dictionaryWithObjectsAndKeys: self.toPostPosting.title, @"TitleEnglish",
+                             self.toPostPosting.descrption, @"DescriptionEnglish",
+                             nil];
+    if (jobLoc) {
+        [newPost setObject:jobLoc forKey:@"JobLocation"];
+    }
+    [newPost setObject:[NSNumber numberWithInteger:self.currentCompany.CompanyId] forKey:@"CompanyId"];
+    if (catgDict) {
+        [newPost setObject:catgDict forKey:@"JobCategory"];
+    }
+
+    params = [NSDictionary dictionaryWithObjectsAndKeys: newPost, @"jobPosting", nil];
+
+    return params;
 }
 
--(void) uploadNewPosting:(NSString *) paramValue {
+-(void) uploadNewPosting:(NSDictionary *) paramValue {
     [[JSSessionManager sharedManager] postNewPostingWithParam:paramValue withCompletion:^(NSDictionary *results, NSError *error) {
         if (results) {
             if ([[JSSessionManager sharedManager] checkResult:results]) {
@@ -574,7 +624,7 @@
         } else {
             [[JSSessionManager sharedManager] firstLevelError:error forService:@"NewJobPosting"];
         }
-        [self performSelectorOnMainThread:@selector(setupView) withObject:nil waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(refreshView) withObject:nil waitUntilDone:NO];
     }];
 }
 

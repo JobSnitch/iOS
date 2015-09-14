@@ -180,13 +180,14 @@ static BOOL hasBeenDisconnected = FALSE;
 }
 
 
-- (NSURLSessionDataTask *)postNewPostingWithParam: (NSString *) param
+- (NSURLSessionDataTask *)postNewPostingWithParam: (NSDictionary *) params
                                    withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion {
     if (![self preLaunch]) return nil;
-    NSDictionary *params = @{
-                             @"JobPosting": [param stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
-                             };
-    NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/NewJobPosting"];
+//    NSDictionary *params = @{
+//                             @"jobPosting": [param stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+//                             };
+    NSLog(@"params: %@", params);
+    NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/NewjobPosting"];
     //    NSDictionary *params = nil;
     //    NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/NewJobPosting?JobPosting=%@", param];
     return [self postForService:service withParams:params withCompletion:completion];
@@ -347,7 +348,6 @@ static BOOL hasBeenDisconnected = FALSE;
 
 - (BOOL) processNewPostingResults: (NSDictionary *)results {
     BOOL ret = TRUE;
-//    NSLog(@"results:%@", results);
     ret = [[results valueForKey:@"CreateNewJobPostingResult"] boolValue];
     return ret;
 }

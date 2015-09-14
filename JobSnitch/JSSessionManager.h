@@ -41,8 +41,7 @@
                                   withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
 - (NSURLSessionDataTask *)postNewUserAccountWithParam: (NSString *) param
                                        withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
-//UserHasAlreadyAppliedForJob?
-- (NSURLSessionDataTask *)postNewPostingWithParam: (NSString *) param
+- (NSURLSessionDataTask *)postNewPostingWithParam: (NSDictionary *) params
                                    withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
 - (NSURLSessionDataTask *)getPostingsForCompany: (NSString *) companyId
                               withCompletion:( void (^)(NSDictionary *results, NSError *error) )completion;
