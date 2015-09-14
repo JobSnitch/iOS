@@ -148,7 +148,7 @@ static BOOL hasBeenDisconnected = FALSE;
     if (![self preLaunch]) return nil;
     
     NSDictionary *params = nil;
-    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/DeleteJobPosting?jobPostingId=%@", postingId];
+    NSString *service = [NSString stringWithFormat:@"jobEntry.svc/JobPosting/DeleteJobPosting/%@", postingId];
     return [self getForService:service withParams:params withCompletion:completion];
 }
 
@@ -188,8 +188,6 @@ static BOOL hasBeenDisconnected = FALSE;
 //                             };
     NSLog(@"params: %@", params);
     NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/NewjobPosting"];
-    //    NSDictionary *params = nil;
-    //    NSString *service = [NSString stringWithFormat:@"jobCompany.svc/JobCompany/NewJobPosting?JobPosting=%@", param];
     return [self postForService:service withParams:params withCompletion:completion];
 }
 

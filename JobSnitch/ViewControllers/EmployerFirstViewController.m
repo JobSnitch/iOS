@@ -316,11 +316,10 @@
 
 -(void) delegateHasCanceled:(id)sender {
     if ([self.postingView isKindOfClass:[PostingEditView class]]) {
-        [self findAndDelete:((PostingEditView *)self.postingView).currPosting];
+        [self deleteExistingPosting];
         [self removePostingView];
-        self.subviews = nil;
-        self.mainView = nil;
-        [self setupView];
+//        [self findAndDelete:((PostingEditView *)self.postingView).currPosting];
+//        [self refreshView];
     } else {
         CGFloat startY = self.postingView.frame.origin.y;
         [self removePostingView];
@@ -332,8 +331,6 @@
 -(void) delegateHasSaved:(id)sender {
     if ([self.postingView isKindOfClass:[PostingEditView class]]) {
         [self findandReplace:((PostingEditView *)self.postingView).currPosting];
-//        self.suprview.oTitleLabel.text = self.postingView.oJTitleText.text;
-//        self.suprview.oDescrLabel.text = self.postingView.oDescriptionText.text;
         [self.suprview postData:((PostingEditView *)self.postingView).currPosting];
         CGFloat startY = self.postingView.frame.origin.y;
         [self removePostingView];
@@ -529,7 +526,6 @@
 #pragma mark - new posting
 -(void) doPostNewPosting {
     NSDictionary *paramValue = [self formPostingParam];
-//    NSLog(@"paramValue: %@", paramValue);
     [self uploadNewPosting:paramValue];
 }
 
@@ -627,6 +623,36 @@
         [self performSelectorOnMainThread:@selector(refreshView) withObject:nil waitUntilDone:NO];
     }];
 }
+
+#pragma mark - delete posting
+-(void) deleteExistingPosting {
+    PostingRecord *todeletePost = ((PostingEditView *)self.postingView).currPosting;
+    if (todeletePost) {
+        [self deletePosting:todeletePost];
+    }
+}
+
+-(void) deletePosting:(PostingRecord *) todeletePost {
+    NSInteger pid = todeletePost.JobPostingId;
+    NSString *postId = [[NSNumber numberWithInteger:pid] stringValue];
+    if (!postId || [postId isEqualToString:@""]) {
+        return;
+    }
+    [[JSSessionManager sharedManager] deletePostingWithId:postId withCompletion:^(NSDictionary *results, NSError *error) {
+        if (results) {
+            if ([[JSSessionManager sharedManager] checkResult:results]) {
+                BOOL success = [[JSSessionManager sharedManager] processDeletePosting:results];
+                if (success) {
+                    [self findAndDelete:todeletePost];
+                }
+            }
+        } else {
+            [[JSSessionManager sharedManager] firstLevelError:error forService:@"DeleteJobPosting"];
+        }
+        [self performSelectorOnMainThread:@selector(refreshView) withObject:nil waitUntilDone:NO];
+    }];
+}
+
 
 #pragma mark - get companies info
 -(void) getCompanyInfo {
