@@ -328,8 +328,7 @@
 
 -(void) delegateHasSaved:(id)sender {
     if ([self.postingView isKindOfClass:[PostingEditView class]]) {
-        [self updateExistingPosting];
-//        [self updatePostingswithPosting:((PostingEditView *)self.postingView).currPosting];
+        [self modifyPosting];
         
         CGFloat startY = self.postingView.frame.origin.y;
         [self removePostingView];
@@ -346,13 +345,6 @@
 -(void) updatePostingswithPosting:(PostingRecord *) currPosting {
     [self findandReplace:currPosting];
     [self.suprview postData:currPosting];
-}
-
--(void) postPosting {
-    self.toPostPosting = nil;
-    self.toPostPosting = [[PostingRecord alloc] init];
-    [self setupFromFields:self.toPostPosting];
-    [self doPostNewPosting];
 }
 
 -(void) savePosting{
@@ -381,7 +373,7 @@
     for (BusinessRecord *currBusiness in self.currentEmployer.businesses) {
         for (PostingRecord *aPosting in currBusiness.postings) {
             if (aPosting == currPosting) {
-                [self changeFromFields:currPosting];
+                [self changeFromPosting:currPosting];
                 break;
             }
         }
@@ -397,6 +389,17 @@
     currPosting.nightShift = self.postingView.oNightSwitch.on;
     currPosting.JobCategoryName = self.postingView.oJTypeLabel.text;
     currPosting.industry = self.postingView.oIndustryLabel.text;
+}
+
+-(void) changeFromPosting:(PostingRecord *) currPosting {
+    currPosting.title = self.toPostPosting.title;
+    currPosting.descrption = self.toPostPosting.descrption;
+    currPosting.morningShift = self.toPostPosting.morningShift;
+    currPosting.afternoonShift = self.toPostPosting.afternoonShift;
+    currPosting.eveningShift = self.toPostPosting.eveningShift;
+    currPosting.nightShift = self.toPostPosting.nightShift;
+    currPosting.JobCategoryName = self.toPostPosting.JobCategoryName;
+    currPosting.industry = self.toPostPosting.industry;
 }
 
 -(void) setupFromFields:(PostingRecord *) currPosting {
@@ -528,6 +531,13 @@
 }
 
 #pragma mark - new posting
+-(void) postPosting {
+    self.toPostPosting = nil;
+    self.toPostPosting = [[PostingRecord alloc] init];
+    [self setupFromFields:self.toPostPosting];
+    [self doPostNewPosting];
+}
+
 -(void) doPostNewPosting {
     NSDictionary *paramValue = [self formNewPostingParam];
     [self uploadNewPosting:paramValue];
@@ -564,7 +574,8 @@
         existingPost = self.toPostPosting;
     }
     
-    if (existingPost.JobCategoryName && ![existingPost.JobCategoryName isEqualToString:@""]) {
+    if (existingPost.JobCategoryName && ![existingPost.JobCategoryName isEqual:[NSNull null]]
+            && ![existingPost.JobCategoryName isEqualToString:@""]) {
         NSPredicate * predicate = [NSPredicate predicateWithFormat:@" EnglishName MATCHES %@", existingPost.JobCategoryName];
         NSArray * matches = [self.jobCategories filteredArrayUsingPredicate:predicate];
         catId = [[((NSDictionary *) matches[0]) valueForKey:@"JobCategoryId"] integerValue];
@@ -624,6 +635,14 @@
 }
 
 #pragma mark - update posting
+-(void) modifyPosting {
+    self.toPostPosting = nil;
+    self.toPostPosting = [[PostingRecord alloc] init];
+    [self changeFromFields:self.toPostPosting];
+    self.toPostPosting.ownerBusiness = self.currentCompany;
+    [self updateExistingPosting];
+}
+
 -(void) updateExistingPosting {
     NSDictionary *paramValue = [self formUpdatePostingParam];
     [self uploadEditedPosting:paramValue];
@@ -636,7 +655,7 @@
     if (!currPosting) {
         return nil;
     }
-   NSMutableDictionary *newPost = [self createNewPostDict:currPosting];
+   NSMutableDictionary *newPost = [self createNewPostDict:self.toPostPosting];
     
 //  update specific
     [newPost setObject:@"true" forKey:@"Active"];
