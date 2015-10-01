@@ -107,10 +107,12 @@ const float kMagicHeight1 = 1268.0;
 -(void) viewDidLayoutSubviews {
     self.oWidthConstraint.constant = self.view.bounds.size.width-20.0;
     if (self.currentJobTypes && self.currentJobTypes.count) {
-        self.oJobTypeHeightConstraint.constant = self.currentJobTypes.count * [self tableView:self.oJobTypeTable heightForRowAtIndexPath:0];
+        self.oJobTypeHeightConstraint.constant = self.currentJobTypes.count * [self tableView:self.oJobTypeTable
+                                                                      heightForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     }
     if (self.currentIndustries && self.currentIndustries.count) {
-        self.oIndustryHeightConstraint.constant = self.currentIndustries.count * [self tableView:self.oIndustryTable heightForRowAtIndexPath:0];
+        self.oIndustryHeightConstraint.constant = self.currentIndustries.count * [self tableView:self.oIndustryTable
+                                                                         heightForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     }
     self.oHeightConstraint.constant = kMagicHeight1 + self.oJobTypeHeightConstraint.constant + self.oIndustryHeightConstraint.constant;
     [super bringPickersToFront];

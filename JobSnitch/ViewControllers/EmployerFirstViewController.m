@@ -46,7 +46,7 @@
     [self setupEmployer];
     
     [self setupView];
-    [super setupJobtypePicker];
+//    [super setupJobtypePicker];       // delayed
     [super setupIndustryPicker];
 }
 
@@ -70,7 +70,7 @@
     if ([self.currentEmployer.name isEqualToString:@"employer"]) {
         [self downloadUserInfo:testUserID2];
     }
-    usleep(100000);
+    usleep(350000);
     [self getCompanyProfileForUser:testUserID2];
     
 }
@@ -237,6 +237,7 @@
 }
 
 -(void) setupAddPostingView:(CGFloat)startY forBusiness:(CompanyRecord *) currBusiness {
+    [super setupJobtypePicker];
     CGFloat height = 408.0;
     CGRect topFrame = CGRectMake(0, startY,
                                  self.view.bounds.size.width, height);
@@ -463,6 +464,7 @@
 }
 
 -(void) setupEditPostingView:(CGFloat)startY forPosting:(PostingRecord *) currPosting {
+    [super setupJobtypePicker];
     CGRect topFrame = CGRectMake(0, startY,
                                  self.view.bounds.size.width, 467.0);
     self.postingView = [[PostingEditView alloc] initWithFrame:topFrame];

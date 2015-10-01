@@ -100,10 +100,12 @@ const float kMagicHeight2 = 764.0;
     [super viewDidLayoutSubviews];
     self.oWidthConstraint.constant = self.view.bounds.size.width-20.0;
     if (self.currentBusinesses && self.currentBusinesses.count) {
-        self.oBusinessHeightConstraint.constant = self.currentBusinesses.count * [self tableView:self.oBusinessTable heightForRowAtIndexPath:0];
+        self.oBusinessHeightConstraint.constant = self.currentBusinesses.count * [self tableView:self.oBusinessTable
+                                                                         heightForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     }
     if (self.currentBillings && self.currentBillings.count) {
-        self.oBillingHeightConstraint.constant = self.currentBillings.count * [self tableView:self.oBillingTable heightForRowAtIndexPath:0];
+        self.oBillingHeightConstraint.constant = self.currentBillings.count * [self tableView:self.oBillingTable
+                                                                      heightForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     }
     self.oHeightConstraint.constant = kMagicHeight2 + self.oBusinessHeightConstraint.constant + self.oBillingHeightConstraint.constant;
 

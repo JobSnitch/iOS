@@ -21,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *oIndustryTable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oJobTypeHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *oIndustryHeightConstraint;
-
 @property (nonatomic, strong)   UILabel * sliderLabel;
 @property (nonatomic, strong)   NSMutableArray *currentJobTypes;
 @property (nonatomic, strong)   NSMutableArray *currentIndustries;
@@ -56,10 +55,12 @@ const float kMagicHeightS = 595.0;
     
     self.oWidthConstraint.constant = self.view.bounds.size.width-20.0;
     if (self.currentJobTypes && self.currentJobTypes.count) {
-        self.oJobTypeHeightConstraint.constant = self.currentJobTypes.count * [self tableView:self.oJobTypeTable heightForRowAtIndexPath:0];
+        self.oJobTypeHeightConstraint.constant = self.currentJobTypes.count * [self tableView:self.oJobTypeTable
+                                                                      heightForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     }
     if (self.currentIndustries && self.currentIndustries.count) {
-        self.oIndustryHeightConstraint.constant = self.currentIndustries.count * [self tableView:self.oIndustryTable heightForRowAtIndexPath:0];
+        self.oIndustryHeightConstraint.constant = self.currentIndustries.count * [self tableView:self.oIndustryTable
+                                                                         heightForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     }
     self.oHeightConstraint.constant = kMagicHeightS + self.oJobTypeHeightConstraint.constant + self.oIndustryHeightConstraint.constant;
     [self.view bringSubviewToFront:self.oBackImage];
